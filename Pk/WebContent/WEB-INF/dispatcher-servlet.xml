@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<bean
+		class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
+		<property name="mediaTypes">
+			<map>
+				<entry key="atom" value="application/atom+xml" />
+				<entry key="html" value="text/html" />
+				<entry key="json" value="application/json" />
+			</map>
+		</property>
+		<property name="viewResolvers">
+			<list>
+				<bean class="org.springframework.web.servlet.view.BeanNameViewResolver" />
+				<bean
+					class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+					<property name="prefix" value="/jsp/" />
+					<property name="suffix" value=".jsp" />
+				</bean>
+			</list>
+		</property>
+		<property name="defaultViews">
+			<list>
+				<bean
+					class="org.springframework.web.servlet.view.json.MappingJacksonJsonView" />
+			</list>
+		</property>
+	</bean>	
+
+	<bean id="pkDataSource" class="org.apache.commons.dbcp.BasicDataSource"
+		destroy-method="close">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<!-- CHANGE from HERE -->
+		<property name="url" value="jdbc:mysql://localhost/pk" />
+		<property name="username" value="root" />
+		<property name="password" value="CDJg2000" />
+	</bean>
+
+	<bean id="mySessionFactory"
+		class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
+		<property name="dataSource" ref="pkDataSource" />
+		<property name="annotatedClasses">
+			<list>
+				<value>com.loris.domain.Familia</value>
+				<value>com.loris.domain.Marca</value>
+				<value>com.loris.domain.Articulo</value>
+				<value>com.loris.domain.Cliente</value>
+				<value>com.loris.domain.Direccion</value>
+				<value>com.loris.domain.Provincia</value>
+				<value>com.loris.domain.Factura</value>
+				<value>com.loris.domain.FacturaType</value>
+				<value>com.loris.domain.ItemFactura</value>
+				<value>com.loris.domain.IVA</value>
+				<value>com.loris.domain.Params</value>				
+			</list>
+		</property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.cache.use_query_cache">false</prop>
+				<prop key="hibernate.cache.use_second_level_cache">false</prop>
+				<prop key="hibernate.current_session_context_class">thread</prop>
+				<prop key="hibernate.transaction.factory_class">org.hibernate.transaction.JDBCTransactionFactory</prop>
+			</props>
+		</property>
+	</bean>
+
+	<bean id="messageSource"
+		class="org.springframework.context.support.ResourceBundleMessageSource"
+		p:basename="messages" />
+
+	<context:component-scan base-package="com.loris.web" />
+
+	<!-- Paginator -->
+	<bean id="paginator" class="com.loris.bean.Paginator">
+		<property name="recordSize" value="15" />
+	</bean>
+	
+	<!-- BEANS -->
+	<bean id="items" class="com.loris.bean.Items"/>	
+	
+	<!-- Validadores -->
+	<bean id="marcaValidator" class="com.loris.validator.MarcaValidator" />
+
+	<bean id="marcaEditValidator" class="com.loris.validator.MarcaEditValidator" />
+	
+	<bean id="familiaValidator" class="com.loris.validator.FamiliaValidator" />
+
+	<bean id="familiaEditValidator" class="com.loris.validator.FamiliaEditValidator" />
+	
+	<bean id="articuloValidator" class="com.loris.validator.ArticuloValidator" />
+	
+	<bean id="articuloEditValidator" class="com.loris.validator.ArticuloEditValidator" />
+	
+	<bean id="clienteValidator" class="com.loris.validator.ClienteValidator" />
+	
+	<bean id="clienteEditValidator" class="com.loris.validator.ClienteEditValidator" />
+	
+	<bean id="paramsValidator" class="com.loris.validator.ParamsValidator" />
+	
+	<bean id="checkBoxesValidator" class="com.loris.validator.CheckBoxesValidator" />
+	
+	<bean id="consultaFacturaValidator" class="com.loris.validator.ConsultaFacturaValidator" />
+	
+	<bean id="precioValidator" class="com.loris.validator.PrecioValidator" />
+	
+
+	<!-- DAOs -->
+	<bean id="marcaDAO" class="com.loris.dao.MarcaDAOImpl">
+		<property name="sessionFactory" ref="mySessionFactory" />
+	</bean>
+
+	<bean id="familiaDAO" class="com.loris.dao.FamiliaDAOImpl">
+		<property name="sessionFactory" ref="mySessionFactory" />
+	</bean>
+	
+	<bean id="articuloDAO" class="com.loris.dao.ArticuloDAOImpl">
+		<property name="sessionFactory" ref="mySessionFactory" />
+	</bean>
+	
+	<bean id="clienteDAO" class="com.loris.dao.ClienteDAOImpl">
+		<property name="sessionFactory" ref="mySessionFactory" />
+	</bean>
+	
+	<bean id="provinciaDAO" class="com.loris.dao.ProvinciaDAOImpl">
+		<property name="sessionFactory" ref="mySessionFactory" />
+	</bean>
+	
+	<bean id="facturaDAO" class="com.loris.dao.FacturaDAOImpl">
+		<property name="sessionFactory" ref="mySessionFactory" />
+	</bean>
+	
+	<bean id="ivaDAO" class="com.loris.dao.IVADAOImpl">
+		<property name="sessionFactory" ref="mySessionFactory" />
+	</bean>
+	
+	<bean id="paramsDAO" class="com.loris.dao.ParamsDAOImpl">
+		<property name="sessionFactory" ref="mySessionFactory" />
+	</bean>
+	
+	<bean id="estadisticasDAO" class="com.loris.dao.EstadisticasDAOImpl">
+		<property name="sessionFactory" ref="mySessionFactory" />
+	</bean>
+	
+</beans>

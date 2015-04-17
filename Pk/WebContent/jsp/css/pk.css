@@ -1,0 +1,171 @@
+.title {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 15px;
+	font-weight: normal;
+	color: #FFFFFF;
+	background-color: #0066FF;
+	border: 1px solid #000066;
+	width: auto;
+	text-align: center;
+	vertical-align: middle;
+}
+.cout {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 13px;
+	font-weight: normal;
+	color: black;		
+	width: auto;
+	text-align: center;
+	vertical-align: middle;
+}
+.coutNW {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 13px;
+	font-weight: normal;
+	color: black;
+	text-align: center;
+	vertical-align: middle;
+}
+.coutLeft {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 13px;
+	font-weight: normal;
+	color: black;		
+	width: auto;
+	text-align: left;
+	vertical-align: middle;
+}
+.emptyColumn {
+	background-color: #0066FF;
+	border: 1px solid #000066;
+}
+.messages {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-weight: bold;
+	color: #FFFF00;
+	border: 1px solid #000066;
+	background-color: #0033FF;
+	text-align: center;
+	vertical-align: middle;
+}
+.subTitle {
+	background-color: #0033FF;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 13px;
+	color: #FFFFFF;
+	font-weight: bold;
+	text-align: center;
+	border: 1px solid #000066;
+	height: 30px;
+}
+.upperTitle {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #FFFFFF;
+	background-color: #000099;
+	border: 1px solid #000066;
+	font-weight: bold;
+	text-align: center;
+}
+.coursesBody {
+	background-color: #000099;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	color: #FFFFFF;
+	border: 1px solid #000066;
+	font-weight: normal;
+	text-align: center;
+	vertical-align: middle;
+}
+.body {
+	background-color: #D2E8FF;
+	position: relative;
+	top: 200px;
+}
+.smallLink {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 9px;
+	color: #FFFFFF;
+	vertical-align: bottom;
+	text-align: right;
+}
+.labelStyle {
+	background-color: #0033FF;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-weight: bold;
+	color: #FFFFFF;
+	text-align: right;
+	vertical-align: middle;
+	border: 1px solid #000066;
+	padding-right: 5px;
+}
+.valueStyle {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	background-color: #0000FF;
+	color: #FFFFFF;
+	text-align: left;
+	vertical-align: middle;
+	border: 1px solid #000066;
+	padding-left: 5px;
+}
+.loginButtonStyle {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	background-color: #000099;
+	height: 40px;
+	padding-left: 68px;
+	border: 1px solid #000066;
+}
+.comboboxStyle {
+	width: 160px;
+}
+.textboxStyle {
+	width: 160px;	
+}
+.buttonStyle {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	height: 40px;
+	background-color: #000099;
+	text-align: center;
+	vertical-align: middle;
+	border: 1px solid #000066;
+}
+.imageLink {
+	background-color: #0033FF;
+	border-style: none;
+	text-decoration: none;
+	text-align: center;
+	vertical-align: middle;
+}
+.tableStyle{
+	align:center;
+	border:0;
+	cellspacing:1px;
+	cellpadding:1px;
+	width:800px;
+	height:100%;
+}
+A:link {text-decoration: none; border: none; color: #FFFFFF;}
+A:visited {text-decoration: none; border: none; color: #FFFFFF;}
+A:active {text-decoration: none; border: none; color: #FFFFFF;}
+A:hover {text-decoration: underline; color: red;}
+.button {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #000000;
+	background-color: #F6F6F2;
+	width: 150px;
+	border: 1px solid #0000FF;
+	font-weight: normal;
+}
+div.errors {
+    background: #fff3f3;
+    border: 1px solid red;
+    color: #cc0000;
+    margin: 10px 0 5px 0;
+    padding: 5px 0 5px 0;
+}
