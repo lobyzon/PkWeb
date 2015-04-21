@@ -160,14 +160,14 @@
 					</td>
 				</tr>				
 				<tr>
-					<td class="labelStyle" colspan="8" style="text-align: center;"><input type="submit" value="Imprimir Factura Manual" onclick="setTipoFactura('fm')"></td>					
+					<td><input type="hidden" id="tipoFactura" name="tipoFactura"></td>
 				</tr>
 				<tr>
-					<td class="labelStyle" colspan="8" style="text-align: center;"><input type="submit" value="Generar FE" onclick="setTipoFactura('fe')"></td>
+					<td class="labelStyle" colspan="8" style="text-align: center;"><input type="submit" id="fmButton" name="fmButton" value="Imprimir Factura Manual" onclick="setTipoFactura('<%=com.loris.domain.Factura.TIPO_FACTURA_MANUAL%>')"></td>
 				</tr>
 				<tr>
-					<td><input type="hidden" name="tipoFactura" id="tipoFactura" value=""> </td>
-				</tr>				
+					<td class="labelStyle" colspan="8" style="text-align: center;"><input type="submit" id="feButton" name="feButton" value="Generar Factura Electrónica" onclick="setTipoFactura('<%=com.loris.domain.Factura.TIPO_FACTURA_ELECTRONICA%>')" ></td>
+				</tr>		
 			</form:form>
 				<tr>
 					<td class="upperTitle" height="20" colspan="8" align="center">© Copyright LOBYZON</td>

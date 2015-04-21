@@ -30,6 +30,8 @@ import org.hibernate.annotations.Cascade;
 @Entity
 @Table(name="Pk.Factura")
 public class Factura {	
+	public static final String TIPO_FACTURA_MANUAL = "fm";
+	public static final String TIPO_FACTURA_ELECTRONICA = "fe";
 	
 	@Id
 	@Column(name="ID")

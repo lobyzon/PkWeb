@@ -1,0 +1,9 @@
+/*** Keytool ***/
+
+//Importar certifacado de AFIP en el ketstore predeterminado de JAVA 
+keytool -import -alias wsaa -keystore "C:\Program Files\Java\jre1.8.0_45\lib\security\cacerts" -trustcacerts -file "E:\Desarrollo\Produccion PK_WEB\FacturaElectronica\certificado.crt"
+
+/*** Tomcat ***/
+//Aumentar memoria
+- Crear archivo setenv.bat en /bin
+- Pegar en setenv.bat: set JAVA_OPTS=Dfile.encoding=UTF-8 -Xms128m -Xmx1024m -XX:PermSize=64m -XX:MaxPermSize=256m

@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
@@ -45,6 +46,8 @@ import com.loris.domain.FacturaType;
 import com.loris.domain.IVA;
 import com.loris.domain.ItemFactura;
 import com.loris.domain.Params;
+import com.loris.feafip.utils.WsaaService;
+import com.loris.feafip.utils.WsaaToken;
 import com.loris.print.AbstractPrint;
 import com.loris.print.PrintFactura;
 import com.loris.print.PrintFacturaA4;
@@ -54,6 +57,18 @@ import com.loris.utils.FacturaUtils;
 import com.loris.utils.SuccessUtils;
 import com.loris.validator.ConsultaFacturaValidator;
 
+import fev1.dif.afip.gov.ar.AlicIva;
+import fev1.dif.afip.gov.ar.ArrayOfAlicIva;
+import fev1.dif.afip.gov.ar.ArrayOfFECAEDetResponse;
+import fev1.dif.afip.gov.ar.FEAuthRequest;
+import fev1.dif.afip.gov.ar.FECAECabRequest;
+import fev1.dif.afip.gov.ar.FECAEDetRequest;
+import fev1.dif.afip.gov.ar.FECAEDetResponse;
+import fev1.dif.afip.gov.ar.FECAERequest;
+import fev1.dif.afip.gov.ar.FECAEResponse;
+import fev1.dif.afip.gov.ar.FERecuperaLastCbteResponse;
+import fev1.dif.afip.gov.ar.Service;
+import fev1.dif.afip.gov.ar.ServiceSoap;
 @Controller
 @SessionAttributes(value={"factura"/*, "printers"*/})
 public class FacturaController extends AbstractPrint{	
@@ -115,20 +130,87 @@ public class FacturaController extends AbstractPrint{
 		
 		facturaDAO.saveUpdateFactura(factura);		
 		
-		if(StringUtils.isNotBlank(tipoFactura))
-			System.out.println("El botón tipoFactura no está vacio: " + tipoFactura);
+		//Obtener parámetro TipoFactura: fm (Manual) o fe (Factura electrónica)
+		if(Factura.TIPO_FACTURA_ELECTRONICA.equals(tipoFactura)){
+			//Tipo Factura fe
+			WsaaService wsaaService = new WsaaService();
+			WsaaToken wsaaToken = wsaaService.getWsaaToken();
+			
+			Service serviceWsfe = new Service();
+			ServiceSoap service = serviceWsfe.getPort(ServiceSoap.class);
+			
+			FEAuthRequest auth = new FEAuthRequest();
+			auth.setSign(wsaaToken.getSign());
+			auth.setToken(wsaaToken.getToken());
+			auth.setCuit(new Long("23045244059"));			
+						
+			//Obtener ultimo comprobante autorizado
+			FERecuperaLastCbteResponse cbteResponse = service.feCompUltimoAutorizado(auth, 1, 1);
+			System.out.println("Nro Comprobante: " + cbteResponse.getCbteNro() + " Tipo Cbte: " + cbteResponse.getCbteTipo() + "" + cbteResponse.getPtoVta());
+			
+			//Obtener CAE
+			FECAERequest feCAEReq = new FECAERequest();
+			FECAECabRequest feCAECabRequest = new FECAECabRequest();
+			feCAECabRequest.setCbteTipo(1);
+			feCAECabRequest.setPtoVta(1);
+			feCAECabRequest.setCantReg(1);
+			
+			FECAEDetRequest fecaeDetRequest = new FECAEDetRequest();
+			//Concepto: 1 Productos	2 Servicios	3 Productos y Servicios
+			fecaeDetRequest.setConcepto(1);
+			//DocTipo: tipo de documento
+			fecaeDetRequest.setDocTipo(80);
+			//DocNro
+			fecaeDetRequest.setDocNro(new Long("33693450239"));
+			fecaeDetRequest.setCbteDesde(cbteResponse.getCbteNro() + 1);
+			fecaeDetRequest.setCbteHasta(cbteResponse.getCbteNro() + 1);
+			//CbtedFch: fecha del comprobante, formato yyyymmdd
+			fecaeDetRequest.setCbteFch(new SimpleDateFormat("yyyyMMdd").format(new Date()));
+			fecaeDetRequest.setImpTotal(totales.getTotal().doubleValue());
+			//ImpTotConc: importe neto no gravado
+			fecaeDetRequest.setImpTotConc(new Double("0"));
+			fecaeDetRequest.setImpNeto(totales.getTotal().doubleValue());
+			fecaeDetRequest.setImpIVA(totales.getIva().doubleValue());
+			fecaeDetRequest.setImpTrib(totales.getIva().doubleValue());
+			//MonId: código de moneda del comprobante
+			fecaeDetRequest.setMonId("PES");
+			//MonCotiz: cotización de la moneda, para pesos argentinos debe ser 1
+			fecaeDetRequest.setMonCotiz(new Double("1.000"));
+			
+			ArrayOfAlicIva ivaImpuesto = new ArrayOfAlicIva();
+			List<AlicIva> ivas = ivaImpuesto.getAlicIva();
+			AlicIva iva = new AlicIva();
+			//ID 5 = 21%
+			iva.setId(5);
+			iva.setBaseImp(totales.getSubTotalDescontado().doubleValue());
+			iva.setImporte(totales.getIva().doubleValue());
+			fecaeDetRequest.setIva(ivaImpuesto);			
+			feCAEReq.setFeCabReq(feCAECabRequest);
+			
+			FECAEResponse feCAEResponse = service.fecaeSolicitar(auth, feCAEReq);
+			ArrayOfFECAEDetResponse feDetResponse = feCAEResponse.getFeDetResp();
+			List<FECAEDetResponse> feCAEDetResponses = feDetResponse.getFECAEDetResponse();
+			System.out.println("CAE: " + feCAEDetResponses.get(0).getCAE() + " CAE Vto: " + feCAEDetResponses.get(0).getCAEFchVto());
+			
+			generateXMLInputFEPDF(factura, totales, params);
+		} else{
+			//Tipo Factura fm
+			if(FacturaType.FACTURA_TYPE.equals(factura.getFacturaType().getFacturaTypeId())) {
+				new PrintFacturaA4(factura, totales, params, printerServiceIndex);
+			}else{			
+				new PrintFacturaN(factura, totales, params, printerServiceIndex);
+			}
 		
-		/*Mofif FE
-		if(FacturaType.FACTURA_TYPE.equals(factura.getFacturaType().getFacturaTypeId())) {
-			new PrintFacturaA4(factura, totales, params, printerServiceIndex);
-		}else{			
-			new PrintFacturaN(factura, totales, params, printerServiceIndex);
+			/*Mofif FE
+			if(FacturaType.FACTURA_TYPE.equals(factura.getFacturaType().getFacturaTypeId())) {
+				new PrintFacturaA4(factura, totales, params, printerServiceIndex);
+			}else{			
+				new PrintFacturaN(factura, totales, params, printerServiceIndex);
+			}
+			
+			return new ModelAndView("successPage", "success", SuccessUtils.setSuccessBean(FACTURA_TITLE, FACTURA_EMISION));
+			*/
 		}
-		
-		return new ModelAndView("successPage", "success", SuccessUtils.setSuccessBean(FACTURA_TITLE, FACTURA_EMISION));
-		*/
-		
-		generateXMLInputFEPDF(factura, totales, params);
 		
 		return "/factura/feComprobantes";
 	}
