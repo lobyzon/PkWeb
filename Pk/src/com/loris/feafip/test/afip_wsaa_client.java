@@ -108,7 +108,7 @@ public class afip_wsaa_client {
 			try {
 				// Create a keystore using keys from the pkcs#12 p12file
 				KeyStore ks = KeyStore.getInstance("pkcs12");
-				FileInputStream p12stream = new FileInputStream ( p12file ) ;
+				FileInputStream p12stream = new FileInputStream ("src/com/loris/feafip/utils/alias.p12") ;
 				ks.load(p12stream, p12pass.toCharArray());
 				p12stream.close();
 

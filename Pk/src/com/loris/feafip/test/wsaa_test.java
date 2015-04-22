@@ -55,7 +55,7 @@ public class wsaa_test {
 		Properties config = new Properties();
 		
 		try {
-			config.load(new FileInputStream("src/com/loris/feafip/test/wsaa_client.properties"));
+			config.load(new FileInputStream("src/com/loris/feafip/utils/wsaa_client.properties"));
 		} catch (Exception e) {
 			e.printStackTrace();
 		} 
@@ -81,8 +81,7 @@ public class wsaa_test {
 		Long TicketTime = new Long(config.getProperty("TicketTime","36000"));
 	
 		// Create LoginTicketRequest_xml_cms
-		byte [] LoginTicketRequest_xml_cms = afip_wsaa_client.create_cms(p12file, p12pass, 
-					signer, dstDN, service, TicketTime);
+		byte [] LoginTicketRequest_xml_cms = afip_wsaa_client.create_cms(p12file, p12pass, signer, dstDN, service, TicketTime);
 			
 		// Invoke AFIP wsaa and get LoginTicketResponse
 		try {
