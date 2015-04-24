@@ -6524,9 +6524,9 @@
     <page-setup>
         <simple-master-page name="Simple MasterPage" id="2">
             <property name="type">a4</property>
-            <property name="topMargin">5.2mm</property>
+            <property name="topMargin">4mm</property>
             <property name="leftMargin">5.05mm</property>
-            <property name="bottomMargin">5.05mm</property>
+            <property name="bottomMargin">4mm</property>
             <property name="rightMargin">5.16mm</property>
             <property name="headerHeight">0in</property>
             <property name="footerHeight">0.6in</property>
@@ -6576,6 +6576,21 @@
                                 <cell id="9023">
                                     <property name="colSpan">1</property>
                                     <property name="rowSpan">3</property>
+                                    <text id="9528">
+                                        <property name="fontFamily">"Lucida Sans Unicode"</property>
+                                        <property name="fontSize">16pt</property>
+                                        <property name="fontWeight">bold</property>
+                                        <property name="marginTop">10pt</property>
+                                        <property name="contentType">html</property>
+                                        <text-property name="content"><![CDATA[EMILIO ALBERTO LORIS]]></text-property>
+                                    </text>
+                                    <text id="9529">
+                                        <property name="fontFamily">sans-serif</property>
+                                        <property name="marginTop">10pt</property>
+                                        <property name="contentType">html</property>
+                                        <text-property name="content"><![CDATA[DISTRIBUIDOR MAYORISTA<br>
+ARTICULOS DE FERRETERIA]]></text-property>
+                                    </text>
                                     <text id="8742">
                                         <property name="fontFamily">sans-serif</property>
                                         <property name="fontSize">9pt</property>
@@ -6584,10 +6599,7 @@
                                         <property name="marginBottom">12pt</property>
                                         <property name="textAlign">center</property>
                                         <property name="contentType">html</property>
-                                        <text-property name="content"><![CDATA[<pre><font face="arial" size="32px;"><b>EMILIO ALBERTO LORIS</b></font><br><br>
-<font face="arial" size="10px">Distribuidor Mayorista<br>
-Artículos de Ferretería<br><br>
-A.Alsina 3030 - B1602EEF Florida - Pcia. de Bs.As.<br>
+                                        <text-property name="content"><![CDATA[A.Alsina 3030 - B1602EEF Florida - Pcia. de Bs.As.<br>
 Tel./Fax.: 4760-3195 - 4730-2237<br>
 emilioaloris@yahoo.com.ar<br><br>
 I.V.A. Responsable Inscripto </font><pre>
@@ -6615,6 +6627,49 @@ I.V.A. Responsable Inscripto </font><pre>
                                 <cell id="9026">
                                     <property name="colSpan">1</property>
                                     <property name="rowSpan">3</property>
+                                    <text id="9530">
+                                        <property name="fontFamily">sans-serif</property>
+                                        <property name="fontSize">16pt</property>
+                                        <property name="fontWeight">bold</property>
+                                        <property name="textAlign">left</property>
+                                        <property name="contentType">html</property>
+                                        <text-property name="content"><![CDATA[FACTURA <br>]]></text-property>
+                                    </text>
+                                    <text id="9531">
+                                        <property name="fontFamily">sans-serif</property>
+                                        <property name="fontSize">14pt</property>
+                                        <property name="fontWeight">bold</property>
+                                        <property name="marginTop">10pt</property>
+                                        <property name="textAlign">left</property>
+                                        <property name="dataSet">Data Set</property>
+                                        <list-property name="boundDataColumns">
+                                            <structure>
+                                                <property name="name">feNro</property>
+                                                <text-property name="displayName">feNro</text-property>
+                                                <expression name="expression" type="javascript">dataSetRow["feNro"]</expression>
+                                                <property name="dataType">string</property>
+                                            </structure>
+                                        </list-property>
+                                        <property name="contentType">html</property>
+                                        <text-property name="content"><![CDATA[N° &amp;nbsp;&amp;nbsp;&amp;nbsp;<value-of>row["feNro"]</value-of><br><br>]]></text-property>
+                                    </text>
+                                    <text id="9532">
+                                        <property name="fontFamily">sans-serif</property>
+                                        <property name="fontWeight">bold</property>
+                                        <property name="marginTop">16pt</property>
+                                        <property name="textAlign">left</property>
+                                        <property name="dataSet">Data Set</property>
+                                        <list-property name="boundDataColumns">
+                                            <structure>
+                                                <property name="name">feFecha</property>
+                                                <text-property name="displayName">feFecha</text-property>
+                                                <expression name="expression" type="javascript">dataSetRow["feFecha"]</expression>
+                                                <property name="dataType">string</property>
+                                            </structure>
+                                        </list-property>
+                                        <property name="contentType">html</property>
+                                        <text-property name="content"><![CDATA[FECHA &amp;nbsp;&amp;nbsp;&amp;nbsp; <value-of>row["feFecha"]</value-of><br><br>]]></text-property>
+                                    </text>
                                     <text id="8748">
                                         <property name="fontFamily">sans-serif</property>
                                         <property name="fontSize">9pt</property>
@@ -6638,10 +6693,7 @@ I.V.A. Responsable Inscripto </font><pre>
                                             </structure>
                                         </list-property>
                                         <property name="contentType">html</property>
-                                        <text-property name="content"><![CDATA[FACTURA<br><br>
-N° &amp;nbsp;&amp;nbsp;&amp;nbsp;<value-of>row["feNro"]</value-of><br><br>
-FECHA   &amp;nbsp;&amp;nbsp;&amp;nbsp; <value-of>row["feFecha"]</value-of><br><br>
-C.U.I.T: 23-04524405-9<br>
+                                        <text-property name="content"><![CDATA[C.U.I.T: 23-04524405-9<br>
 INGRESOS BRUTOS CM 901-198755-7<br>
 FECHA INICIO ACTIVIDADES: 10/07/1970]]></text-property>
                                     </text>
@@ -6682,11 +6734,14 @@ FECHA INICIO ACTIVIDADES: 10/07/1970]]></text-property>
                     <property name="borderRightWidth">1px</property>
                     <property name="borderTopStyle">solid</property>
                     <property name="borderTopWidth">1px</property>
+                    <property name="verticalAlign">middle</property>
+                    <property name="height">2cm</property>
                     <cell id="9499">
                         <property name="paddingTop">0pt</property>
                         <property name="paddingLeft">0pt</property>
                         <property name="paddingBottom">0pt</property>
                         <property name="paddingRight">0pt</property>
+                        <property name="height">3cm</property>
                         <grid id="9500">
                             <column id="9501">
                                 <property name="width">0.5833333333333334in</property>
@@ -6700,7 +6755,8 @@ FECHA INICIO ACTIVIDADES: 10/07/1970]]></text-property>
                                     <property name="rowSpan">1</property>
                                     <text id="9524">
                                         <property name="fontFamily">"Arial"</property>
-                                        <property name="fontSize">8pt</property>
+                                        <property name="fontSize">9pt</property>
+                                        <property name="paddingLeft">1pt</property>
                                         <property name="contentType">html</property>
                                         <text-property name="content"><![CDATA[SR./ES.:]]></text-property>
                                     </text>
@@ -6708,7 +6764,7 @@ FECHA INICIO ACTIVIDADES: 10/07/1970]]></text-property>
                                 <cell id="9523">
                                     <text id="9525">
                                         <property name="fontFamily">"Arial"</property>
-                                        <property name="fontSize">8pt</property>
+                                        <property name="fontSize">9pt</property>
                                         <property name="dataSet">Data Set</property>
                                         <list-property name="boundDataColumns">
                                             <structure>
@@ -6728,7 +6784,7 @@ FECHA INICIO ACTIVIDADES: 10/07/1970]]></text-property>
                                 <cell id="9509">
                                     <text id="9526">
                                         <property name="fontFamily">"Arial"</property>
-                                        <property name="fontSize">8pt</property>
+                                        <property name="fontSize">9pt</property>
                                         <property name="dataSet">Data Set</property>
                                         <list-property name="boundDataColumns">
                                             <structure>
@@ -6748,7 +6804,7 @@ FECHA INICIO ACTIVIDADES: 10/07/1970]]></text-property>
                                 <cell id="9512">
                                     <text id="9527">
                                         <property name="fontFamily">"Arial"</property>
-                                        <property name="fontSize">8pt</property>
+                                        <property name="fontSize">9pt</property>
                                         <property name="dataSet">Data Set</property>
                                         <list-property name="boundDataColumns">
                                             <structure>
@@ -6775,12 +6831,15 @@ FECHA INICIO ACTIVIDADES: 10/07/1970]]></text-property>
                     <property name="borderRightWidth">1px</property>
                     <property name="borderTopStyle">solid</property>
                     <property name="borderTopWidth">1px</property>
+                    <property name="verticalAlign">middle</property>
+                    <property name="height">1.5cm</property>
                     <cell id="9082">
                         <property name="paddingTop">0pt</property>
                         <property name="paddingLeft">0pt</property>
                         <property name="paddingBottom">0pt</property>
                         <property name="paddingRight">0pt</property>
                         <grid id="9065">
+                            <property name="verticalAlign">middle</property>
                             <column id="9066">
                                 <property name="width">5.416666666666667in</property>
                             </column>
@@ -6788,6 +6847,7 @@ FECHA INICIO ACTIVIDADES: 10/07/1970]]></text-property>
                                 <property name="width">2.4270833333333335in</property>
                             </column>
                             <row id="9071">
+                                <property name="height">50%</property>
                                 <cell id="9072">
                                     <text id="8744">
                                         <property name="fontFamily">"Arial"</property>
@@ -6815,6 +6875,7 @@ FECHA INICIO ACTIVIDADES: 10/07/1970]]></text-property>
                                 </cell>
                             </row>
                             <row id="9074">
+                                <property name="height">50%</property>
                                 <cell id="9075">
                                     <text id="8747">
                                         <property name="fontFamily">"Arial"</property>
@@ -10514,6 +10575,8 @@ FECHA INICIO ACTIVIDADES: 10/07/1970]]></text-property>
                     <property name="borderRightWidth">1px</property>
                     <property name="borderTopStyle">solid</property>
                     <property name="borderTopWidth">1px</property>
+                    <property name="verticalAlign">middle</property>
+                    <property name="height">2.2cm</property>
                     <cell id="9084">
                         <grid id="9037">
                             <property name="height">100%</property>
@@ -10538,30 +10601,38 @@ FECHA INICIO ACTIVIDADES: 10/07/1970]]></text-property>
                                 <cell id="9043">
                                     <property name="paddingTop">0pt</property>
                                     <property name="paddingLeft">0pt</property>
-                                    <property name="paddingBottom">0pt</property>
+                                    <property name="paddingBottom">1pt</property>
                                     <property name="paddingRight">0pt</property>
                                     <text id="8894">
                                         <property name="fontFamily">"Arial"</property>
                                         <property name="fontSize">8pt</property>
+                                        <property name="marginTop">6pt</property>
                                         <property name="paddingTop">0pt</property>
+                                        <property name="paddingLeft">0pt</property>
                                         <property name="paddingBottom">0pt</property>
-                                        <property name="paddingRight">2pt</property>
+                                        <property name="paddingRight">0pt</property>
                                         <property name="textAlign">left</property>
                                         <property name="contentType">html</property>
                                         <text-property name="content"><![CDATA[SUB-TOTAL]]></text-property>
                                     </text>
                                 </cell>
                                 <cell id="9044">
-                                    <property name="borderLeftStyle">solid</property>
-                                    <property name="borderLeftWidth">1px</property>
                                     <property name="paddingTop">0pt</property>
                                     <property name="paddingLeft">0pt</property>
-                                    <property name="paddingBottom">0pt</property>
+                                    <property name="paddingBottom">1pt</property>
                                     <property name="paddingRight">0pt</property>
                                     <text id="9462">
                                         <property name="fontFamily">"Courier"</property>
                                         <property name="fontSize">8pt</property>
-                                        <property name="textAlign">center</property>
+                                        <property name="marginTop">6pt</property>
+                                        <property name="marginLeft">6pt</property>
+                                        <property name="marginBottom">6pt</property>
+                                        <property name="marginRight">6pt</property>
+                                        <property name="paddingTop">0pt</property>
+                                        <property name="paddingLeft">0pt</property>
+                                        <property name="paddingBottom">0pt</property>
+                                        <property name="paddingRight">0pt</property>
+                                        <property name="textAlign">right</property>
                                         <property name="dataSet">Data Set</property>
                                         <list-property name="boundDataColumns">
                                             <structure>
@@ -10580,15 +10651,16 @@ FECHA INICIO ACTIVIDADES: 10/07/1970]]></text-property>
                                 <cell id="9047">
                                     <property name="paddingTop">0pt</property>
                                     <property name="paddingLeft">0pt</property>
-                                    <property name="paddingBottom">0pt</property>
+                                    <property name="paddingBottom">1pt</property>
                                     <property name="paddingRight">0pt</property>
                                     <text id="8895">
                                         <property name="fontFamily">"Arial"</property>
                                         <property name="fontSize">8pt</property>
+                                        <property name="marginTop">6pt</property>
                                         <property name="paddingTop">0pt</property>
-                                        <property name="paddingLeft">1pt</property>
+                                        <property name="paddingLeft">0pt</property>
                                         <property name="paddingBottom">0pt</property>
-                                        <property name="paddingRight">2pt</property>
+                                        <property name="paddingRight">0pt</property>
                                         <property name="textAlign">left</property>
                                         <property name="dataSet">Data Set</property>
                                         <list-property name="boundDataColumns">
@@ -10604,16 +10676,22 @@ FECHA INICIO ACTIVIDADES: 10/07/1970]]></text-property>
                                     </text>
                                 </cell>
                                 <cell id="9048">
-                                    <property name="borderLeftStyle">solid</property>
-                                    <property name="borderLeftWidth">1px</property>
                                     <property name="paddingTop">0pt</property>
                                     <property name="paddingLeft">0pt</property>
-                                    <property name="paddingBottom">0pt</property>
+                                    <property name="paddingBottom">1pt</property>
                                     <property name="paddingRight">0pt</property>
                                     <text id="9463">
                                         <property name="fontFamily">"Courier"</property>
                                         <property name="fontSize">8pt</property>
-                                        <property name="textAlign">center</property>
+                                        <property name="marginTop">6pt</property>
+                                        <property name="marginLeft">6pt</property>
+                                        <property name="marginBottom">6pt</property>
+                                        <property name="marginRight">6pt</property>
+                                        <property name="paddingTop">0pt</property>
+                                        <property name="paddingLeft">0pt</property>
+                                        <property name="paddingBottom">0pt</property>
+                                        <property name="paddingRight">0pt</property>
+                                        <property name="textAlign">right</property>
                                         <property name="dataSet">Data Set</property>
                                         <list-property name="boundDataColumns">
                                             <structure>
@@ -10632,30 +10710,38 @@ FECHA INICIO ACTIVIDADES: 10/07/1970]]></text-property>
                                 <cell id="9051">
                                     <property name="paddingTop">0pt</property>
                                     <property name="paddingLeft">0pt</property>
-                                    <property name="paddingBottom">0pt</property>
+                                    <property name="paddingBottom">1pt</property>
                                     <property name="paddingRight">0pt</property>
                                     <text id="8896">
                                         <property name="fontFamily">"Arial"</property>
                                         <property name="fontSize">8pt</property>
+                                        <property name="marginTop">6pt</property>
                                         <property name="paddingTop">0pt</property>
+                                        <property name="paddingLeft">0pt</property>
                                         <property name="paddingBottom">0pt</property>
-                                        <property name="paddingRight">2pt</property>
+                                        <property name="paddingRight">0pt</property>
                                         <property name="textAlign">left</property>
                                         <property name="contentType">html</property>
                                         <text-property name="content"><![CDATA[SUB-TOTAL]]></text-property>
                                     </text>
                                 </cell>
                                 <cell id="9052">
-                                    <property name="borderLeftStyle">solid</property>
-                                    <property name="borderLeftWidth">1px</property>
                                     <property name="paddingTop">0pt</property>
                                     <property name="paddingLeft">0pt</property>
-                                    <property name="paddingBottom">0pt</property>
+                                    <property name="paddingBottom">1pt</property>
                                     <property name="paddingRight">0pt</property>
                                     <text id="9464">
                                         <property name="fontFamily">"Courier"</property>
                                         <property name="fontSize">8pt</property>
-                                        <property name="textAlign">center</property>
+                                        <property name="marginTop">6pt</property>
+                                        <property name="marginLeft">6pt</property>
+                                        <property name="marginBottom">6pt</property>
+                                        <property name="marginRight">6pt</property>
+                                        <property name="paddingTop">0pt</property>
+                                        <property name="paddingLeft">0pt</property>
+                                        <property name="paddingBottom">0pt</property>
+                                        <property name="paddingRight">0pt</property>
+                                        <property name="textAlign">right</property>
                                         <property name="dataSet">Data Set</property>
                                         <list-property name="boundDataColumns">
                                             <structure>
@@ -10674,14 +10760,16 @@ FECHA INICIO ACTIVIDADES: 10/07/1970]]></text-property>
                                 <cell id="9059">
                                     <property name="paddingTop">0pt</property>
                                     <property name="paddingLeft">0pt</property>
-                                    <property name="paddingBottom">0pt</property>
+                                    <property name="paddingBottom">1pt</property>
                                     <property name="paddingRight">0pt</property>
                                     <text id="8897">
                                         <property name="fontFamily">"Arial"</property>
                                         <property name="fontSize">8pt</property>
+                                        <property name="marginTop">6pt</property>
                                         <property name="paddingTop">0pt</property>
+                                        <property name="paddingLeft">0pt</property>
                                         <property name="paddingBottom">0pt</property>
-                                        <property name="paddingRight">2pt</property>
+                                        <property name="paddingRight">0pt</property>
                                         <property name="dataSet">Data Set</property>
                                         <list-property name="boundDataColumns">
                                             <structure>
@@ -10696,16 +10784,22 @@ FECHA INICIO ACTIVIDADES: 10/07/1970]]></text-property>
                                     </text>
                                 </cell>
                                 <cell id="9060">
-                                    <property name="borderLeftStyle">solid</property>
-                                    <property name="borderLeftWidth">1px</property>
                                     <property name="paddingTop">0pt</property>
                                     <property name="paddingLeft">0pt</property>
-                                    <property name="paddingBottom">0pt</property>
+                                    <property name="paddingBottom">1pt</property>
                                     <property name="paddingRight">0pt</property>
                                     <text id="9465">
                                         <property name="fontFamily">"Courier"</property>
                                         <property name="fontSize">8pt</property>
-                                        <property name="textAlign">center</property>
+                                        <property name="marginTop">6pt</property>
+                                        <property name="marginLeft">6pt</property>
+                                        <property name="marginBottom">6pt</property>
+                                        <property name="marginRight">6pt</property>
+                                        <property name="paddingTop">0pt</property>
+                                        <property name="paddingLeft">0pt</property>
+                                        <property name="paddingBottom">0pt</property>
+                                        <property name="paddingRight">0pt</property>
+                                        <property name="textAlign">right</property>
                                         <property name="dataSet">Data Set</property>
                                         <list-property name="boundDataColumns">
                                             <structure>
@@ -10724,32 +10818,40 @@ FECHA INICIO ACTIVIDADES: 10/07/1970]]></text-property>
                                 <cell id="9055">
                                     <property name="paddingTop">0pt</property>
                                     <property name="paddingLeft">0pt</property>
-                                    <property name="paddingBottom">0pt</property>
+                                    <property name="paddingBottom">1pt</property>
                                     <property name="paddingRight">0pt</property>
                                     <text id="8898">
                                         <property name="fontFamily">"Arial"</property>
                                         <property name="fontSize">8pt</property>
                                         <property name="fontWeight">bold</property>
                                         <property name="fontStyle">italic</property>
+                                        <property name="marginTop">6pt</property>
                                         <property name="paddingTop">0pt</property>
+                                        <property name="paddingLeft">0pt</property>
                                         <property name="paddingBottom">0pt</property>
-                                        <property name="paddingRight">2pt</property>
+                                        <property name="paddingRight">0pt</property>
                                         <property name="textAlign">right</property>
                                         <property name="contentType">html</property>
                                         <text-property name="content"><![CDATA[TOTAL]]></text-property>
                                     </text>
                                 </cell>
                                 <cell id="9056">
-                                    <property name="borderLeftStyle">solid</property>
-                                    <property name="borderLeftWidth">1px</property>
                                     <property name="paddingTop">0pt</property>
                                     <property name="paddingLeft">0pt</property>
-                                    <property name="paddingBottom">0pt</property>
+                                    <property name="paddingBottom">1pt</property>
                                     <property name="paddingRight">0pt</property>
                                     <text id="9466">
                                         <property name="fontFamily">"Courier"</property>
                                         <property name="fontSize">8pt</property>
-                                        <property name="textAlign">center</property>
+                                        <property name="marginTop">6pt</property>
+                                        <property name="marginLeft">6pt</property>
+                                        <property name="marginBottom">6pt</property>
+                                        <property name="marginRight">6pt</property>
+                                        <property name="paddingTop">0pt</property>
+                                        <property name="paddingLeft">0pt</property>
+                                        <property name="paddingBottom">0pt</property>
+                                        <property name="paddingRight">0pt</property>
+                                        <property name="textAlign">right</property>
                                         <property name="dataSet">Data Set</property>
                                         <list-property name="boundDataColumns">
                                             <structure>
@@ -10776,7 +10878,8 @@ FECHA INICIO ACTIVIDADES: 10/07/1970]]></text-property>
                     <property name="borderRightWidth">1px</property>
                     <property name="borderTopStyle">solid</property>
                     <property name="borderTopWidth">1px</property>
-                    <property name="height">1.1cm</property>
+                    <property name="verticalAlign">middle</property>
+                    <property name="height">1.3cm</property>
                     <cell id="9316">
                         <property name="borderBottomStyle">solid</property>
                         <property name="borderBottomWidth">1px</property>
@@ -10786,6 +10889,7 @@ FECHA INICIO ACTIVIDADES: 10/07/1970]]></text-property>
                         <property name="borderRightWidth">1px</property>
                         <property name="borderTopStyle">solid</property>
                         <property name="borderTopWidth">1px</property>
+                        <property name="verticalAlign">middle</property>
                         <grid id="9467">
                             <property name="height">0.34375in</property>
                             <column id="9468"/>
@@ -10795,6 +10899,7 @@ FECHA INICIO ACTIVIDADES: 10/07/1970]]></text-property>
                             <column id="9472"/>
                             <column id="9473"/>
                             <row id="9474">
+                                <property name="verticalAlign">middle</property>
                                 <property name="height">0.34375in</property>
                                 <cell id="9475">
                                     <property name="colSpan">3</property>
