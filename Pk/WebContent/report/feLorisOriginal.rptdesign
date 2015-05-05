@@ -7,7 +7,7 @@
     <property name="layoutPreference">auto layout</property>
     <data-sources>
         <oda-data-source extensionID="org.eclipse.datatools.enablement.oda.xml" name="Data Source" id="9488">
-            <property name="FILELIST">C:\Sergio\Desarrollo\Pk\Doc FacturaElectronica\FacturaElectronica\FE_Loris.xml</property>
+            <property name="FILELIST">E:\Desarrollo\ProduccionPK_WEB\FacturaElectronica\FE_Loris.xml</property>
         </oda-data-source>
     </data-sources>
     <data-sets>
@@ -7027,7 +7027,7 @@ FECHA INICIO ACTIVIDADES: 10/07/1970]]></text-property>
                                     <text id="8988">
                                         <property name="fontFamily">"Courier"</property>
                                         <property name="fontSize">7pt</property>
-                                        <property name="textAlign">center</property>
+                                        <property name="textAlign">left</property>
                                         <property name="dataSet">Data Set</property>
                                         <list-property name="boundDataColumns">
                                             <structure>
@@ -7145,7 +7145,7 @@ FECHA INICIO ACTIVIDADES: 10/07/1970]]></text-property>
                                     <text id="9284">
                                         <property name="fontFamily">"Courier"</property>
                                         <property name="fontSize">7pt</property>
-                                        <property name="textAlign">center</property>
+                                        <property name="textAlign">left</property>
                                         <property name="dataSet">Data Set</property>
                                         <list-property name="boundDataColumns">
                                             <structure>
@@ -7263,7 +7263,7 @@ FECHA INICIO ACTIVIDADES: 10/07/1970]]></text-property>
                                     <text id="9285">
                                         <property name="fontFamily">"Courier"</property>
                                         <property name="fontSize">7pt</property>
-                                        <property name="textAlign">center</property>
+                                        <property name="textAlign">left</property>
                                         <property name="dataSet">Data Set</property>
                                         <list-property name="boundDataColumns">
                                             <structure>
@@ -7381,7 +7381,7 @@ FECHA INICIO ACTIVIDADES: 10/07/1970]]></text-property>
                                     <text id="9286">
                                         <property name="fontFamily">"Courier"</property>
                                         <property name="fontSize">7pt</property>
-                                        <property name="textAlign">center</property>
+                                        <property name="textAlign">left</property>
                                         <property name="dataSet">Data Set</property>
                                         <list-property name="boundDataColumns">
                                             <structure>
@@ -7499,7 +7499,7 @@ FECHA INICIO ACTIVIDADES: 10/07/1970]]></text-property>
                                     <text id="9287">
                                         <property name="fontFamily">"Courier"</property>
                                         <property name="fontSize">7pt</property>
-                                        <property name="textAlign">center</property>
+                                        <property name="textAlign">left</property>
                                         <property name="dataSet">Data Set</property>
                                         <list-property name="boundDataColumns">
                                             <structure>
@@ -7617,7 +7617,7 @@ FECHA INICIO ACTIVIDADES: 10/07/1970]]></text-property>
                                     <text id="9288">
                                         <property name="fontFamily">"Courier"</property>
                                         <property name="fontSize">7pt</property>
-                                        <property name="textAlign">center</property>
+                                        <property name="textAlign">left</property>
                                         <property name="dataSet">Data Set</property>
                                         <list-property name="boundDataColumns">
                                             <structure>
@@ -7735,7 +7735,7 @@ FECHA INICIO ACTIVIDADES: 10/07/1970]]></text-property>
                                     <text id="9289">
                                         <property name="fontFamily">"Courier"</property>
                                         <property name="fontSize">7pt</property>
-                                        <property name="textAlign">center</property>
+                                        <property name="textAlign">left</property>
                                         <property name="dataSet">Data Set</property>
                                         <list-property name="boundDataColumns">
                                             <structure>
@@ -7853,7 +7853,7 @@ FECHA INICIO ACTIVIDADES: 10/07/1970]]></text-property>
                                     <text id="9290">
                                         <property name="fontFamily">"Courier"</property>
                                         <property name="fontSize">7pt</property>
-                                        <property name="textAlign">center</property>
+                                        <property name="textAlign">left</property>
                                         <property name="dataSet">Data Set</property>
                                         <list-property name="boundDataColumns">
                                             <structure>
@@ -7971,7 +7971,7 @@ FECHA INICIO ACTIVIDADES: 10/07/1970]]></text-property>
                                     <text id="9291">
                                         <property name="fontFamily">"Courier"</property>
                                         <property name="fontSize">7pt</property>
-                                        <property name="textAlign">center</property>
+                                        <property name="textAlign">left</property>
                                         <property name="dataSet">Data Set</property>
                                         <list-property name="boundDataColumns">
                                             <structure>
@@ -8089,7 +8089,7 @@ FECHA INICIO ACTIVIDADES: 10/07/1970]]></text-property>
                                     <text id="9292">
                                         <property name="fontFamily">"Courier"</property>
                                         <property name="fontSize">7pt</property>
-                                        <property name="textAlign">center</property>
+                                        <property name="textAlign">left</property>
                                         <property name="dataSet">Data Set</property>
                                         <list-property name="boundDataColumns">
                                             <structure>
@@ -8207,7 +8207,7 @@ FECHA INICIO ACTIVIDADES: 10/07/1970]]></text-property>
                                     <text id="9293">
                                         <property name="fontFamily">"Courier"</property>
                                         <property name="fontSize">7pt</property>
-                                        <property name="textAlign">center</property>
+                                        <property name="textAlign">left</property>
                                         <property name="dataSet">Data Set</property>
                                         <list-property name="boundDataColumns">
                                             <structure>
@@ -8325,7 +8325,7 @@ FECHA INICIO ACTIVIDADES: 10/07/1970]]></text-property>
                                     <text id="9294">
                                         <property name="fontFamily">"Courier"</property>
                                         <property name="fontSize">7pt</property>
-                                        <property name="textAlign">center</property>
+                                        <property name="textAlign">left</property>
                                         <property name="dataSet">Data Set</property>
                                         <list-property name="boundDataColumns">
                                             <structure>
@@ -8443,7 +8443,7 @@ FECHA INICIO ACTIVIDADES: 10/07/1970]]></text-property>
                                     <text id="9295">
                                         <property name="fontFamily">"Courier"</property>
                                         <property name="fontSize">7pt</property>
-                                        <property name="textAlign">center</property>
+                                        <property name="textAlign">left</property>
                                         <property name="dataSet">Data Set</property>
                                         <list-property name="boundDataColumns">
                                             <structure>
@@ -8561,7 +8561,7 @@ FECHA INICIO ACTIVIDADES: 10/07/1970]]></text-property>
                                     <text id="9296">
                                         <property name="fontFamily">"Courier"</property>
                                         <property name="fontSize">7pt</property>
-                                        <property name="textAlign">center</property>
+                                        <property name="textAlign">left</property>
                                         <property name="dataSet">Data Set</property>
                                         <list-property name="boundDataColumns">
                                             <structure>
@@ -8679,7 +8679,7 @@ FECHA INICIO ACTIVIDADES: 10/07/1970]]></text-property>
                                     <text id="9297">
                                         <property name="fontFamily">"Courier"</property>
                                         <property name="fontSize">7pt</property>
-                                        <property name="textAlign">center</property>
+                                        <property name="textAlign">left</property>
                                         <property name="dataSet">Data Set</property>
                                         <list-property name="boundDataColumns">
                                             <structure>
@@ -8797,7 +8797,7 @@ FECHA INICIO ACTIVIDADES: 10/07/1970]]></text-property>
                                     <text id="9298">
                                         <property name="fontFamily">"Courier"</property>
                                         <property name="fontSize">7pt</property>
-                                        <property name="textAlign">center</property>
+                                        <property name="textAlign">left</property>
                                         <property name="dataSet">Data Set</property>
                                         <list-property name="boundDataColumns">
                                             <structure>
@@ -8915,7 +8915,7 @@ FECHA INICIO ACTIVIDADES: 10/07/1970]]></text-property>
                                     <text id="9299">
                                         <property name="fontFamily">"Courier"</property>
                                         <property name="fontSize">7pt</property>
-                                        <property name="textAlign">center</property>
+                                        <property name="textAlign">left</property>
                                         <property name="dataSet">Data Set</property>
                                         <list-property name="boundDataColumns">
                                             <structure>
@@ -9033,7 +9033,7 @@ FECHA INICIO ACTIVIDADES: 10/07/1970]]></text-property>
                                     <text id="9300">
                                         <property name="fontFamily">"Courier"</property>
                                         <property name="fontSize">7pt</property>
-                                        <property name="textAlign">center</property>
+                                        <property name="textAlign">left</property>
                                         <property name="dataSet">Data Set</property>
                                         <list-property name="boundDataColumns">
                                             <structure>
@@ -9151,7 +9151,7 @@ FECHA INICIO ACTIVIDADES: 10/07/1970]]></text-property>
                                     <text id="9301">
                                         <property name="fontFamily">"Courier"</property>
                                         <property name="fontSize">7pt</property>
-                                        <property name="textAlign">center</property>
+                                        <property name="textAlign">left</property>
                                         <property name="dataSet">Data Set</property>
                                         <list-property name="boundDataColumns">
                                             <structure>
@@ -9269,7 +9269,7 @@ FECHA INICIO ACTIVIDADES: 10/07/1970]]></text-property>
                                     <text id="9302">
                                         <property name="fontFamily">"Courier"</property>
                                         <property name="fontSize">7pt</property>
-                                        <property name="textAlign">center</property>
+                                        <property name="textAlign">left</property>
                                         <property name="dataSet">Data Set</property>
                                         <list-property name="boundDataColumns">
                                             <structure>
@@ -9387,7 +9387,7 @@ FECHA INICIO ACTIVIDADES: 10/07/1970]]></text-property>
                                     <text id="9303">
                                         <property name="fontFamily">"Courier"</property>
                                         <property name="fontSize">7pt</property>
-                                        <property name="textAlign">center</property>
+                                        <property name="textAlign">left</property>
                                         <property name="dataSet">Data Set</property>
                                         <list-property name="boundDataColumns">
                                             <structure>
@@ -9505,7 +9505,7 @@ FECHA INICIO ACTIVIDADES: 10/07/1970]]></text-property>
                                     <text id="9304">
                                         <property name="fontFamily">"Courier"</property>
                                         <property name="fontSize">7pt</property>
-                                        <property name="textAlign">center</property>
+                                        <property name="textAlign">left</property>
                                         <property name="dataSet">Data Set</property>
                                         <list-property name="boundDataColumns">
                                             <structure>
@@ -9623,7 +9623,7 @@ FECHA INICIO ACTIVIDADES: 10/07/1970]]></text-property>
                                     <text id="9305">
                                         <property name="fontFamily">"Courier"</property>
                                         <property name="fontSize">7pt</property>
-                                        <property name="textAlign">center</property>
+                                        <property name="textAlign">left</property>
                                         <property name="dataSet">Data Set</property>
                                         <list-property name="boundDataColumns">
                                             <structure>
@@ -9741,7 +9741,7 @@ FECHA INICIO ACTIVIDADES: 10/07/1970]]></text-property>
                                     <text id="9306">
                                         <property name="fontFamily">"Courier"</property>
                                         <property name="fontSize">7pt</property>
-                                        <property name="textAlign">center</property>
+                                        <property name="textAlign">left</property>
                                         <property name="dataSet">Data Set</property>
                                         <list-property name="boundDataColumns">
                                             <structure>
@@ -9859,7 +9859,7 @@ FECHA INICIO ACTIVIDADES: 10/07/1970]]></text-property>
                                     <text id="9307">
                                         <property name="fontFamily">"Courier"</property>
                                         <property name="fontSize">7pt</property>
-                                        <property name="textAlign">center</property>
+                                        <property name="textAlign">left</property>
                                         <property name="dataSet">Data Set</property>
                                         <list-property name="boundDataColumns">
                                             <structure>
@@ -9977,7 +9977,7 @@ FECHA INICIO ACTIVIDADES: 10/07/1970]]></text-property>
                                     <text id="9308">
                                         <property name="fontFamily">"Courier"</property>
                                         <property name="fontSize">7pt</property>
-                                        <property name="textAlign">center</property>
+                                        <property name="textAlign">left</property>
                                         <property name="dataSet">Data Set</property>
                                         <list-property name="boundDataColumns">
                                             <structure>
@@ -10095,7 +10095,7 @@ FECHA INICIO ACTIVIDADES: 10/07/1970]]></text-property>
                                     <text id="9309">
                                         <property name="fontFamily">"Courier"</property>
                                         <property name="fontSize">7pt</property>
-                                        <property name="textAlign">center</property>
+                                        <property name="textAlign">left</property>
                                         <property name="dataSet">Data Set</property>
                                         <list-property name="boundDataColumns">
                                             <structure>
@@ -10213,7 +10213,7 @@ FECHA INICIO ACTIVIDADES: 10/07/1970]]></text-property>
                                     <text id="9310">
                                         <property name="fontFamily">"Courier"</property>
                                         <property name="fontSize">7pt</property>
-                                        <property name="textAlign">center</property>
+                                        <property name="textAlign">left</property>
                                         <property name="dataSet">Data Set</property>
                                         <list-property name="boundDataColumns">
                                             <structure>
@@ -10331,7 +10331,7 @@ FECHA INICIO ACTIVIDADES: 10/07/1970]]></text-property>
                                     <text id="9311">
                                         <property name="fontFamily">"Courier"</property>
                                         <property name="fontSize">7pt</property>
-                                        <property name="textAlign">center</property>
+                                        <property name="textAlign">left</property>
                                         <property name="dataSet">Data Set</property>
                                         <list-property name="boundDataColumns">
                                             <structure>
@@ -10449,7 +10449,7 @@ FECHA INICIO ACTIVIDADES: 10/07/1970]]></text-property>
                                     <text id="9312">
                                         <property name="fontFamily">"Courier"</property>
                                         <property name="fontSize">7pt</property>
-                                        <property name="textAlign">center</property>
+                                        <property name="textAlign">left</property>
                                         <property name="dataSet">Data Set</property>
                                         <list-property name="boundDataColumns">
                                             <structure>

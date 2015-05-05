@@ -27,6 +27,20 @@ public class AbstractPrint {
 		return space;
 	}
 
+	protected String getAmount(BigDecimal amount, int leftPad, String space){
+		decimalFormat.setGroupingUsed(false);
+		decimalFormat.setMaximumFractionDigits(2);
+		decimalFormat.setMinimumFractionDigits(2);
+		
+		String amountS = decimalFormat.format(amount); 
+		
+		String leftPadSpace = "";
+		for (int i = 1; i <= leftPad; i++) {
+			leftPadSpace += space; 
+		}
+		return leftPadSpace + amountS;
+	}
+	
 	protected String getAmount(BigDecimal amount, int leftPad){
 		decimalFormat.setGroupingUsed(false);
 		decimalFormat.setMaximumFractionDigits(2);
@@ -97,6 +111,14 @@ public class AbstractPrint {
 		if(StringUtils.isNotBlank(cuit))
 			return cuit.substring(0,2) + "-" + cuit.substring(2,cuit.length()-1) + "-" + cuit.substring(cuit.length()-1);
 		return "";
+	}
+	
+	protected String getNormalizedWidthCode(String code, int width, String space){
+		String leftPadSpace = "";
+		for (int i = 1; i <= width; i++) {
+			leftPadSpace += space; 
+		}
+		return leftPadSpace + code;
 	}
 	
 	protected String getNormalizedWidthCode(String code, int width){
