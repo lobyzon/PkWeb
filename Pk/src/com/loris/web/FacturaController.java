@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -133,7 +134,7 @@ public class FacturaController extends AbstractPrint {
 
 		Collections.sort(factura.getItems());
 
-		facturaDAO.saveUpdateFactura(factura);
+		
 
 		// Obtener parámetro TipoFactura: fm (Manual) o fe (Factura electrónica)
 		if (Factura.TIPO_FACTURA_ELECTRONICA.equals(tipoFactura)) {
@@ -152,6 +153,10 @@ public class FacturaController extends AbstractPrint {
 			// Obtener ultimo comprobante autorizado
 			FERecuperaLastCbteResponse cbteResponse = service.feCompUltimoAutorizado(auth, 1, 1);
 			System.out.println("Nro Comprobante: " + cbteResponse.getCbteNro()	+ " Tipo Cbte: " + cbteResponse.getCbteTipo() + "" + cbteResponse.getPtoVta());
+			
+			//Guardo el nro de comprobante
+			factura.setNroFactura(cbteResponse.getCbteNro() + 1);
+			
 			// Obtener CAE
 			FECAERequest feCAEReq = new FECAERequest();
 			FECAECabRequest feCAECabRequest = new FECAECabRequest();
@@ -165,9 +170,9 @@ public class FacturaController extends AbstractPrint {
 			// DocTipo: tipo de documento
 			fecaeDetRequest.setDocTipo(80);
 			// DocNro
-			fecaeDetRequest.setDocNro(new Long("33693450239"));
-			fecaeDetRequest.setCbteDesde(cbteResponse.getCbteNro() + 1);
-			fecaeDetRequest.setCbteHasta(cbteResponse.getCbteNro() + 1);
+			fecaeDetRequest.setDocNro(new Long(factura.getCliente().getCuit()));
+			fecaeDetRequest.setCbteDesde(factura.getNroFactura());
+			fecaeDetRequest.setCbteHasta(factura.getNroFactura());
 			// CbtedFch: fecha del comprobante, formato yyyymmdd
 			fecaeDetRequest.setCbteFch(new SimpleDateFormat("yyyyMMdd").format(new Date()));
 			fecaeDetRequest.setImpTotal(totales.getSubTotalDescontado().add(totales.getIva()).doubleValue());
@@ -201,6 +206,18 @@ public class FacturaController extends AbstractPrint {
 			List<FECAEDetResponse> feCAEDetResponses = feDetResponse.getFECAEDetResponse();
 			System.out.println("CAE: " + feCAEDetResponses.get(0).getCAE()	+ " CAE Vto: " + feCAEDetResponses.get(0).getCAEFchVto());
 			
+			factura.setCAE(feCAEDetResponses.get(0).getCAE());
+			try {
+				factura.setFechaVtoCAE(new SimpleDateFormat("yyyyMMdd").parse(feCAEDetResponses.get(0).getCAEFchVto()));
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			factura.setFacturaType(new FacturaType(FacturaType.FACTURA_TYPE_ELECTRONIC));
+			
+			facturaDAO.saveUpdateFactura(factura);
+			
 			generateXMLInputFEPDF(factura, totales, params);
 			
 			return new ModelAndView("/factura/feComprobantes");
@@ -211,7 +228,9 @@ public class FacturaController extends AbstractPrint {
 			} else {
 				new PrintFacturaN(factura, totales, params, printerServiceIndex);
 			}
-
+			
+			facturaDAO.saveUpdateFactura(factura);
+			
 			return new ModelAndView("successPage", "success", SuccessUtils.setSuccessBean(FACTURA_TITLE, FACTURA_EMISION));
 		}		
 	}
@@ -229,7 +248,7 @@ public class FacturaController extends AbstractPrint {
 			bufferedWriter.newLine();
 			bufferedWriter.append("<feDATA>");
 			bufferedWriter.newLine();
-			bufferedWriter.append("<feNro>" + factura.getNroFactura() + "</feNro>");
+			bufferedWriter.append("<feNro>" + "0002 - " + factura.getNroFactura() + "</feNro>");
 			bufferedWriter.newLine();
 			bufferedWriter.append("<feFecha>" + DateUtils.convertDateToString(factura.getFecha()) + "</feFecha>");
 			bufferedWriter.newLine();
@@ -266,9 +285,9 @@ public class FacturaController extends AbstractPrint {
 			bufferedWriter.append("<feTotal>" + getAmount(totales.getTotal(), 8) + "</feTotal>");
 			bufferedWriter.newLine();
 			// TODO MODIFICAR CAE y VTO
-			bufferedWriter.append("<feCAE>1234567890</feCAE>");
+			bufferedWriter.append("<feCAE>" + factura.getCAE() + "</feCAE>");
 			bufferedWriter.newLine();
-			bufferedWriter.append("<feCAEVto>10/11/2016</feCAEVto>");
+			bufferedWriter.append("<feCAEVto>" + DateUtils.convertDateToString(factura.getFechaVtoCAE()) + "</feCAEVto>");
 			bufferedWriter.newLine();
 			// ITEMS
 			int i = 1;

@@ -12,6 +12,7 @@ public class FacturaType {
 	public final static Integer FACTURA_N_TYPE 			= new Integer(2);	
 	public final static Integer FACTURA_NC_TYPE 		= new Integer(3);
 	public final static Integer FACTURA_ANULADA_TYPE 	= new Integer(4);
+	public final static Integer FACTURA_TYPE_ELECTRONIC	= new Integer(5);
 	
 	public FacturaType(){}
 	

@@ -61,7 +61,13 @@ public class Factura {
 	private FacturaType facturaType;
 	
 	@Column(name="COMENTARIOS", length=372)
-	private String comentarios;		
+	private String comentarios;
+	
+	@Column(name="CAE", nullable=true)
+	private String CAE;
+	
+	@Column(name="FECHA_VTO_CAE", nullable=true)
+	private Date fechaVtoCAE;
 		
 	
 	/**
@@ -182,6 +188,22 @@ public class Factura {
 		this.facturaType = facturaType;
 	}
 	
+	public String getCAE() {
+		return CAE;
+	}
+
+	public void setCAE(String cAE) {
+		CAE = cAE;
+	}
+
+	public Date getFechaVtoCAE() {
+		return fechaVtoCAE;
+	}
+
+	public void setFechaVtoCAE(Date fechaVtoCAE) {
+		this.fechaVtoCAE = fechaVtoCAE;
+	}
+
 	@Transient
 	public static void updateFacturaType(Factura factura){
 		if(factura.getFacturaType() == null || factura.getFacturaType().getFacturaTypeId() == null)
