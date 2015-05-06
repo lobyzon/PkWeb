@@ -60,8 +60,11 @@ import com.loris.validator.ConsultaFacturaValidator;
 
 import fev1.dif.afip.gov.ar.AlicIva;
 import fev1.dif.afip.gov.ar.ArrayOfAlicIva;
+import fev1.dif.afip.gov.ar.ArrayOfErr;
 import fev1.dif.afip.gov.ar.ArrayOfFECAEDetRequest;
 import fev1.dif.afip.gov.ar.ArrayOfFECAEDetResponse;
+import fev1.dif.afip.gov.ar.ArrayOfObs;
+import fev1.dif.afip.gov.ar.Err;
 import fev1.dif.afip.gov.ar.FEAuthRequest;
 import fev1.dif.afip.gov.ar.FECAECabRequest;
 import fev1.dif.afip.gov.ar.FECAEDetRequest;
@@ -69,6 +72,7 @@ import fev1.dif.afip.gov.ar.FECAEDetResponse;
 import fev1.dif.afip.gov.ar.FECAERequest;
 import fev1.dif.afip.gov.ar.FECAEResponse;
 import fev1.dif.afip.gov.ar.FERecuperaLastCbteResponse;
+import fev1.dif.afip.gov.ar.Obs;
 import fev1.dif.afip.gov.ar.Service;
 import fev1.dif.afip.gov.ar.ServiceSoap;
 
@@ -134,91 +138,18 @@ public class FacturaController extends AbstractPrint {
 
 		Collections.sort(factura.getItems());
 
-		
-
 		// Obtener parámetro TipoFactura: fm (Manual) o fe (Factura electrónica)
 		if (Factura.TIPO_FACTURA_ELECTRONICA.equals(tipoFactura)) {
+			String erroresYObservaciones = getCAEFacturaElectronica(factura, totales, FacturaType.FACTURA_TYPE_ELECTRONIC, FacturaType.TIPO_COMPROBANTE_FACTURA_A_AFIP);
+			if(StringUtils.isNotBlank(erroresYObservaciones)){
+				return new ModelAndView("successPage", "success", SuccessUtils.setSuccessBean(FACTURA_TITLE, erroresYObservaciones));
+			}		
 			
-			// Tipo Factura fe
-			WsaaService wsaaService = new WsaaService();
-			WsaaToken wsaaToken = wsaaService.getWsaaToken();
-			Service serviceWsfe = new Service();
-			ServiceSoap service = serviceWsfe.getPort(ServiceSoap.class);
-			
-			FEAuthRequest auth = new FEAuthRequest();
-			auth.setSign(wsaaToken.getSign());
-			auth.setToken(wsaaToken.getToken());
-			auth.setCuit(new Long("23045244059"));
-
-			// Obtener ultimo comprobante autorizado
-			FERecuperaLastCbteResponse cbteResponse = service.feCompUltimoAutorizado(auth, 1, 1);
-			System.out.println("Nro Comprobante: " + cbteResponse.getCbteNro()	+ " Tipo Cbte: " + cbteResponse.getCbteTipo() + "" + cbteResponse.getPtoVta());
-			
-			//Guardo el nro de comprobante
-			factura.setNroFactura(cbteResponse.getCbteNro() + 1);
-			
-			// Obtener CAE
-			FECAERequest feCAEReq = new FECAERequest();
-			FECAECabRequest feCAECabRequest = new FECAECabRequest();
-			feCAECabRequest.setCbteTipo(1);
-			feCAECabRequest.setPtoVta(1);
-			feCAECabRequest.setCantReg(1);
-
-			FECAEDetRequest fecaeDetRequest = new FECAEDetRequest();
-			// Concepto: 1 Productos 2 Servicios 3 Productos y Servicios
-			fecaeDetRequest.setConcepto(1);
-			// DocTipo: tipo de documento
-			fecaeDetRequest.setDocTipo(80);
-			// DocNro
-			fecaeDetRequest.setDocNro(new Long(factura.getCliente().getCuit()));
-			fecaeDetRequest.setCbteDesde(factura.getNroFactura());
-			fecaeDetRequest.setCbteHasta(factura.getNroFactura());
-			// CbtedFch: fecha del comprobante, formato yyyymmdd
-			fecaeDetRequest.setCbteFch(new SimpleDateFormat("yyyyMMdd").format(new Date()));
-			fecaeDetRequest.setImpTotal(totales.getSubTotalDescontado().add(totales.getIva()).doubleValue());
-			// ImpTotConc: importe neto no gravado
-			fecaeDetRequest.setImpTotConc(new Double("0"));
-			fecaeDetRequest.setImpNeto(totales.getSubTotalDescontado().doubleValue());
-			fecaeDetRequest.setImpIVA(totales.getIva().doubleValue());
-			// MonId: código de moneda del comprobante
-			fecaeDetRequest.setMonId("PES");
-			// MonCotiz: cotización de la moneda, para pesos argentinos debe ser 1
-			fecaeDetRequest.setMonCotiz(new Double("1.000"));
-
-			ArrayOfAlicIva ivaImpuesto = new ArrayOfAlicIva();
-			List<AlicIva> ivas = ivaImpuesto.getAlicIva();
-			AlicIva iva = new AlicIva();
-			// ID 5 = 21%
-			iva.setId(5);
-			iva.setBaseImp(totales.getSubTotalDescontado().doubleValue());
-			iva.setImporte(totales.getIva().doubleValue());
-
-			ivas.add(iva);
-			fecaeDetRequest.setIva(ivaImpuesto);
-
-			ArrayOfFECAEDetRequest arrayOfFECAEDetRequest = new ArrayOfFECAEDetRequest();
-			arrayOfFECAEDetRequest.getFECAEDetRequest().add(fecaeDetRequest);
-			
-			feCAEReq.setFeCabReq(feCAECabRequest);
-			feCAEReq.setFeDetReq(arrayOfFECAEDetRequest);
-			FECAEResponse feCAEResponse = service.fecaeSolicitar(auth, feCAEReq);
-			ArrayOfFECAEDetResponse feDetResponse = feCAEResponse.getFeDetResp();
-			List<FECAEDetResponse> feCAEDetResponses = feDetResponse.getFECAEDetResponse();
-			System.out.println("CAE: " + feCAEDetResponses.get(0).getCAE()	+ " CAE Vto: " + feCAEDetResponses.get(0).getCAEFchVto());
-			
-			factura.setCAE(feCAEDetResponses.get(0).getCAE());
 			try {
-				factura.setFechaVtoCAE(new SimpleDateFormat("yyyyMMdd").parse(feCAEDetResponses.get(0).getCAEFchVto()));
-			} catch (ParseException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				generateXMLInputFEPDF(factura, totales, params.getIvaInscripto().getIVA());
+			} catch (IOException e) {
+				return new ModelAndView("successPage", "success", SuccessUtils.setSuccessBean(FACTURA_TITLE, "Error generando XML de entrada para FE en PDF mediante BirtViewer"));
 			}
-			
-			factura.setFacturaType(new FacturaType(FacturaType.FACTURA_TYPE_ELECTRONIC));
-			
-			facturaDAO.saveUpdateFactura(factura);
-			
-			generateXMLInputFEPDF(factura, totales, params);
 			
 			return new ModelAndView("/factura/feComprobantes");
 		} else {
@@ -235,117 +166,221 @@ public class FacturaController extends AbstractPrint {
 		}		
 	}
 
-	private void generateXMLInputFEPDF(Factura factura, Totales totales, Params params) {
+	private String getCAEFacturaElectronica(Factura factura, Totales totales, Integer facturaType, int tipoComprobanteAFIP){
+		// Tipo Factura fe
+		WsaaService wsaaService = new WsaaService();
+		WsaaToken wsaaToken = wsaaService.getWsaaToken();
+		Service serviceWsfe = new Service();
+		ServiceSoap service = serviceWsfe.getPort(ServiceSoap.class);
+		
+		FEAuthRequest auth = new FEAuthRequest();
+		auth.setSign(wsaaToken.getSign());
+		auth.setToken(wsaaToken.getToken());
+		auth.setCuit(new Long("23045244059"));
+
+		// Obtener ultimo comprobante autorizado
+		FERecuperaLastCbteResponse cbteResponse = service.feCompUltimoAutorizado(auth, 1, 1);
+		System.out.println("Nro Comprobante: " + cbteResponse.getCbteNro()	+ " Tipo Cbte: " + cbteResponse.getCbteTipo() + "" + cbteResponse.getPtoVta());
+		
+		//Guardo el nro de comprobante
+		factura.setNroFactura(cbteResponse.getCbteNro() + 1);
+		
+		// Obtener CAE
+		FECAERequest feCAEReq = new FECAERequest();
+		FECAECabRequest feCAECabRequest = new FECAECabRequest();
+		feCAECabRequest.setCbteTipo(tipoComprobanteAFIP);
+		//TODO Revisar
+		feCAECabRequest.setPtoVta(1);
+		feCAECabRequest.setCantReg(1);
+
+		FECAEDetRequest fecaeDetRequest = new FECAEDetRequest();
+		// Concepto: 1 Productos 2 Servicios 3 Productos y Servicios
+		fecaeDetRequest.setConcepto(1);
+		// DocTipo: tipo de documento
+		fecaeDetRequest.setDocTipo(80);
+		// DocNro
+		fecaeDetRequest.setDocNro(new Long(factura.getCliente().getCuit()));
+		fecaeDetRequest.setCbteDesde(factura.getNroFactura());
+		fecaeDetRequest.setCbteHasta(factura.getNroFactura());
+		// CbtedFch: fecha del comprobante, formato yyyymmdd
+		fecaeDetRequest.setCbteFch(new SimpleDateFormat("yyyyMMdd").format(new Date()));
+		fecaeDetRequest.setImpTotal(totales.getSubTotalDescontado().add(totales.getIva()).doubleValue());
+		// ImpTotConc: importe neto no gravado
+		fecaeDetRequest.setImpTotConc(new Double("0"));
+		fecaeDetRequest.setImpNeto(totales.getSubTotalDescontado().doubleValue());
+		fecaeDetRequest.setImpIVA(totales.getIva().doubleValue());
+		// MonId: código de moneda del comprobante
+		fecaeDetRequest.setMonId("PES");
+		// MonCotiz: cotización de la moneda, para pesos argentinos debe ser 1
+		fecaeDetRequest.setMonCotiz(new Double("1.000"));
+
+		ArrayOfAlicIva ivaImpuesto = new ArrayOfAlicIva();
+		List<AlicIva> ivas = ivaImpuesto.getAlicIva();
+		AlicIva iva = new AlicIva();
+		// ID 5 = 21%
+		iva.setId(5);
+		iva.setBaseImp(totales.getSubTotalDescontado().doubleValue());
+		iva.setImporte(totales.getIva().doubleValue());
+
+		ivas.add(iva);
+		fecaeDetRequest.setIva(ivaImpuesto);
+
+		ArrayOfFECAEDetRequest arrayOfFECAEDetRequest = new ArrayOfFECAEDetRequest();
+		arrayOfFECAEDetRequest.getFECAEDetRequest().add(fecaeDetRequest);
+		
+		feCAEReq.setFeCabReq(feCAECabRequest);
+		feCAEReq.setFeDetReq(arrayOfFECAEDetRequest);
+		FECAEResponse feCAEResponse = service.fecaeSolicitar(auth, feCAEReq);
+		
+		ArrayOfFECAEDetResponse feDetResponse = feCAEResponse.getFeDetResp();
+		List<FECAEDetResponse> feCAEDetResponses = feDetResponse.getFECAEDetResponse();
+		
+		if(!"A".equalsIgnoreCase(feCAEResponse.getFeCabResp().getResultado())){
+			String erroresYObservaciones = getFECAESolicitudErrorsAndObservations(feCAEResponse);
+			return erroresYObservaciones;
+		}			
+		
+		System.out.println("CAE: " + feCAEDetResponses.get(0).getCAE()	+ " CAE Vto: " + feCAEDetResponses.get(0).getCAEFchVto());
+		
+		factura.setCAE(feCAEDetResponses.get(0).getCAE());
+		
 		try {
-			//DireccionDepto: E:\\Desarrollo\\Produccion PK_WEB\\FacturaElectronica\\
-			//Direccion Trabajo: C:\\Sergio\\Desarrollo\\Pk\\Doc FacturaElectronica\\FacturaElectronica\\
-			FileWriter xmlInputFEPDF = new FileWriter(new File("E:\\Desarrollo\\ProduccionPK_WEB\\FacturaElectronica\\FE_Loris.xml"));
-			BufferedWriter bufferedWriter = new BufferedWriter(xmlInputFEPDF);
-
-			bufferedWriter.append("<?xml version=" + "\"" + "1.0" + "\"" + " encoding=" + "\"" + "ISO-8859-1" + "\"" + "?>");
-			bufferedWriter.newLine();
-			bufferedWriter.append("<InputData>");
-			bufferedWriter.newLine();
-			bufferedWriter.append("<feDATA>");
-			bufferedWriter.newLine();
-			bufferedWriter.append("<feNro>" + "0002 - " + factura.getNroFactura() + "</feNro>");
-			bufferedWriter.newLine();
-			bufferedWriter.append("<feFecha>" + DateUtils.convertDateToString(factura.getFecha()) + "</feFecha>");
-			bufferedWriter.newLine();
-			bufferedWriter.append("<feComprador>" + factura.getCliente().getId() + " "
-									+ factura.getCliente().getRazonSocial() + "</feComprador>");
-			bufferedWriter.newLine();
-			bufferedWriter.append("<feCompradorCalle>"	+ factura.getCliente().getDireccion().getCalle() + " "
-									+ factura.getCliente().getDireccion().getNumero() + "</feCompradorCalle>");
-			bufferedWriter.newLine();
-			bufferedWriter.append("<feCompradorLocalidad> CP: "
-									+ factura.getCliente().getDireccion().getCodPostal()
-									+ " - "
-									+ factura.getCliente().getDireccion().getLocalidad()
-									+ "</feCompradorLocalidad>");
-			bufferedWriter.newLine();
-			bufferedWriter.append("<feCUIT>" + getCuit(factura.getCliente().getCuit()) + "</feCUIT>");
-			bufferedWriter.newLine();
-			bufferedWriter.append("<feCondicionesVenta>Contado</feCondicionesVenta>");
-			bufferedWriter.newLine();
-			bufferedWriter.append("<feRemitoNro></feRemitoNro>");
-			bufferedWriter.newLine();
-			bufferedWriter.append("<fePorcentajeIVA>"	+ getAmount(params.getIvaInscripto().getIVA(), 4) + "%</fePorcentajeIVA>");
-			bufferedWriter.newLine();
-			bufferedWriter.append("<feIVA>" + getAmount(totales.getIva(), 8) + "</feIVA>");
-			bufferedWriter.newLine();
-			bufferedWriter.append("<feSubTotalUno>" + getAmount(totales.getSubTotal(), 8) + "</feSubTotalUno>");
-			bufferedWriter.newLine();
-			bufferedWriter.append("<feDescuentoPorcentaje></feDescuentoPorcentaje>");
-			bufferedWriter.newLine();
-			bufferedWriter.append("<feDescuento>" + getAmount(totales.getDescuentoTotal(), 8)	+ "</feDescuento>");
-			bufferedWriter.newLine();
-			bufferedWriter.append("<feSubTotalDos>"	+ getAmount(totales.getSubTotalDescontado(), 8) + "</feSubTotalDos>");
-			bufferedWriter.newLine();
-			bufferedWriter.append("<feTotal>" + getAmount(totales.getTotal(), 8) + "</feTotal>");
-			bufferedWriter.newLine();
-			// TODO MODIFICAR CAE y VTO
-			bufferedWriter.append("<feCAE>" + factura.getCAE() + "</feCAE>");
-			bufferedWriter.newLine();
-			bufferedWriter.append("<feCAEVto>" + DateUtils.convertDateToString(factura.getFechaVtoCAE()) + "</feCAEVto>");
-			bufferedWriter.newLine();
-			// ITEMS
-			int i = 1;
-			for (ItemFactura item : factura.getItems()) {
-				bufferedWriter.append("<feItem"
-										+ i
-										+ "Codigo>"
-										+ getNormalizedWidthCode(item.getArticulo().getMarca().getId().toString(), 3) + " "
-										+ getNormalizedWidthCode(item.getArticulo().getFamilia().getCodigo().toString(), 3)
-										+ getNormalizedWidthCode(item.getArticulo().getCodigo(), 7) + "</feItem" + i + "Codigo>");
-				bufferedWriter.newLine();
-				bufferedWriter.append("<feItem"
-										+ i	+ "Descripcion>" + item.getArticulo().getFamilia().getDescripcion().toUpperCase()
-										+ " " + item.getArticulo().getDescripcion()	+ " "
-										+ item.getArticulo().getMarca().getDescripcion().toUpperCase() + "</feItem" + i
-										+ "Descripcion>");
-				bufferedWriter.newLine();
-				bufferedWriter.append("<feItem"
-										+ i	+ "Cant>" + getNormalizedWidthCode(item.getCantidad().toString(),	6) 
-										+ "</feItem" + i + "Cant>");
-				bufferedWriter.newLine();
-				bufferedWriter.append("<feItem" + i + "Descuento>"
-										+ getAmount(item.getDescuento(), 4) + "</feItem" + i + "Descuento>");
-				bufferedWriter.newLine();
-				bufferedWriter.append("<feItem" + i + "Precio>"	+ getAmount(item.getArticulo().getPrecioVenta(), 8)
-										+ "</feItem" + i + "Precio>");
-				bufferedWriter.newLine();
-				bufferedWriter.append("<feItem" + i + "Importe>" + getAmount(item.getTotalItem(), 8) + "</feItem" + i + "Importe>");
-				bufferedWriter.newLine();
-				++i;
+			factura.setFechaVtoCAE(new SimpleDateFormat("yyyyMMdd").parse(feCAEDetResponses.get(0).getCAEFchVto()));
+		} catch (ParseException e) {
+			return "Error de formato de la fecha de vencimiento del CAE";
+		}
+		
+		factura.setFacturaType(new FacturaType(facturaType));
+		
+		facturaDAO.saveUpdateFactura(factura);
+		
+		return "";
+	}
+	
+	private String getFECAESolicitudErrorsAndObservations(FECAEResponse feCAEResponse) {
+		String errors = "Solicitud de CAE Rechazada<br>";
+		ArrayOfErr arrayOfErrors = feCAEResponse.getErrors();
+		if(arrayOfErrors != null){
+			for (Err error : arrayOfErrors.getErr()) {
+				errors += "Código de error: " + error.getCode() + " Descripción: " + error.getMsg() + "<br>";
 			}
-
-			for (; i <= 30; i++) {
-				bufferedWriter.append("<feItem" + i + "Codigo>" + " " + "</feItem" + i + "Codigo>");
-				bufferedWriter.newLine();
-				bufferedWriter.append("<feItem" + i + "Descripcion>" + "</feItem" + i + "Descripcion>");
-				bufferedWriter.newLine();
-				bufferedWriter.append("<feItem" + i + "Cant>" + "</feItem" + i + "Cant>");
-				bufferedWriter.newLine();
-				bufferedWriter.append("<feItem" + i + "Descuento>" + "</feItem"	+ i + "Descuento>");
-				bufferedWriter.newLine();
-				bufferedWriter.append("<feItem" + i + "Precio>" + "</feItem" + i + "Precio>");
-				bufferedWriter.newLine();
-				bufferedWriter.append("<feItem" + i + "Importe>" + "</feItem"
-						+ i + "Importe>");
-				bufferedWriter.newLine();
+		}
+		FECAEDetResponse fecaeDetResponse = feCAEResponse.getFeDetResp().getFECAEDetResponse().get(0);
+		ArrayOfObs arrayOfObs = fecaeDetResponse.getObservaciones();
+		if(arrayOfObs != null){
+			for(Obs observation: arrayOfObs.getObs()){
+				errors += "Código de Observación: " + observation.getCode() + " Descripción: " + observation.getMsg() + "<br>";
 			}
+		}
+		
+		return errors;
+	}
 
-			bufferedWriter.append("</feDATA>");
+	private void generateXMLInputFEPDF(Factura factura, Totales totales, BigDecimal iva) throws IOException {		
+		//DireccionDepto: E:\\Desarrollo\\Produccion PK_WEB\\FacturaElectronica\\
+		//Direccion Trabajo: C:\\Sergio\\Desarrollo\\Pk\\Doc FacturaElectronica\\FacturaElectronica\\
+		FileWriter xmlInputFEPDF = new FileWriter(new File("E:\\Desarrollo\\ProduccionPK_WEB\\FacturaElectronica\\FE_Loris.xml"));
+		BufferedWriter bufferedWriter = new BufferedWriter(xmlInputFEPDF);
+
+		bufferedWriter.append("<?xml version=" + "\"" + "1.0" + "\"" + " encoding=" + "\"" + "ISO-8859-1" + "\"" + "?>");
+		bufferedWriter.newLine();
+		bufferedWriter.append("<InputData>");
+		bufferedWriter.newLine();
+		bufferedWriter.append("<feDATA>");
+		bufferedWriter.newLine();
+		bufferedWriter.append("<feNro>" + "0002 - " + factura.getNroFactura() + "</feNro>");
+		bufferedWriter.newLine();
+		bufferedWriter.append("<feFecha>" + DateUtils.convertDateToString(factura.getFecha()) + "</feFecha>");
+		bufferedWriter.newLine();
+		bufferedWriter.append("<feComprador>" + factura.getCliente().getId() + " "
+								+ factura.getCliente().getRazonSocial() + "</feComprador>");
+		bufferedWriter.newLine();
+		bufferedWriter.append("<feCompradorCalle>"	+ factura.getCliente().getDireccion().getCalle() + " "
+								+ factura.getCliente().getDireccion().getNumero() + "</feCompradorCalle>");
+		bufferedWriter.newLine();
+		bufferedWriter.append("<feCompradorLocalidad> CP: "
+								+ factura.getCliente().getDireccion().getCodPostal()
+								+ " - "
+								+ factura.getCliente().getDireccion().getLocalidad()
+								+ "</feCompradorLocalidad>");
+		bufferedWriter.newLine();
+		bufferedWriter.append("<feCUIT>" + getCuit(factura.getCliente().getCuit()) + "</feCUIT>");
+		bufferedWriter.newLine();
+		bufferedWriter.append("<feCondicionesVenta>Contado</feCondicionesVenta>");
+		bufferedWriter.newLine();
+		bufferedWriter.append("<feRemitoNro></feRemitoNro>");
+		bufferedWriter.newLine();
+		bufferedWriter.append("<fePorcentajeIVA>"	+ getAmount(iva, 4) + "%</fePorcentajeIVA>");
+		bufferedWriter.newLine();
+		bufferedWriter.append("<feIVA>" + getAmount(totales.getIva(), 8) + "</feIVA>");
+		bufferedWriter.newLine();
+		bufferedWriter.append("<feSubTotalUno>" + getAmount(totales.getSubTotal(), 8) + "</feSubTotalUno>");
+		bufferedWriter.newLine();
+		bufferedWriter.append("<feDescuentoPorcentaje></feDescuentoPorcentaje>");
+		bufferedWriter.newLine();
+		bufferedWriter.append("<feDescuento>" + getAmount(totales.getDescuentoTotal(), 8)	+ "</feDescuento>");
+		bufferedWriter.newLine();
+		bufferedWriter.append("<feSubTotalDos>"	+ getAmount(totales.getSubTotalDescontado(), 8) + "</feSubTotalDos>");
+		bufferedWriter.newLine();
+		bufferedWriter.append("<feTotal>" + getAmount(totales.getTotal(), 8) + "</feTotal>");
+		bufferedWriter.newLine();
+		// TODO MODIFICAR CAE y VTO
+		bufferedWriter.append("<feCAE>" + factura.getCAE() + "</feCAE>");
+		bufferedWriter.newLine();
+		bufferedWriter.append("<feCAEVto>" + DateUtils.convertDateToString(factura.getFechaVtoCAE()) + "</feCAEVto>");
+		bufferedWriter.newLine();
+		// ITEMS
+		int i = 1;
+		for (ItemFactura item : factura.getItems()) {
+			bufferedWriter.append("<feItem"
+									+ i
+									+ "Codigo>"
+									+ getNormalizedWidthCode(item.getArticulo().getMarca().getId().toString(), 3) + " "
+									+ getNormalizedWidthCode(item.getArticulo().getFamilia().getCodigo().toString(), 3)
+									+ getNormalizedWidthCode(item.getArticulo().getCodigo(), 7) + "</feItem" + i + "Codigo>");
 			bufferedWriter.newLine();
-			bufferedWriter.append("</InputData>");
-
-			bufferedWriter.close();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			bufferedWriter.append("<feItem"
+									+ i	+ "Descripcion>" + item.getArticulo().getFamilia().getDescripcion().toUpperCase()
+									+ " " + item.getArticulo().getDescripcion()	+ " "
+									+ item.getArticulo().getMarca().getDescripcion().toUpperCase() + "</feItem" + i
+									+ "Descripcion>");
+			bufferedWriter.newLine();
+			bufferedWriter.append("<feItem"
+									+ i	+ "Cant>" + getNormalizedWidthCode(item.getCantidad().toString(),	6) 
+									+ "</feItem" + i + "Cant>");
+			bufferedWriter.newLine();
+			bufferedWriter.append("<feItem" + i + "Descuento>"
+									+ getAmount(item.getDescuento(), 4) + "</feItem" + i + "Descuento>");
+			bufferedWriter.newLine();
+			bufferedWriter.append("<feItem" + i + "Precio>"	+ getAmount(item.getArticulo().getPrecioVenta(), 8)
+									+ "</feItem" + i + "Precio>");
+			bufferedWriter.newLine();
+			bufferedWriter.append("<feItem" + i + "Importe>" + getAmount(item.getTotalItem(), 8) + "</feItem" + i + "Importe>");
+			bufferedWriter.newLine();
+			++i;
 		}
 
+		for (; i <= 30; i++) {
+			bufferedWriter.append("<feItem" + i + "Codigo>" + " " + "</feItem" + i + "Codigo>");
+			bufferedWriter.newLine();
+			bufferedWriter.append("<feItem" + i + "Descripcion>" + "</feItem" + i + "Descripcion>");
+			bufferedWriter.newLine();
+			bufferedWriter.append("<feItem" + i + "Cant>" + "</feItem" + i + "Cant>");
+			bufferedWriter.newLine();
+			bufferedWriter.append("<feItem" + i + "Descuento>" + "</feItem"	+ i + "Descuento>");
+			bufferedWriter.newLine();
+			bufferedWriter.append("<feItem" + i + "Precio>" + "</feItem" + i + "Precio>");
+			bufferedWriter.newLine();
+			bufferedWriter.append("<feItem" + i + "Importe>" + "</feItem"
+					+ i + "Importe>");
+			bufferedWriter.newLine();
+		}
+
+		bufferedWriter.append("</feDATA>");
+		bufferedWriter.newLine();
+		bufferedWriter.append("</InputData>");
+
+		bufferedWriter.close();
 	}
 
 	@RequestMapping(value = "/factura/emision.htm", method = RequestMethod.GET)
@@ -474,7 +509,22 @@ public class FacturaController extends AbstractPrint {
 
 		facturaDAO.saveUpdateFactura(factura);
 		// PRINT NC.
-		new PrintFacturaA4(factura, totales, paramsDAO.getParams(),	printerServiceIndex);
+		if (FacturaType.FACTURA_TYPE_ELECTRONIC.equals(factura.getFacturaType().getFacturaTypeId())) {
+			String erroresYObservaciones = getCAEFacturaElectronica(factura, totales, FacturaType.FACTURA_TYPE_ELECTRONIC, FacturaType.TIPO_COMPROBANTE_FACTURA_A_AFIP);
+			if(StringUtils.isNotBlank(erroresYObservaciones)){
+				return new ModelAndView("successPage", "success", SuccessUtils.setSuccessBean(FACTURA_TITLE, erroresYObservaciones));
+			}		
+			
+			try {
+				generateXMLInputFEPDF(factura, totales, paramsDAO.getParams().getIvaInscripto().getIVA());
+			} catch (IOException e) {
+				return new ModelAndView("successPage", "success", SuccessUtils.setSuccessBean(FACTURA_TITLE, "Error generando XML de entrada para FE en PDF mediante BirtViewer"));
+			}
+			
+			return new ModelAndView("/factura/feComprobantes");
+		}else{
+			new PrintFacturaA4(factura, totales, paramsDAO.getParams(),	printerServiceIndex);	
+		}
 
 		return new ModelAndView("successPage", "success", SuccessUtils.setSuccessBean("Notas de Credito", "Nota de Crédito emitida satisfactoriamente"));
 	}

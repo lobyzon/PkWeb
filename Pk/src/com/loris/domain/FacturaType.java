@@ -8,11 +8,15 @@ import javax.persistence.Table;
 @Table(name="PK.Factura_Type")
 @Entity
 public class FacturaType {
-	public final static Integer FACTURA_TYPE 			= new Integer(1);
-	public final static Integer FACTURA_N_TYPE 			= new Integer(2);	
-	public final static Integer FACTURA_NC_TYPE 		= new Integer(3);
-	public final static Integer FACTURA_ANULADA_TYPE 	= new Integer(4);
-	public final static Integer FACTURA_TYPE_ELECTRONIC	= new Integer(5);
+	public final static Integer FACTURA_TYPE 				= new Integer(1);
+	public final static Integer FACTURA_N_TYPE 				= new Integer(2);	
+	public final static Integer FACTURA_NC_TYPE 			= new Integer(3);
+	public final static Integer FACTURA_ANULADA_TYPE 		= new Integer(4);
+	public final static Integer FACTURA_TYPE_ELECTRONIC		= new Integer(5);
+	public final static Integer FACTURA_NC_TYPE_ELECTRONIC 	= new Integer(6);
+	
+	public final static int TIPO_COMPROBANTE_FACTURA_A_AFIP			= 1;
+	public final static int TIPO_COMPROBANTE_NOTA_CREDITO_A_AFIP	= 3;
 	
 	public FacturaType(){}
 	
