@@ -74,6 +74,12 @@ public class Params {
 	@Column(name="CANT_COPIAS_REMITO_D", nullable=false)
 	private Integer cantCopiasRemitoD;
 	
+	@Column(name="PROX_NUM_FACTURA_ELECTRONICA", nullable=false)
+	private Integer proxNumFacturaElectronica;
+	
+	@Column(name="PROX_NUM_NC_D_ELECTRONICA", nullable=false)
+	private Integer proxNumNCDElectronica;
+	
 	/**
 	 * @param Integer Próximo Número de Nota de Crédito
 	 */
@@ -250,5 +256,21 @@ public class Params {
 
 	public void setLaserPrinterName(String laserPrinterName) {
 		this.laserPrinterName = laserPrinterName;
+	}
+
+	public Integer getProxNumFacturaElectronica() {
+		return proxNumFacturaElectronica;
+	}
+
+	public void setProxNumFacturaElectronica(Integer proxNumFacturaElectronica) {
+		this.proxNumFacturaElectronica = proxNumFacturaElectronica;
+	}
+
+	public Integer getProxNumNCDElectronica() {
+		return proxNumNCDElectronica;
+	}
+
+	public void setProxNumNCDElectronica(Integer proxNumNCDElectronica) {
+		this.proxNumNCDElectronica = proxNumNCDElectronica;
 	}
 }

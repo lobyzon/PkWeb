@@ -123,8 +123,7 @@ public class FacturaController extends AbstractPrint {
 		Params params = paramsDAO.getParams();
 		factura.setItems(getArticulos(items.getItemsFactura()));
 		factura.setFecha(new Date());
-		Factura.updateFacturaType(factura);
-		factura.setNroFactura(getNroFactura(params, factura.getFacturaType().getFacturaTypeId()));
+		Factura.updateFacturaType(factura);		
 		factura.setCliente(clienteDAO.getCliente(factura.getCliente().getId()));
 		factura.updateStock(factura.getFacturaType().getFacturaTypeId());
 
@@ -160,6 +159,7 @@ public class FacturaController extends AbstractPrint {
 				new PrintFacturaN(factura, totales, params, printerServiceIndex);
 			}
 			
+			factura.setNroFactura(getNroFactura(params, factura.getFacturaType().getFacturaTypeId()));
 			facturaDAO.saveUpdateFactura(factura);
 			
 			return new ModelAndView("successPage", "success", SuccessUtils.setSuccessBean(FACTURA_TITLE, FACTURA_EMISION));
@@ -252,6 +252,11 @@ public class FacturaController extends AbstractPrint {
 		
 		factura.setFacturaType(new FacturaType(facturaType));
 		
+		Params params = paramsDAO.getParams();
+		params.setProxNumFacturaElectronica(factura.getNroFactura() + 1);
+		params.setProxNumNC(factura.getNroFactura() + 1);
+		paramsDAO.saveOrUpdateParams(params);
+		
 		facturaDAO.saveUpdateFactura(factura);
 		
 		return "";
@@ -288,6 +293,9 @@ public class FacturaController extends AbstractPrint {
 		bufferedWriter.newLine();
 		bufferedWriter.append("<feDATA>");
 		bufferedWriter.newLine();
+		bufferedWriter.append("<feTipoFactura>" + getTipoFactura(factura) + "</feTipoFactura>");
+		bufferedWriter.newLine();
+		bufferedWriter.append("<feCodigoTipoFactura>" + getTipoComprobante(factura) + "</feCodigoTipoFactura>");
 		bufferedWriter.append("<feNro>" + "0002 - " + factura.getNroFactura() + "</feNro>");
 		bufferedWriter.newLine();
 		bufferedWriter.append("<feFecha>" + DateUtils.convertDateToString(factura.getFecha()) + "</feFecha>");
@@ -381,6 +389,18 @@ public class FacturaController extends AbstractPrint {
 		bufferedWriter.append("</InputData>");
 
 		bufferedWriter.close();
+	}
+
+	private String getTipoComprobante(Factura factura) {
+		if(FacturaType.FACTURA_TYPE_ELECTRONIC.equals(factura.getFacturaType().getFacturaTypeId()))
+			return "01";
+		return "03";
+	}
+
+	private String getTipoFactura(Factura factura) {
+		if(FacturaType.FACTURA_TYPE_ELECTRONIC.equals(factura.getFacturaType().getFacturaTypeId()))
+			return "FACTURA";
+		return "NOTA DE CREDITO";
 	}
 
 	@RequestMapping(value = "/factura/emision.htm", method = RequestMethod.GET)
@@ -490,9 +510,7 @@ public class FacturaController extends AbstractPrint {
 		Factura factura = (Factura) session.getAttribute("factura");
 
 		factura.setItems(getArticulos(this.items.getItemsFactura()));
-		factura.setId(null);
-		factura.setFacturaType(new FacturaType(FacturaType.FACTURA_NC_TYPE));
-		factura.setNroFactura(getNroFactura(paramsDAO.getParams(), factura.getFacturaType().getFacturaTypeId()));
+		factura.setId(null);		
 		factura.setComentarios(request.getParameter("comentarios"));
 		factura.updateStock(factura.getFacturaType().getFacturaTypeId());
 
@@ -510,7 +528,7 @@ public class FacturaController extends AbstractPrint {
 		facturaDAO.saveUpdateFactura(factura);
 		// PRINT NC.
 		if (FacturaType.FACTURA_TYPE_ELECTRONIC.equals(factura.getFacturaType().getFacturaTypeId())) {
-			String erroresYObservaciones = getCAEFacturaElectronica(factura, totales, FacturaType.FACTURA_TYPE_ELECTRONIC, FacturaType.TIPO_COMPROBANTE_FACTURA_A_AFIP);
+			String erroresYObservaciones = getCAEFacturaElectronica(factura, totales, FacturaType.FACTURA_NC_TYPE_ELECTRONIC, FacturaType.TIPO_COMPROBANTE_NOTA_CREDITO_A_AFIP);
 			if(StringUtils.isNotBlank(erroresYObservaciones)){
 				return new ModelAndView("successPage", "success", SuccessUtils.setSuccessBean(FACTURA_TITLE, erroresYObservaciones));
 			}		
@@ -523,6 +541,7 @@ public class FacturaController extends AbstractPrint {
 			
 			return new ModelAndView("/factura/feComprobantes");
 		}else{
+			factura.setNroFactura(getNroFactura(paramsDAO.getParams(), factura.getFacturaType().getFacturaTypeId()));
 			new PrintFacturaA4(factura, totales, paramsDAO.getParams(),	printerServiceIndex);	
 		}
 

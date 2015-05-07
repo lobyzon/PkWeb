@@ -1,9 +1,9 @@
 function confirmImpresion(){
-	return confirm("Confirma Imprimir? Ajuste la impresora por favor");
+	return confirm("Confirma Generar la factura?");
 }
 
 function confirmAnulacion(){	
-	return confirm("Confirma Anulación Factura?");
+	return confirm("Confirma AnulaciÃ³n Factura?");
 }
 
 function getFamiliaDescripcion()
@@ -284,7 +284,7 @@ function validateCode(marcaId, familiaId, codigoId){
 	$.getJSON("../factura/ValidateItem.json", {marca:marca, familia:familia, codigo:codigo},
 			function(data){
 				if(data.existing){
-					alert('Artículo existente');
+					alert('Artï¿½culo existente');
 					$(codigoId).val('');
 				}
 			});

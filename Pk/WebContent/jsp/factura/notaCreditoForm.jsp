@@ -7,21 +7,32 @@
 		<form:form method="POST" commandName="factura">
 			<tr>
 				<td height="50" class="title" colspan="7"><b>Consulta Factura</b></td>
-			</tr>				
+			</tr>
+			<tr>
+				<td class="title" height="5" style="text-align: right;">Tipo Factura:</td>
+				<td width="15%">
+					<form:select path="facturaType.facturaTypeId" id="tipoFactura">
+						<option value="<%=com.loris.domain.FacturaType.FACTURA_TYPE_ELECTRONIC%>">Factura Electrónica</option>
+						<option value="<%=com.loris.domain.FacturaType.FACTURA_TYPE%>">Factura Manual</option>
+					</form:select>
+				</td>
+			</tr>
 			<tr>
 				<td class="title" height="5" style="text-align: right;">Nro. Factura:</td>
 				<td width="15%">
-					<form:input path="nroFactura" size="8" id="nroFactura"/>						
+					<form:input path="nroFactura" size="8" id="nroFactura"/>
 				</td>
 				<td><form:errors path="nroFactura" cssClass="error" /></td>
-				<td><form:hidden path="facturaType.facturaTypeId" id="typeF"/> </td>					
+				<!-- 
+				<td><form:hidden path="facturaType.facturaTypeId" id="typeF"/></td>
+				 -->
 			</tr>
 			<tr>
 				<td class="labelStyle" colspan="7"><input type="submit" value="Consultar"></td>
 			</tr>
 			<tr>
 				<td class="emptyColumn" colSpan="7">&nbsp;</td>
-			</tr>				
+			</tr>
 		</form:form>
 	</table>
 <jsp:include page="/jsp/include/abajo.jsp" />

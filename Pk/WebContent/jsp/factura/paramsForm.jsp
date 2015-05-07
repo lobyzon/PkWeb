@@ -9,12 +9,17 @@
 				<td height="50" class="title" colspan="6"><b>Parámetros</b></td>
 			</tr>			
 			<tr>
-				<td class="title" height="5">Prox. Num. Factura:</td>
+				<td class="title" height="5">Prox. Num. Factura Manual:</td>
 				<td><form:input  path="proxNumFactura" size="10"/></td>
 				<td><form:errors path="proxNumFactura" cssClass="error" /></td>
 				<td class="title" height="5">Cant. Copias Factura:</td>
 				<td><form:input  path="cantCopiasFactura" size="10"/></td>
 				<td><form:errors path="cantCopiasFactura" cssClass="error" /></td>
+			</tr>
+			<tr>
+				<td class="title" height="5">Prox. Num. Factura Electrónica:</td>
+				<td><form:input  path="proxNumFacturaElectronica" size="10"/></td>
+				<td colspan="4"><form:errors path="proxNumFacturaElectronica" cssClass="error" /></td>				
 			</tr>
 			<tr>
 				<td class="title" height="5">Prox. Num. Remito:</td>
@@ -23,6 +28,11 @@
 				<td class="title" height="5">Cant. Copias Remito:</td>
 				<td><form:input  path="cantCopiasRemito" size="10"/></td>
 				<td><form:errors path="cantCopiasRemito" cssClass="error" /></td>
+			</tr>
+			<tr>
+				<td class="title" height="5">Prox. Num. N/C Electrónica.:</td>
+				<td><form:input  path="proxNumNCDElectronica" size="10"/></td>
+				<td colspan="4"><form:errors path="proxNumNCDElectronica" cssClass="error" /></td>				
 			</tr>
 			<tr>
 				<td class="title" height="5">Prox. Num. N/C:</td>
