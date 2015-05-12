@@ -16,987 +16,1195 @@
                 <structure>
                     <property name="columnName">feNro</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feNro</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feFecha</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feFecha</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feComprador</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feComprador</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feCUIT</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feCUIT</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feCondicionesVenta</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feCondicionesVenta</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feRemitoNro</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feRemitoNro</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">fePorcentajeIVA</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">fePorcentajeIVA</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feIVA</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feIVA</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feSubTotalUno</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feSubTotalUno</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feDescuentoPorcentaje</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feDescuentoPorcentaje</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feDescuento</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feDescuento</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feSubTotalDos</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feSubTotalDos</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feTotal</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feTotal</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feCAE</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feCAE</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feCAEVto</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feCAEVto</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feItem1Codigo</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feItem1Codigo</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feItem1Descripcion</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feItem1Descripcion</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feItem1Cant</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feItem1Cant</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feItem1Descuento</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feItem1Descuento</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feItem1Precio</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feItem1Precio</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feItem1Importe</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feItem1Importe</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feItem2Codigo</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feItem2Codigo</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feItem2Descripcion</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feItem2Descripcion</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feItem2Cant</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feItem2Cant</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feItem2Descuento</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feItem2Descuento</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feItem2Precio</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feItem2Precio</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feItem2Importe</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feItem2Importe</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feItem3Codigo</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feItem3Codigo</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feItem3Descripcion</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feItem3Descripcion</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feItem3Cant</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feItem3Cant</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feItem3Descuento</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feItem3Descuento</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feItem3Precio</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feItem3Precio</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feItem3Importe</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feItem3Importe</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feItem4Codigo</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feItem4Codigo</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feItem4Descripcion</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feItem4Descripcion</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feItem4Cant</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feItem4Cant</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feItem4Descuento</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feItem4Descuento</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feItem4Precio</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feItem4Precio</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feItem4Importe</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feItem4Importe</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feItem5Codigo</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feItem5Codigo</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feItem5Descripcion</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feItem5Descripcion</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feItem5Cant</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feItem5Cant</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feItem5Descuento</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feItem5Descuento</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feItem5Precio</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feItem5Precio</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feItem5Importe</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feItem5Importe</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feItem6Codigo</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feItem6Codigo</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feItem6Descripcion</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feItem6Descripcion</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feItem6Cant</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feItem6Cant</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feItem6Descuento</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feItem6Descuento</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feItem6Precio</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feItem6Precio</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feItem6Importe</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feItem6Importe</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feItem7Codigo</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feItem7Codigo</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feItem7Descripcion</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feItem7Descripcion</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feItem7Cant</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feItem7Cant</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feItem7Descuento</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feItem7Descuento</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feItem7Precio</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feItem7Precio</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feItem7Importe</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feItem7Importe</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feItem8Codigo</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feItem8Codigo</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feItem8Descripcion</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feItem8Descripcion</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feItem8Cant</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feItem8Cant</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feItem8Descuento</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feItem8Descuento</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feItem8Precio</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feItem8Precio</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feItem8Importe</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feItem8Importe</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feItem9Codigo</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feItem9Codigo</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feItem9Descripcion</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feItem9Descripcion</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feItem9Cant</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feItem9Cant</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feItem9Descuento</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feItem9Descuento</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feItem9Precio</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feItem9Precio</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feItem9Importe</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feItem9Importe</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feItem10Codigo</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feItem10Codigo</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feItem10Descripcion</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feItem10Descripcion</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feItem10Cant</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feItem10Cant</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feItem10Descuento</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feItem10Descuento</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feItem10Precio</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feItem10Precio</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feItem10Importe</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feItem10Importe</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feItem11Codigo</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feItem11Codigo</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feItem11Descripcion</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feItem11Descripcion</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feItem11Cant</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feItem11Cant</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feItem11Descuento</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feItem11Descuento</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feItem11Precio</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feItem11Precio</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feItem11Importe</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feItem11Importe</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feItem12Codigo</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feItem12Codigo</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feItem12Descripcion</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feItem12Descripcion</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feItem12Cant</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feItem12Cant</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feItem12Descuento</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feItem12Descuento</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feItem12Precio</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feItem12Precio</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feItem12Importe</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feItem12Importe</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feItem13Codigo</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feItem13Codigo</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feItem13Descripcion</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feItem13Descripcion</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feItem13Cant</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feItem13Cant</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feItem13Descuento</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feItem13Descuento</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feItem13Precio</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feItem13Precio</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feItem13Importe</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feItem13Importe</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feItem14Codigo</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feItem14Codigo</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feItem14Descripcion</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feItem14Descripcion</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feItem14Cant</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feItem14Cant</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feItem14Descuento</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feItem14Descuento</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feItem14Precio</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feItem14Precio</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feItem14Importe</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feItem14Importe</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feItem15Codigo</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feItem15Codigo</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feItem15Descripcion</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feItem15Descripcion</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feItem15Cant</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feItem15Cant</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feItem15Descuento</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feItem15Descuento</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feItem15Precio</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feItem15Precio</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feItem15Importe</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feItem15Importe</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feItem16Codigo</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feItem16Codigo</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feItem16Descripcion</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feItem16Descripcion</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feItem16Cant</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feItem16Cant</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feItem16Descuento</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feItem16Descuento</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feItem16Precio</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feItem16Precio</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feItem16Importe</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feItem16Importe</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feItem17Codigo</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feItem17Codigo</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feItem17Descripcion</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feItem17Descripcion</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feItem17Cant</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feItem17Cant</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feItem17Descuento</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feItem17Descuento</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feItem17Precio</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feItem17Precio</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feItem17Importe</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feItem17Importe</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feItem18Codigo</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feItem18Codigo</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feItem18Descripcion</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feItem18Descripcion</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feItem18Cant</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feItem18Cant</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feItem18Descuento</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feItem18Descuento</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feItem18Precio</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feItem18Precio</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feItem18Importe</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feItem18Importe</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feItem19Codigo</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feItem19Codigo</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feItem19Descripcion</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feItem19Descripcion</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feItem19Cant</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feItem19Cant</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feItem19Descuento</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feItem19Descuento</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feItem19Precio</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feItem19Precio</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feItem19Importe</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feItem19Importe</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feItem20Codigo</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feItem20Codigo</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feItem20Descripcion</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feItem20Descripcion</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feItem20Cant</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feItem20Cant</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feItem20Descuento</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feItem20Descuento</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feItem20Precio</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feItem20Precio</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feItem20Importe</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feItem20Importe</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feItem21Codigo</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feItem21Codigo</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feItem21Descripcion</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feItem21Descripcion</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feItem21Cant</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feItem21Cant</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feItem21Descuento</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feItem21Descuento</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feItem21Precio</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feItem21Precio</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feItem21Importe</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feItem21Importe</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feItem22Codigo</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feItem22Codigo</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feItem22Descripcion</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feItem22Descripcion</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feItem22Cant</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feItem22Cant</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feItem22Descuento</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feItem22Descuento</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feItem22Precio</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feItem22Precio</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feItem22Importe</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feItem22Importe</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feItem23Codigo</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feItem23Codigo</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feItem23Descripcion</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feItem23Descripcion</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feItem23Cant</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feItem23Cant</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feItem23Descuento</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feItem23Descuento</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feItem23Precio</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feItem23Precio</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feItem23Importe</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feItem23Importe</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feItem24Codigo</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feItem24Codigo</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feItem24Descripcion</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feItem24Descripcion</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feItem24Cant</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feItem24Cant</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feItem24Descuento</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feItem24Descuento</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feItem24Precio</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feItem24Precio</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feItem24Importe</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feItem24Importe</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feItem25Codigo</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feItem25Codigo</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feItem25Descripcion</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feItem25Descripcion</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feItem25Cant</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feItem25Cant</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feItem25Descuento</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feItem25Descuento</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feItem25Precio</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feItem25Precio</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feItem25Importe</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feItem25Importe</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feItem26Codigo</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feItem26Codigo</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feItem26Descripcion</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feItem26Descripcion</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feItem26Cant</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feItem26Cant</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feItem26Descuento</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feItem26Descuento</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feItem26Precio</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feItem26Precio</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feItem26Importe</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feItem26Importe</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feItem27Codigo</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feItem27Codigo</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feItem27Descripcion</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feItem27Descripcion</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feItem27Cant</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feItem27Cant</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feItem27Descuento</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feItem27Descuento</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feItem27Precio</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feItem27Precio</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feItem27Importe</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feItem27Importe</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feItem28Codigo</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feItem28Codigo</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feItem28Descripcion</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feItem28Descripcion</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feItem28Cant</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feItem28Cant</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feItem28Descuento</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feItem28Descuento</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feItem28Precio</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feItem28Precio</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feItem28Importe</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feItem28Importe</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feItem29Codigo</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feItem29Codigo</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feItem29Descripcion</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feItem29Descripcion</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feItem29Cant</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feItem29Cant</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feItem29Descuento</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feItem29Descuento</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feItem29Precio</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feItem29Precio</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feItem29Importe</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feItem29Importe</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feItem30Codigo</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feItem30Codigo</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feItem30Descripcion</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feItem30Descripcion</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feItem30Cant</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feItem30Cant</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feItem30Descuento</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feItem30Descuento</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feItem30Precio</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feItem30Precio</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feItem30Importe</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feItem30Importe</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feCompradorCalle</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feCompradorCalle</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">feCompradorLocalidad</property>
                     <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">feCompradorLocalidad</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">feTipoFactura</property>
+                    <property name="analysis">dimension</property>
+                    <property name="onColumnLayout">false</property>
+                    <text-property name="heading">feTipoFactura</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">feCodigoTipoFactura</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="heading">feCodigoTipoFactura</text-property>
                 </structure>
             </list-property>
             <list-property name="parameters"/>
@@ -1985,6 +2193,16 @@
                     <structure>
                         <property name="position">197</property>
                         <property name="name">feCompradorLocalidad</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">198</property>
+                        <property name="name">feTipoFactura</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">199</property>
+                        <property name="name">feCodigoTipoFactura</property>
                         <property name="dataType">string</property>
                     </structure>
                 </list-property>
@@ -3370,8 +3588,22 @@
                     <property name="dataType">string</property>
                     <property name="nativeDataType">12</property>
                 </structure>
+                <structure>
+                    <property name="position">198</property>
+                    <property name="name">feTipoFactura</property>
+                    <property name="nativeName">feTipoFactura</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">199</property>
+                    <property name="name">feCodigoTipoFactura</property>
+                    <property name="nativeName">feCodigoTipoFactura</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
             </list-property>
-            <xml-property name="queryText"><![CDATA[table0#-TNAME-#table0#:#[/InputData]#:#{feNro;STRING;/feDATA/feNro},{feFecha;STRING;/feDATA/feFecha},{feComprador;STRING;/feDATA/feComprador},{feCUIT;STRING;/feDATA/feCUIT},{feCondicionesVenta;STRING;/feDATA/feCondicionesVenta},{feRemitoNro;STRING;/feDATA/feRemitoNro},{fePorcentajeIVA;STRING;/feDATA/fePorcentajeIVA},{feIVA;STRING;/feDATA/feIVA},{feSubTotalUno;STRING;/feDATA/feSubTotalUno},{feDescuentoPorcentaje;STRING;/feDATA/feDescuentoPorcentaje},{feDescuento;STRING;/feDATA/feDescuento},{feSubTotalDos;STRING;/feDATA/feSubTotalDos},{feTotal;STRING;/feDATA/feTotal},{feCAE;STRING;/feDATA/feCAE},{feCAEVto;STRING;/feDATA/feCAEVto},{feItem1Codigo;STRING;/feDATA/feItem1Codigo},{feItem1Descripcion;STRING;/feDATA/feItem1Descripcion},{feItem1Cant;STRING;/feDATA/feItem1Cant},{feItem1Descuento;STRING;/feDATA/feItem1Descuento},{feItem1Precio;STRING;/feDATA/feItem1Precio},{feItem1Importe;STRING;/feDATA/feItem1Importe},{feItem2Codigo;STRING;/feDATA/feItem2Codigo},{feItem2Descripcion;STRING;/feDATA/feItem2Descripcion},{feItem2Cant;STRING;/feDATA/feItem2Cant},{feItem2Descuento;STRING;/feDATA/feItem2Descuento},{feItem2Precio;STRING;/feDATA/feItem2Precio},{feItem2Importe;STRING;/feDATA/feItem2Importe},{feItem3Codigo;STRING;/feDATA/feItem3Codigo},{feItem3Descripcion;STRING;/feDATA/feItem3Descripcion},{feItem3Cant;STRING;/feDATA/feItem3Cant},{feItem3Descuento;STRING;/feDATA/feItem3Descuento},{feItem3Precio;STRING;/feDATA/feItem3Precio},{feItem3Importe;STRING;/feDATA/feItem3Importe},{feItem4Codigo;STRING;/feDATA/feItem4Codigo},{feItem4Descripcion;STRING;/feDATA/feItem4Descripcion},{feItem4Cant;STRING;/feDATA/feItem4Cant},{feItem4Descuento;STRING;/feDATA/feItem4Descuento},{feItem4Precio;STRING;/feDATA/feItem4Precio},{feItem4Importe;STRING;/feDATA/feItem4Importe},{feItem5Codigo;STRING;/feDATA/feItem5Codigo},{feItem5Descripcion;STRING;/feDATA/feItem5Descripcion},{feItem5Cant;STRING;/feDATA/feItem5Cant},{feItem5Descuento;STRING;/feDATA/feItem5Descuento},{feItem5Precio;STRING;/feDATA/feItem5Precio},{feItem5Importe;STRING;/feDATA/feItem5Importe},{feItem6Codigo;STRING;/feDATA/feItem6Codigo},{feItem6Descripcion;STRING;/feDATA/feItem6Descripcion},{feItem6Cant;STRING;/feDATA/feItem6Cant},{feItem6Descuento;STRING;/feDATA/feItem6Descuento},{feItem6Precio;STRING;/feDATA/feItem6Precio},{feItem6Importe;STRING;/feDATA/feItem6Importe},{feItem7Codigo;STRING;/feDATA/feItem7Codigo},{feItem7Descripcion;STRING;/feDATA/feItem7Descripcion},{feItem7Cant;STRING;/feDATA/feItem7Cant},{feItem7Descuento;STRING;/feDATA/feItem7Descuento},{feItem7Precio;STRING;/feDATA/feItem7Precio},{feItem7Importe;STRING;/feDATA/feItem7Importe},{feItem8Codigo;STRING;/feDATA/feItem8Codigo},{feItem8Descripcion;STRING;/feDATA/feItem8Descripcion},{feItem8Cant;STRING;/feDATA/feItem8Cant},{feItem8Descuento;STRING;/feDATA/feItem8Descuento},{feItem8Precio;STRING;/feDATA/feItem8Precio},{feItem8Importe;STRING;/feDATA/feItem8Importe},{feItem9Codigo;STRING;/feDATA/feItem9Codigo},{feItem9Descripcion;STRING;/feDATA/feItem9Descripcion},{feItem9Cant;STRING;/feDATA/feItem9Cant},{feItem9Descuento;STRING;/feDATA/feItem9Descuento},{feItem9Precio;STRING;/feDATA/feItem9Precio},{feItem9Importe;STRING;/feDATA/feItem9Importe},{feItem10Codigo;STRING;/feDATA/feItem10Codigo},{feItem10Descripcion;STRING;/feDATA/feItem10Descripcion},{feItem10Cant;STRING;/feDATA/feItem10Cant},{feItem10Descuento;STRING;/feDATA/feItem10Descuento},{feItem10Precio;STRING;/feDATA/feItem10Precio},{feItem10Importe;STRING;/feDATA/feItem10Importe},{feItem11Codigo;STRING;/feDATA/feItem11Codigo},{feItem11Descripcion;STRING;/feDATA/feItem11Descripcion},{feItem11Cant;STRING;/feDATA/feItem11Cant},{feItem11Descuento;STRING;/feDATA/feItem11Descuento},{feItem11Precio;STRING;/feDATA/feItem11Precio},{feItem11Importe;STRING;/feDATA/feItem11Importe},{feItem12Codigo;STRING;/feDATA/feItem12Codigo},{feItem12Descripcion;STRING;/feDATA/feItem12Descripcion},{feItem12Cant;STRING;/feDATA/feItem12Cant},{feItem12Descuento;STRING;/feDATA/feItem12Descuento},{feItem12Precio;STRING;/feDATA/feItem12Precio},{feItem12Importe;STRING;/feDATA/feItem12Importe},{feItem13Codigo;STRING;/feDATA/feItem13Codigo},{feItem13Descripcion;STRING;/feDATA/feItem13Descripcion},{feItem13Cant;STRING;/feDATA/feItem13Cant},{feItem13Descuento;STRING;/feDATA/feItem13Descuento},{feItem13Precio;STRING;/feDATA/feItem13Precio},{feItem13Importe;STRING;/feDATA/feItem13Importe},{feItem14Codigo;STRING;/feDATA/feItem14Codigo},{feItem14Descripcion;STRING;/feDATA/feItem14Descripcion},{feItem14Cant;STRING;/feDATA/feItem14Cant},{feItem14Descuento;STRING;/feDATA/feItem14Descuento},{feItem14Precio;STRING;/feDATA/feItem14Precio},{feItem14Importe;STRING;/feDATA/feItem14Importe},{feItem15Codigo;STRING;/feDATA/feItem15Codigo},{feItem15Descripcion;STRING;/feDATA/feItem15Descripcion},{feItem15Cant;STRING;/feDATA/feItem15Cant},{feItem15Descuento;STRING;/feDATA/feItem15Descuento},{feItem15Precio;STRING;/feDATA/feItem15Precio},{feItem15Importe;STRING;/feDATA/feItem15Importe},{feItem16Codigo;STRING;/feDATA/feItem16Codigo},{feItem16Descripcion;STRING;/feDATA/feItem16Descripcion},{feItem16Cant;STRING;/feDATA/feItem16Cant},{feItem16Descuento;STRING;/feDATA/feItem16Descuento},{feItem16Precio;STRING;/feDATA/feItem16Precio},{feItem16Importe;STRING;/feDATA/feItem16Importe},{feItem17Codigo;STRING;/feDATA/feItem17Codigo},{feItem17Descripcion;STRING;/feDATA/feItem17Descripcion},{feItem17Cant;STRING;/feDATA/feItem17Cant},{feItem17Descuento;STRING;/feDATA/feItem17Descuento},{feItem17Precio;STRING;/feDATA/feItem17Precio},{feItem17Importe;STRING;/feDATA/feItem17Importe},{feItem18Codigo;STRING;/feDATA/feItem18Codigo},{feItem18Descripcion;STRING;/feDATA/feItem18Descripcion},{feItem18Cant;STRING;/feDATA/feItem18Cant},{feItem18Descuento;STRING;/feDATA/feItem18Descuento},{feItem18Precio;STRING;/feDATA/feItem18Precio},{feItem18Importe;STRING;/feDATA/feItem18Importe},{feItem19Codigo;STRING;/feDATA/feItem19Codigo},{feItem19Descripcion;STRING;/feDATA/feItem19Descripcion},{feItem19Cant;STRING;/feDATA/feItem19Cant},{feItem19Descuento;STRING;/feDATA/feItem19Descuento},{feItem19Precio;STRING;/feDATA/feItem19Precio},{feItem19Importe;STRING;/feDATA/feItem19Importe},{feItem20Codigo;STRING;/feDATA/feItem20Codigo},{feItem20Descripcion;STRING;/feDATA/feItem20Descripcion},{feItem20Cant;STRING;/feDATA/feItem20Cant},{feItem20Descuento;STRING;/feDATA/feItem20Descuento},{feItem20Precio;STRING;/feDATA/feItem20Precio},{feItem20Importe;STRING;/feDATA/feItem20Importe},{feItem21Codigo;STRING;/feDATA/feItem21Codigo},{feItem21Descripcion;STRING;/feDATA/feItem21Descripcion},{feItem21Cant;STRING;/feDATA/feItem21Cant},{feItem21Descuento;STRING;/feDATA/feItem21Descuento},{feItem21Precio;STRING;/feDATA/feItem21Precio},{feItem21Importe;STRING;/feDATA/feItem21Importe},{feItem22Codigo;STRING;/feDATA/feItem22Codigo},{feItem22Descripcion;STRING;/feDATA/feItem22Descripcion},{feItem22Cant;STRING;/feDATA/feItem22Cant},{feItem22Descuento;STRING;/feDATA/feItem22Descuento},{feItem22Precio;STRING;/feDATA/feItem22Precio},{feItem22Importe;STRING;/feDATA/feItem22Importe},{feItem23Codigo;STRING;/feDATA/feItem23Codigo},{feItem23Descripcion;STRING;/feDATA/feItem23Descripcion},{feItem23Cant;STRING;/feDATA/feItem23Cant},{feItem23Descuento;STRING;/feDATA/feItem23Descuento},{feItem23Precio;STRING;/feDATA/feItem23Precio},{feItem23Importe;STRING;/feDATA/feItem23Importe},{feItem24Codigo;STRING;/feDATA/feItem24Codigo},{feItem24Descripcion;STRING;/feDATA/feItem24Descripcion},{feItem24Cant;STRING;/feDATA/feItem24Cant},{feItem24Descuento;STRING;/feDATA/feItem24Descuento},{feItem24Precio;STRING;/feDATA/feItem24Precio},{feItem24Importe;STRING;/feDATA/feItem24Importe},{feItem25Codigo;STRING;/feDATA/feItem25Codigo},{feItem25Descripcion;STRING;/feDATA/feItem25Descripcion},{feItem25Cant;STRING;/feDATA/feItem25Cant},{feItem25Descuento;STRING;/feDATA/feItem25Descuento},{feItem25Precio;STRING;/feDATA/feItem25Precio},{feItem25Importe;STRING;/feDATA/feItem25Importe},{feItem26Codigo;STRING;/feDATA/feItem26Codigo},{feItem26Descripcion;STRING;/feDATA/feItem26Descripcion},{feItem26Cant;STRING;/feDATA/feItem26Cant},{feItem26Descuento;STRING;/feDATA/feItem26Descuento},{feItem26Precio;STRING;/feDATA/feItem26Precio},{feItem26Importe;STRING;/feDATA/feItem26Importe},{feItem27Codigo;STRING;/feDATA/feItem27Codigo},{feItem27Descripcion;STRING;/feDATA/feItem27Descripcion},{feItem27Cant;STRING;/feDATA/feItem27Cant},{feItem27Descuento;STRING;/feDATA/feItem27Descuento},{feItem27Precio;STRING;/feDATA/feItem27Precio},{feItem27Importe;STRING;/feDATA/feItem27Importe},{feItem28Codigo;STRING;/feDATA/feItem28Codigo},{feItem28Descripcion;STRING;/feDATA/feItem28Descripcion},{feItem28Cant;STRING;/feDATA/feItem28Cant},{feItem28Descuento;STRING;/feDATA/feItem28Descuento},{feItem28Precio;STRING;/feDATA/feItem28Precio},{feItem28Importe;STRING;/feDATA/feItem28Importe},{feItem29Codigo;STRING;/feDATA/feItem29Codigo},{feItem29Descripcion;STRING;/feDATA/feItem29Descripcion},{feItem29Cant;STRING;/feDATA/feItem29Cant},{feItem29Descuento;STRING;/feDATA/feItem29Descuento},{feItem29Precio;STRING;/feDATA/feItem29Precio},{feItem29Importe;STRING;/feDATA/feItem29Importe},{feItem30Codigo;STRING;/feDATA/feItem30Codigo},{feItem30Descripcion;STRING;/feDATA/feItem30Descripcion},{feItem30Cant;STRING;/feDATA/feItem30Cant},{feItem30Descuento;STRING;/feDATA/feItem30Descuento},{feItem30Precio;STRING;/feDATA/feItem30Precio},{feItem30Importe;STRING;/feDATA/feItem30Importe},{feCompradorCalle;STRING;/feDATA/feCompradorCalle},{feCompradorLocalidad;STRING;/feDATA/feCompradorLocalidad}]]></xml-property>
+            <xml-property name="queryText"><![CDATA[table0#-TNAME-#table0#:#[/InputData]#:#{feNro;STRING;/feDATA/feNro},{feFecha;STRING;/feDATA/feFecha},{feComprador;STRING;/feDATA/feComprador},{feCUIT;STRING;/feDATA/feCUIT},{feCondicionesVenta;STRING;/feDATA/feCondicionesVenta},{feRemitoNro;STRING;/feDATA/feRemitoNro},{fePorcentajeIVA;STRING;/feDATA/fePorcentajeIVA},{feIVA;STRING;/feDATA/feIVA},{feSubTotalUno;STRING;/feDATA/feSubTotalUno},{feDescuentoPorcentaje;STRING;/feDATA/feDescuentoPorcentaje},{feDescuento;STRING;/feDATA/feDescuento},{feSubTotalDos;STRING;/feDATA/feSubTotalDos},{feTotal;STRING;/feDATA/feTotal},{feCAE;STRING;/feDATA/feCAE},{feCAEVto;STRING;/feDATA/feCAEVto},{feItem1Codigo;STRING;/feDATA/feItem1Codigo},{feItem1Descripcion;STRING;/feDATA/feItem1Descripcion},{feItem1Cant;STRING;/feDATA/feItem1Cant},{feItem1Descuento;STRING;/feDATA/feItem1Descuento},{feItem1Precio;STRING;/feDATA/feItem1Precio},{feItem1Importe;STRING;/feDATA/feItem1Importe},{feItem2Codigo;STRING;/feDATA/feItem2Codigo},{feItem2Descripcion;STRING;/feDATA/feItem2Descripcion},{feItem2Cant;STRING;/feDATA/feItem2Cant},{feItem2Descuento;STRING;/feDATA/feItem2Descuento},{feItem2Precio;STRING;/feDATA/feItem2Precio},{feItem2Importe;STRING;/feDATA/feItem2Importe},{feItem3Codigo;STRING;/feDATA/feItem3Codigo},{feItem3Descripcion;STRING;/feDATA/feItem3Descripcion},{feItem3Cant;STRING;/feDATA/feItem3Cant},{feItem3Descuento;STRING;/feDATA/feItem3Descuento},{feItem3Precio;STRING;/feDATA/feItem3Precio},{feItem3Importe;STRING;/feDATA/feItem3Importe},{feItem4Codigo;STRING;/feDATA/feItem4Codigo},{feItem4Descripcion;STRING;/feDATA/feItem4Descripcion},{feItem4Cant;STRING;/feDATA/feItem4Cant},{feItem4Descuento;STRING;/feDATA/feItem4Descuento},{feItem4Precio;STRING;/feDATA/feItem4Precio},{feItem4Importe;STRING;/feDATA/feItem4Importe},{feItem5Codigo;STRING;/feDATA/feItem5Codigo},{feItem5Descripcion;STRING;/feDATA/feItem5Descripcion},{feItem5Cant;STRING;/feDATA/feItem5Cant},{feItem5Descuento;STRING;/feDATA/feItem5Descuento},{feItem5Precio;STRING;/feDATA/feItem5Precio},{feItem5Importe;STRING;/feDATA/feItem5Importe},{feItem6Codigo;STRING;/feDATA/feItem6Codigo},{feItem6Descripcion;STRING;/feDATA/feItem6Descripcion},{feItem6Cant;STRING;/feDATA/feItem6Cant},{feItem6Descuento;STRING;/feDATA/feItem6Descuento},{feItem6Precio;STRING;/feDATA/feItem6Precio},{feItem6Importe;STRING;/feDATA/feItem6Importe},{feItem7Codigo;STRING;/feDATA/feItem7Codigo},{feItem7Descripcion;STRING;/feDATA/feItem7Descripcion},{feItem7Cant;STRING;/feDATA/feItem7Cant},{feItem7Descuento;STRING;/feDATA/feItem7Descuento},{feItem7Precio;STRING;/feDATA/feItem7Precio},{feItem7Importe;STRING;/feDATA/feItem7Importe},{feItem8Codigo;STRING;/feDATA/feItem8Codigo},{feItem8Descripcion;STRING;/feDATA/feItem8Descripcion},{feItem8Cant;STRING;/feDATA/feItem8Cant},{feItem8Descuento;STRING;/feDATA/feItem8Descuento},{feItem8Precio;STRING;/feDATA/feItem8Precio},{feItem8Importe;STRING;/feDATA/feItem8Importe},{feItem9Codigo;STRING;/feDATA/feItem9Codigo},{feItem9Descripcion;STRING;/feDATA/feItem9Descripcion},{feItem9Cant;STRING;/feDATA/feItem9Cant},{feItem9Descuento;STRING;/feDATA/feItem9Descuento},{feItem9Precio;STRING;/feDATA/feItem9Precio},{feItem9Importe;STRING;/feDATA/feItem9Importe},{feItem10Codigo;STRING;/feDATA/feItem10Codigo},{feItem10Descripcion;STRING;/feDATA/feItem10Descripcion},{feItem10Cant;STRING;/feDATA/feItem10Cant},{feItem10Descuento;STRING;/feDATA/feItem10Descuento},{feItem10Precio;STRING;/feDATA/feItem10Precio},{feItem10Importe;STRING;/feDATA/feItem10Importe},{feItem11Codigo;STRING;/feDATA/feItem11Codigo},{feItem11Descripcion;STRING;/feDATA/feItem11Descripcion},{feItem11Cant;STRING;/feDATA/feItem11Cant},{feItem11Descuento;STRING;/feDATA/feItem11Descuento},{feItem11Precio;STRING;/feDATA/feItem11Precio},{feItem11Importe;STRING;/feDATA/feItem11Importe},{feItem12Codigo;STRING;/feDATA/feItem12Codigo},{feItem12Descripcion;STRING;/feDATA/feItem12Descripcion},{feItem12Cant;STRING;/feDATA/feItem12Cant},{feItem12Descuento;STRING;/feDATA/feItem12Descuento},{feItem12Precio;STRING;/feDATA/feItem12Precio},{feItem12Importe;STRING;/feDATA/feItem12Importe},{feItem13Codigo;STRING;/feDATA/feItem13Codigo},{feItem13Descripcion;STRING;/feDATA/feItem13Descripcion},{feItem13Cant;STRING;/feDATA/feItem13Cant},{feItem13Descuento;STRING;/feDATA/feItem13Descuento},{feItem13Precio;STRING;/feDATA/feItem13Precio},{feItem13Importe;STRING;/feDATA/feItem13Importe},{feItem14Codigo;STRING;/feDATA/feItem14Codigo},{feItem14Descripcion;STRING;/feDATA/feItem14Descripcion},{feItem14Cant;STRING;/feDATA/feItem14Cant},{feItem14Descuento;STRING;/feDATA/feItem14Descuento},{feItem14Precio;STRING;/feDATA/feItem14Precio},{feItem14Importe;STRING;/feDATA/feItem14Importe},{feItem15Codigo;STRING;/feDATA/feItem15Codigo},{feItem15Descripcion;STRING;/feDATA/feItem15Descripcion},{feItem15Cant;STRING;/feDATA/feItem15Cant},{feItem15Descuento;STRING;/feDATA/feItem15Descuento},{feItem15Precio;STRING;/feDATA/feItem15Precio},{feItem15Importe;STRING;/feDATA/feItem15Importe},{feItem16Codigo;STRING;/feDATA/feItem16Codigo},{feItem16Descripcion;STRING;/feDATA/feItem16Descripcion},{feItem16Cant;STRING;/feDATA/feItem16Cant},{feItem16Descuento;STRING;/feDATA/feItem16Descuento},{feItem16Precio;STRING;/feDATA/feItem16Precio},{feItem16Importe;STRING;/feDATA/feItem16Importe},{feItem17Codigo;STRING;/feDATA/feItem17Codigo},{feItem17Descripcion;STRING;/feDATA/feItem17Descripcion},{feItem17Cant;STRING;/feDATA/feItem17Cant},{feItem17Descuento;STRING;/feDATA/feItem17Descuento},{feItem17Precio;STRING;/feDATA/feItem17Precio},{feItem17Importe;STRING;/feDATA/feItem17Importe},{feItem18Codigo;STRING;/feDATA/feItem18Codigo},{feItem18Descripcion;STRING;/feDATA/feItem18Descripcion},{feItem18Cant;STRING;/feDATA/feItem18Cant},{feItem18Descuento;STRING;/feDATA/feItem18Descuento},{feItem18Precio;STRING;/feDATA/feItem18Precio},{feItem18Importe;STRING;/feDATA/feItem18Importe},{feItem19Codigo;STRING;/feDATA/feItem19Codigo},{feItem19Descripcion;STRING;/feDATA/feItem19Descripcion},{feItem19Cant;STRING;/feDATA/feItem19Cant},{feItem19Descuento;STRING;/feDATA/feItem19Descuento},{feItem19Precio;STRING;/feDATA/feItem19Precio},{feItem19Importe;STRING;/feDATA/feItem19Importe},{feItem20Codigo;STRING;/feDATA/feItem20Codigo},{feItem20Descripcion;STRING;/feDATA/feItem20Descripcion},{feItem20Cant;STRING;/feDATA/feItem20Cant},{feItem20Descuento;STRING;/feDATA/feItem20Descuento},{feItem20Precio;STRING;/feDATA/feItem20Precio},{feItem20Importe;STRING;/feDATA/feItem20Importe},{feItem21Codigo;STRING;/feDATA/feItem21Codigo},{feItem21Descripcion;STRING;/feDATA/feItem21Descripcion},{feItem21Cant;STRING;/feDATA/feItem21Cant},{feItem21Descuento;STRING;/feDATA/feItem21Descuento},{feItem21Precio;STRING;/feDATA/feItem21Precio},{feItem21Importe;STRING;/feDATA/feItem21Importe},{feItem22Codigo;STRING;/feDATA/feItem22Codigo},{feItem22Descripcion;STRING;/feDATA/feItem22Descripcion},{feItem22Cant;STRING;/feDATA/feItem22Cant},{feItem22Descuento;STRING;/feDATA/feItem22Descuento},{feItem22Precio;STRING;/feDATA/feItem22Precio},{feItem22Importe;STRING;/feDATA/feItem22Importe},{feItem23Codigo;STRING;/feDATA/feItem23Codigo},{feItem23Descripcion;STRING;/feDATA/feItem23Descripcion},{feItem23Cant;STRING;/feDATA/feItem23Cant},{feItem23Descuento;STRING;/feDATA/feItem23Descuento},{feItem23Precio;STRING;/feDATA/feItem23Precio},{feItem23Importe;STRING;/feDATA/feItem23Importe},{feItem24Codigo;STRING;/feDATA/feItem24Codigo},{feItem24Descripcion;STRING;/feDATA/feItem24Descripcion},{feItem24Cant;STRING;/feDATA/feItem24Cant},{feItem24Descuento;STRING;/feDATA/feItem24Descuento},{feItem24Precio;STRING;/feDATA/feItem24Precio},{feItem24Importe;STRING;/feDATA/feItem24Importe},{feItem25Codigo;STRING;/feDATA/feItem25Codigo},{feItem25Descripcion;STRING;/feDATA/feItem25Descripcion},{feItem25Cant;STRING;/feDATA/feItem25Cant},{feItem25Descuento;STRING;/feDATA/feItem25Descuento},{feItem25Precio;STRING;/feDATA/feItem25Precio},{feItem25Importe;STRING;/feDATA/feItem25Importe},{feItem26Codigo;STRING;/feDATA/feItem26Codigo},{feItem26Descripcion;STRING;/feDATA/feItem26Descripcion},{feItem26Cant;STRING;/feDATA/feItem26Cant},{feItem26Descuento;STRING;/feDATA/feItem26Descuento},{feItem26Precio;STRING;/feDATA/feItem26Precio},{feItem26Importe;STRING;/feDATA/feItem26Importe},{feItem27Codigo;STRING;/feDATA/feItem27Codigo},{feItem27Descripcion;STRING;/feDATA/feItem27Descripcion},{feItem27Cant;STRING;/feDATA/feItem27Cant},{feItem27Descuento;STRING;/feDATA/feItem27Descuento},{feItem27Precio;STRING;/feDATA/feItem27Precio},{feItem27Importe;STRING;/feDATA/feItem27Importe},{feItem28Codigo;STRING;/feDATA/feItem28Codigo},{feItem28Descripcion;STRING;/feDATA/feItem28Descripcion},{feItem28Cant;STRING;/feDATA/feItem28Cant},{feItem28Descuento;STRING;/feDATA/feItem28Descuento},{feItem28Precio;STRING;/feDATA/feItem28Precio},{feItem28Importe;STRING;/feDATA/feItem28Importe},{feItem29Codigo;STRING;/feDATA/feItem29Codigo},{feItem29Descripcion;STRING;/feDATA/feItem29Descripcion},{feItem29Cant;STRING;/feDATA/feItem29Cant},{feItem29Descuento;STRING;/feDATA/feItem29Descuento},{feItem29Precio;STRING;/feDATA/feItem29Precio},{feItem29Importe;STRING;/feDATA/feItem29Importe},{feItem30Codigo;STRING;/feDATA/feItem30Codigo},{feItem30Descripcion;STRING;/feDATA/feItem30Descripcion},{feItem30Cant;STRING;/feDATA/feItem30Cant},{feItem30Descuento;STRING;/feDATA/feItem30Descuento},{feItem30Precio;STRING;/feDATA/feItem30Precio},{feItem30Importe;STRING;/feDATA/feItem30Importe},{feCompradorCalle;STRING;/feDATA/feCompradorCalle},{feCompradorLocalidad;STRING;/feDATA/feCompradorLocalidad},{feTipoFactura;STRING;/feDATA/feTipoFactura},{feCodigoTipoFactura;STRING;/feDATA/feCodigoTipoFactura}]]></xml-property>
             <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
 <model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
   <Version>2.0</Version>
@@ -6524,9 +6756,9 @@
     <page-setup>
         <simple-master-page name="Simple MasterPage" id="2">
             <property name="type">a4</property>
-            <property name="topMargin">5.2mm</property>
+            <property name="topMargin">4mm</property>
             <property name="leftMargin">5.05mm</property>
-            <property name="bottomMargin">5.05mm</property>
+            <property name="bottomMargin">4mm</property>
             <property name="rightMargin">5.16mm</property>
             <property name="headerHeight">0in</property>
             <property name="footerHeight">0.6in</property>
@@ -6576,6 +6808,21 @@
                                 <cell id="9023">
                                     <property name="colSpan">1</property>
                                     <property name="rowSpan">3</property>
+                                    <text id="9528">
+                                        <property name="fontFamily">"Lucida Sans Unicode"</property>
+                                        <property name="fontSize">16pt</property>
+                                        <property name="fontWeight">bold</property>
+                                        <property name="marginTop">10pt</property>
+                                        <property name="contentType">html</property>
+                                        <text-property name="content"><![CDATA[EMILIO ALBERTO LORIS]]></text-property>
+                                    </text>
+                                    <text id="9529">
+                                        <property name="fontFamily">sans-serif</property>
+                                        <property name="marginTop">10pt</property>
+                                        <property name="contentType">html</property>
+                                        <text-property name="content"><![CDATA[DISTRIBUIDOR MAYORISTA<br>
+ARTICULOS DE FERRETERIA]]></text-property>
+                                    </text>
                                     <text id="8742">
                                         <property name="fontFamily">sans-serif</property>
                                         <property name="fontSize">9pt</property>
@@ -6584,10 +6831,7 @@
                                         <property name="marginBottom">12pt</property>
                                         <property name="textAlign">center</property>
                                         <property name="contentType">html</property>
-                                        <text-property name="content"><![CDATA[<pre><font face="arial" size="32px;"><b>EMILIO ALBERTO LORIS</b></font><br><br>
-<font face="arial" size="10px">Distribuidor Mayorista<br>
-Artículos de Ferretería<br><br>
-A.Alsina 3030 - B1602EEF Florida - Pcia. de Bs.As.<br>
+                                        <text-property name="content"><![CDATA[A.Alsina 3030 - B1602EEF Florida - Pcia. de Bs.As.<br>
 Tel./Fax.: 4760-3195 - 4730-2237<br>
 emilioaloris@yahoo.com.ar<br><br>
 I.V.A. Responsable Inscripto </font><pre>
@@ -6615,6 +6859,58 @@ I.V.A. Responsable Inscripto </font><pre>
                                 <cell id="9026">
                                     <property name="colSpan">1</property>
                                     <property name="rowSpan">3</property>
+                                    <text id="9530">
+                                        <property name="fontFamily">sans-serif</property>
+                                        <property name="fontSize">16pt</property>
+                                        <property name="fontWeight">bold</property>
+                                        <property name="textAlign">left</property>
+                                        <property name="dataSet">Data Set</property>
+                                        <list-property name="boundDataColumns">
+                                            <structure>
+                                                <property name="name">feTipoFactura</property>
+                                                <text-property name="displayName">feTipoFactura</text-property>
+                                                <expression name="expression" type="javascript">dataSetRow["feTipoFactura"]</expression>
+                                                <property name="dataType">string</property>
+                                            </structure>
+                                        </list-property>
+                                        <property name="contentType">html</property>
+                                        <text-property name="content"><![CDATA[<value-of>row["feTipoFactura"]</value-of>]]></text-property>
+                                    </text>
+                                    <text id="9531">
+                                        <property name="fontFamily">sans-serif</property>
+                                        <property name="fontSize">14pt</property>
+                                        <property name="fontWeight">bold</property>
+                                        <property name="marginTop">10pt</property>
+                                        <property name="textAlign">left</property>
+                                        <property name="dataSet">Data Set</property>
+                                        <list-property name="boundDataColumns">
+                                            <structure>
+                                                <property name="name">feNro</property>
+                                                <text-property name="displayName">feNro</text-property>
+                                                <expression name="expression" type="javascript">dataSetRow["feNro"]</expression>
+                                                <property name="dataType">string</property>
+                                            </structure>
+                                        </list-property>
+                                        <property name="contentType">html</property>
+                                        <text-property name="content"><![CDATA[N° &amp;nbsp;&amp;nbsp;&amp;nbsp;<value-of>row["feNro"]</value-of><br><br>]]></text-property>
+                                    </text>
+                                    <text id="9532">
+                                        <property name="fontFamily">sans-serif</property>
+                                        <property name="fontWeight">bold</property>
+                                        <property name="marginTop">16pt</property>
+                                        <property name="textAlign">left</property>
+                                        <property name="dataSet">Data Set</property>
+                                        <list-property name="boundDataColumns">
+                                            <structure>
+                                                <property name="name">feFecha</property>
+                                                <text-property name="displayName">feFecha</text-property>
+                                                <expression name="expression" type="javascript">dataSetRow["feFecha"]</expression>
+                                                <property name="dataType">string</property>
+                                            </structure>
+                                        </list-property>
+                                        <property name="contentType">html</property>
+                                        <text-property name="content"><![CDATA[FECHA &amp;nbsp;&amp;nbsp;&amp;nbsp; <value-of>row["feFecha"]</value-of><br><br>]]></text-property>
+                                    </text>
                                     <text id="8748">
                                         <property name="fontFamily">sans-serif</property>
                                         <property name="fontSize">9pt</property>
@@ -6638,10 +6934,7 @@ I.V.A. Responsable Inscripto </font><pre>
                                             </structure>
                                         </list-property>
                                         <property name="contentType">html</property>
-                                        <text-property name="content"><![CDATA[FACTURA<br><br>
-N° &amp;nbsp;&amp;nbsp;&amp;nbsp;<value-of>row["feNro"]</value-of><br><br>
-FECHA   &amp;nbsp;&amp;nbsp;&amp;nbsp; <value-of>row["feFecha"]</value-of><br><br>
-C.U.I.T: 23-04524405-9<br>
+                                        <text-property name="content"><![CDATA[C.U.I.T: 23-04524405-9<br>
 INGRESOS BRUTOS CM 901-198755-7<br>
 FECHA INICIO ACTIVIDADES: 10/07/1970]]></text-property>
                                     </text>
@@ -6652,8 +6945,17 @@ FECHA INICIO ACTIVIDADES: 10/07/1970]]></text-property>
                                     <text id="9484">
                                         <property name="fontFamily">"Arial"</property>
                                         <property name="fontSize">5pt</property>
-                                        <property name="contentType">auto</property>
-                                        <text-property name="content"><![CDATA[CODIGO N°01]]></text-property>
+                                        <property name="dataSet">Data Set</property>
+                                        <list-property name="boundDataColumns">
+                                            <structure>
+                                                <property name="name">feCodigoTipoFactura</property>
+                                                <text-property name="displayName">feCodigoTipoFactura</text-property>
+                                                <expression name="expression" type="javascript">dataSetRow["feCodigoTipoFactura"]</expression>
+                                                <property name="dataType">string</property>
+                                            </structure>
+                                        </list-property>
+                                        <property name="contentType">html</property>
+                                        <text-property name="content"><![CDATA[CODIGO N°<value-of>row["feCodigoTipoFactura"]</value-of>]]></text-property>
                                     </text>
                                 </cell>
                             </row>
@@ -6682,11 +6984,14 @@ FECHA INICIO ACTIVIDADES: 10/07/1970]]></text-property>
                     <property name="borderRightWidth">1px</property>
                     <property name="borderTopStyle">solid</property>
                     <property name="borderTopWidth">1px</property>
+                    <property name="verticalAlign">middle</property>
+                    <property name="height">2cm</property>
                     <cell id="9499">
                         <property name="paddingTop">0pt</property>
                         <property name="paddingLeft">0pt</property>
                         <property name="paddingBottom">0pt</property>
                         <property name="paddingRight">0pt</property>
+                        <property name="height">3cm</property>
                         <grid id="9500">
                             <column id="9501">
                                 <property name="width">0.5833333333333334in</property>
@@ -6700,7 +7005,8 @@ FECHA INICIO ACTIVIDADES: 10/07/1970]]></text-property>
                                     <property name="rowSpan">1</property>
                                     <text id="9524">
                                         <property name="fontFamily">"Arial"</property>
-                                        <property name="fontSize">8pt</property>
+                                        <property name="fontSize">9pt</property>
+                                        <property name="paddingLeft">1pt</property>
                                         <property name="contentType">html</property>
                                         <text-property name="content"><![CDATA[SR./ES.:]]></text-property>
                                     </text>
@@ -6708,7 +7014,7 @@ FECHA INICIO ACTIVIDADES: 10/07/1970]]></text-property>
                                 <cell id="9523">
                                     <text id="9525">
                                         <property name="fontFamily">"Arial"</property>
-                                        <property name="fontSize">8pt</property>
+                                        <property name="fontSize">9pt</property>
                                         <property name="dataSet">Data Set</property>
                                         <list-property name="boundDataColumns">
                                             <structure>
@@ -6728,7 +7034,7 @@ FECHA INICIO ACTIVIDADES: 10/07/1970]]></text-property>
                                 <cell id="9509">
                                     <text id="9526">
                                         <property name="fontFamily">"Arial"</property>
-                                        <property name="fontSize">8pt</property>
+                                        <property name="fontSize">9pt</property>
                                         <property name="dataSet">Data Set</property>
                                         <list-property name="boundDataColumns">
                                             <structure>
@@ -6748,7 +7054,7 @@ FECHA INICIO ACTIVIDADES: 10/07/1970]]></text-property>
                                 <cell id="9512">
                                     <text id="9527">
                                         <property name="fontFamily">"Arial"</property>
-                                        <property name="fontSize">8pt</property>
+                                        <property name="fontSize">9pt</property>
                                         <property name="dataSet">Data Set</property>
                                         <list-property name="boundDataColumns">
                                             <structure>
@@ -6775,12 +7081,15 @@ FECHA INICIO ACTIVIDADES: 10/07/1970]]></text-property>
                     <property name="borderRightWidth">1px</property>
                     <property name="borderTopStyle">solid</property>
                     <property name="borderTopWidth">1px</property>
+                    <property name="verticalAlign">middle</property>
+                    <property name="height">1.5cm</property>
                     <cell id="9082">
                         <property name="paddingTop">0pt</property>
                         <property name="paddingLeft">0pt</property>
                         <property name="paddingBottom">0pt</property>
                         <property name="paddingRight">0pt</property>
                         <grid id="9065">
+                            <property name="verticalAlign">middle</property>
                             <column id="9066">
                                 <property name="width">5.416666666666667in</property>
                             </column>
@@ -6788,6 +7097,10 @@ FECHA INICIO ACTIVIDADES: 10/07/1970]]></text-property>
                                 <property name="width">2.4270833333333335in</property>
                             </column>
                             <row id="9071">
+                                <property name="borderBottomStyle">solid</property>
+                                <property name="borderBottomWidth">thin</property>
+                                <property name="verticalAlign">middle</property>
+                                <property name="height">50%</property>
                                 <cell id="9072">
                                     <text id="8744">
                                         <property name="fontFamily">"Arial"</property>
@@ -6815,6 +7128,8 @@ FECHA INICIO ACTIVIDADES: 10/07/1970]]></text-property>
                                 </cell>
                             </row>
                             <row id="9074">
+                                <property name="verticalAlign">middle</property>
+                                <property name="height">50%</property>
                                 <cell id="9075">
                                     <text id="8747">
                                         <property name="fontFamily">"Arial"</property>
@@ -6966,7 +7281,7 @@ FECHA INICIO ACTIVIDADES: 10/07/1970]]></text-property>
                                     <text id="8988">
                                         <property name="fontFamily">"Courier"</property>
                                         <property name="fontSize">7pt</property>
-                                        <property name="textAlign">center</property>
+                                        <property name="textAlign">left</property>
                                         <property name="dataSet">Data Set</property>
                                         <list-property name="boundDataColumns">
                                             <structure>
@@ -7084,7 +7399,7 @@ FECHA INICIO ACTIVIDADES: 10/07/1970]]></text-property>
                                     <text id="9284">
                                         <property name="fontFamily">"Courier"</property>
                                         <property name="fontSize">7pt</property>
-                                        <property name="textAlign">center</property>
+                                        <property name="textAlign">left</property>
                                         <property name="dataSet">Data Set</property>
                                         <list-property name="boundDataColumns">
                                             <structure>
@@ -7202,7 +7517,7 @@ FECHA INICIO ACTIVIDADES: 10/07/1970]]></text-property>
                                     <text id="9285">
                                         <property name="fontFamily">"Courier"</property>
                                         <property name="fontSize">7pt</property>
-                                        <property name="textAlign">center</property>
+                                        <property name="textAlign">left</property>
                                         <property name="dataSet">Data Set</property>
                                         <list-property name="boundDataColumns">
                                             <structure>
@@ -7320,7 +7635,7 @@ FECHA INICIO ACTIVIDADES: 10/07/1970]]></text-property>
                                     <text id="9286">
                                         <property name="fontFamily">"Courier"</property>
                                         <property name="fontSize">7pt</property>
-                                        <property name="textAlign">center</property>
+                                        <property name="textAlign">left</property>
                                         <property name="dataSet">Data Set</property>
                                         <list-property name="boundDataColumns">
                                             <structure>
@@ -7438,7 +7753,7 @@ FECHA INICIO ACTIVIDADES: 10/07/1970]]></text-property>
                                     <text id="9287">
                                         <property name="fontFamily">"Courier"</property>
                                         <property name="fontSize">7pt</property>
-                                        <property name="textAlign">center</property>
+                                        <property name="textAlign">left</property>
                                         <property name="dataSet">Data Set</property>
                                         <list-property name="boundDataColumns">
                                             <structure>
@@ -7556,7 +7871,7 @@ FECHA INICIO ACTIVIDADES: 10/07/1970]]></text-property>
                                     <text id="9288">
                                         <property name="fontFamily">"Courier"</property>
                                         <property name="fontSize">7pt</property>
-                                        <property name="textAlign">center</property>
+                                        <property name="textAlign">left</property>
                                         <property name="dataSet">Data Set</property>
                                         <list-property name="boundDataColumns">
                                             <structure>
@@ -7674,7 +7989,7 @@ FECHA INICIO ACTIVIDADES: 10/07/1970]]></text-property>
                                     <text id="9289">
                                         <property name="fontFamily">"Courier"</property>
                                         <property name="fontSize">7pt</property>
-                                        <property name="textAlign">center</property>
+                                        <property name="textAlign">left</property>
                                         <property name="dataSet">Data Set</property>
                                         <list-property name="boundDataColumns">
                                             <structure>
@@ -7792,7 +8107,7 @@ FECHA INICIO ACTIVIDADES: 10/07/1970]]></text-property>
                                     <text id="9290">
                                         <property name="fontFamily">"Courier"</property>
                                         <property name="fontSize">7pt</property>
-                                        <property name="textAlign">center</property>
+                                        <property name="textAlign">left</property>
                                         <property name="dataSet">Data Set</property>
                                         <list-property name="boundDataColumns">
                                             <structure>
@@ -7910,7 +8225,7 @@ FECHA INICIO ACTIVIDADES: 10/07/1970]]></text-property>
                                     <text id="9291">
                                         <property name="fontFamily">"Courier"</property>
                                         <property name="fontSize">7pt</property>
-                                        <property name="textAlign">center</property>
+                                        <property name="textAlign">left</property>
                                         <property name="dataSet">Data Set</property>
                                         <list-property name="boundDataColumns">
                                             <structure>
@@ -8028,7 +8343,7 @@ FECHA INICIO ACTIVIDADES: 10/07/1970]]></text-property>
                                     <text id="9292">
                                         <property name="fontFamily">"Courier"</property>
                                         <property name="fontSize">7pt</property>
-                                        <property name="textAlign">center</property>
+                                        <property name="textAlign">left</property>
                                         <property name="dataSet">Data Set</property>
                                         <list-property name="boundDataColumns">
                                             <structure>
@@ -8146,7 +8461,7 @@ FECHA INICIO ACTIVIDADES: 10/07/1970]]></text-property>
                                     <text id="9293">
                                         <property name="fontFamily">"Courier"</property>
                                         <property name="fontSize">7pt</property>
-                                        <property name="textAlign">center</property>
+                                        <property name="textAlign">left</property>
                                         <property name="dataSet">Data Set</property>
                                         <list-property name="boundDataColumns">
                                             <structure>
@@ -8264,7 +8579,7 @@ FECHA INICIO ACTIVIDADES: 10/07/1970]]></text-property>
                                     <text id="9294">
                                         <property name="fontFamily">"Courier"</property>
                                         <property name="fontSize">7pt</property>
-                                        <property name="textAlign">center</property>
+                                        <property name="textAlign">left</property>
                                         <property name="dataSet">Data Set</property>
                                         <list-property name="boundDataColumns">
                                             <structure>
@@ -8382,7 +8697,7 @@ FECHA INICIO ACTIVIDADES: 10/07/1970]]></text-property>
                                     <text id="9295">
                                         <property name="fontFamily">"Courier"</property>
                                         <property name="fontSize">7pt</property>
-                                        <property name="textAlign">center</property>
+                                        <property name="textAlign">left</property>
                                         <property name="dataSet">Data Set</property>
                                         <list-property name="boundDataColumns">
                                             <structure>
@@ -8500,7 +8815,7 @@ FECHA INICIO ACTIVIDADES: 10/07/1970]]></text-property>
                                     <text id="9296">
                                         <property name="fontFamily">"Courier"</property>
                                         <property name="fontSize">7pt</property>
-                                        <property name="textAlign">center</property>
+                                        <property name="textAlign">left</property>
                                         <property name="dataSet">Data Set</property>
                                         <list-property name="boundDataColumns">
                                             <structure>
@@ -8618,7 +8933,7 @@ FECHA INICIO ACTIVIDADES: 10/07/1970]]></text-property>
                                     <text id="9297">
                                         <property name="fontFamily">"Courier"</property>
                                         <property name="fontSize">7pt</property>
-                                        <property name="textAlign">center</property>
+                                        <property name="textAlign">left</property>
                                         <property name="dataSet">Data Set</property>
                                         <list-property name="boundDataColumns">
                                             <structure>
@@ -8736,7 +9051,7 @@ FECHA INICIO ACTIVIDADES: 10/07/1970]]></text-property>
                                     <text id="9298">
                                         <property name="fontFamily">"Courier"</property>
                                         <property name="fontSize">7pt</property>
-                                        <property name="textAlign">center</property>
+                                        <property name="textAlign">left</property>
                                         <property name="dataSet">Data Set</property>
                                         <list-property name="boundDataColumns">
                                             <structure>
@@ -8854,7 +9169,7 @@ FECHA INICIO ACTIVIDADES: 10/07/1970]]></text-property>
                                     <text id="9299">
                                         <property name="fontFamily">"Courier"</property>
                                         <property name="fontSize">7pt</property>
-                                        <property name="textAlign">center</property>
+                                        <property name="textAlign">left</property>
                                         <property name="dataSet">Data Set</property>
                                         <list-property name="boundDataColumns">
                                             <structure>
@@ -8972,7 +9287,7 @@ FECHA INICIO ACTIVIDADES: 10/07/1970]]></text-property>
                                     <text id="9300">
                                         <property name="fontFamily">"Courier"</property>
                                         <property name="fontSize">7pt</property>
-                                        <property name="textAlign">center</property>
+                                        <property name="textAlign">left</property>
                                         <property name="dataSet">Data Set</property>
                                         <list-property name="boundDataColumns">
                                             <structure>
@@ -9090,7 +9405,7 @@ FECHA INICIO ACTIVIDADES: 10/07/1970]]></text-property>
                                     <text id="9301">
                                         <property name="fontFamily">"Courier"</property>
                                         <property name="fontSize">7pt</property>
-                                        <property name="textAlign">center</property>
+                                        <property name="textAlign">left</property>
                                         <property name="dataSet">Data Set</property>
                                         <list-property name="boundDataColumns">
                                             <structure>
@@ -9208,7 +9523,7 @@ FECHA INICIO ACTIVIDADES: 10/07/1970]]></text-property>
                                     <text id="9302">
                                         <property name="fontFamily">"Courier"</property>
                                         <property name="fontSize">7pt</property>
-                                        <property name="textAlign">center</property>
+                                        <property name="textAlign">left</property>
                                         <property name="dataSet">Data Set</property>
                                         <list-property name="boundDataColumns">
                                             <structure>
@@ -9326,7 +9641,7 @@ FECHA INICIO ACTIVIDADES: 10/07/1970]]></text-property>
                                     <text id="9303">
                                         <property name="fontFamily">"Courier"</property>
                                         <property name="fontSize">7pt</property>
-                                        <property name="textAlign">center</property>
+                                        <property name="textAlign">left</property>
                                         <property name="dataSet">Data Set</property>
                                         <list-property name="boundDataColumns">
                                             <structure>
@@ -9444,7 +9759,7 @@ FECHA INICIO ACTIVIDADES: 10/07/1970]]></text-property>
                                     <text id="9304">
                                         <property name="fontFamily">"Courier"</property>
                                         <property name="fontSize">7pt</property>
-                                        <property name="textAlign">center</property>
+                                        <property name="textAlign">left</property>
                                         <property name="dataSet">Data Set</property>
                                         <list-property name="boundDataColumns">
                                             <structure>
@@ -9562,7 +9877,7 @@ FECHA INICIO ACTIVIDADES: 10/07/1970]]></text-property>
                                     <text id="9305">
                                         <property name="fontFamily">"Courier"</property>
                                         <property name="fontSize">7pt</property>
-                                        <property name="textAlign">center</property>
+                                        <property name="textAlign">left</property>
                                         <property name="dataSet">Data Set</property>
                                         <list-property name="boundDataColumns">
                                             <structure>
@@ -9680,7 +9995,7 @@ FECHA INICIO ACTIVIDADES: 10/07/1970]]></text-property>
                                     <text id="9306">
                                         <property name="fontFamily">"Courier"</property>
                                         <property name="fontSize">7pt</property>
-                                        <property name="textAlign">center</property>
+                                        <property name="textAlign">left</property>
                                         <property name="dataSet">Data Set</property>
                                         <list-property name="boundDataColumns">
                                             <structure>
@@ -9798,7 +10113,7 @@ FECHA INICIO ACTIVIDADES: 10/07/1970]]></text-property>
                                     <text id="9307">
                                         <property name="fontFamily">"Courier"</property>
                                         <property name="fontSize">7pt</property>
-                                        <property name="textAlign">center</property>
+                                        <property name="textAlign">left</property>
                                         <property name="dataSet">Data Set</property>
                                         <list-property name="boundDataColumns">
                                             <structure>
@@ -9916,7 +10231,7 @@ FECHA INICIO ACTIVIDADES: 10/07/1970]]></text-property>
                                     <text id="9308">
                                         <property name="fontFamily">"Courier"</property>
                                         <property name="fontSize">7pt</property>
-                                        <property name="textAlign">center</property>
+                                        <property name="textAlign">left</property>
                                         <property name="dataSet">Data Set</property>
                                         <list-property name="boundDataColumns">
                                             <structure>
@@ -10034,7 +10349,7 @@ FECHA INICIO ACTIVIDADES: 10/07/1970]]></text-property>
                                     <text id="9309">
                                         <property name="fontFamily">"Courier"</property>
                                         <property name="fontSize">7pt</property>
-                                        <property name="textAlign">center</property>
+                                        <property name="textAlign">left</property>
                                         <property name="dataSet">Data Set</property>
                                         <list-property name="boundDataColumns">
                                             <structure>
@@ -10152,7 +10467,7 @@ FECHA INICIO ACTIVIDADES: 10/07/1970]]></text-property>
                                     <text id="9310">
                                         <property name="fontFamily">"Courier"</property>
                                         <property name="fontSize">7pt</property>
-                                        <property name="textAlign">center</property>
+                                        <property name="textAlign">left</property>
                                         <property name="dataSet">Data Set</property>
                                         <list-property name="boundDataColumns">
                                             <structure>
@@ -10270,7 +10585,7 @@ FECHA INICIO ACTIVIDADES: 10/07/1970]]></text-property>
                                     <text id="9311">
                                         <property name="fontFamily">"Courier"</property>
                                         <property name="fontSize">7pt</property>
-                                        <property name="textAlign">center</property>
+                                        <property name="textAlign">left</property>
                                         <property name="dataSet">Data Set</property>
                                         <list-property name="boundDataColumns">
                                             <structure>
@@ -10388,7 +10703,7 @@ FECHA INICIO ACTIVIDADES: 10/07/1970]]></text-property>
                                     <text id="9312">
                                         <property name="fontFamily">"Courier"</property>
                                         <property name="fontSize">7pt</property>
-                                        <property name="textAlign">center</property>
+                                        <property name="textAlign">left</property>
                                         <property name="dataSet">Data Set</property>
                                         <list-property name="boundDataColumns">
                                             <structure>
@@ -10514,6 +10829,8 @@ FECHA INICIO ACTIVIDADES: 10/07/1970]]></text-property>
                     <property name="borderRightWidth">1px</property>
                     <property name="borderTopStyle">solid</property>
                     <property name="borderTopWidth">1px</property>
+                    <property name="verticalAlign">middle</property>
+                    <property name="height">2.2cm</property>
                     <cell id="9084">
                         <grid id="9037">
                             <property name="height">100%</property>
@@ -10538,30 +10855,38 @@ FECHA INICIO ACTIVIDADES: 10/07/1970]]></text-property>
                                 <cell id="9043">
                                     <property name="paddingTop">0pt</property>
                                     <property name="paddingLeft">0pt</property>
-                                    <property name="paddingBottom">0pt</property>
+                                    <property name="paddingBottom">1pt</property>
                                     <property name="paddingRight">0pt</property>
                                     <text id="8894">
                                         <property name="fontFamily">"Arial"</property>
                                         <property name="fontSize">8pt</property>
+                                        <property name="marginTop">6pt</property>
                                         <property name="paddingTop">0pt</property>
+                                        <property name="paddingLeft">0pt</property>
                                         <property name="paddingBottom">0pt</property>
-                                        <property name="paddingRight">2pt</property>
+                                        <property name="paddingRight">0pt</property>
                                         <property name="textAlign">left</property>
                                         <property name="contentType">html</property>
                                         <text-property name="content"><![CDATA[SUB-TOTAL]]></text-property>
                                     </text>
                                 </cell>
                                 <cell id="9044">
-                                    <property name="borderLeftStyle">solid</property>
-                                    <property name="borderLeftWidth">1px</property>
                                     <property name="paddingTop">0pt</property>
                                     <property name="paddingLeft">0pt</property>
-                                    <property name="paddingBottom">0pt</property>
+                                    <property name="paddingBottom">1pt</property>
                                     <property name="paddingRight">0pt</property>
                                     <text id="9462">
                                         <property name="fontFamily">"Courier"</property>
                                         <property name="fontSize">8pt</property>
-                                        <property name="textAlign">center</property>
+                                        <property name="marginTop">6pt</property>
+                                        <property name="marginLeft">6pt</property>
+                                        <property name="marginBottom">6pt</property>
+                                        <property name="marginRight">6pt</property>
+                                        <property name="paddingTop">0pt</property>
+                                        <property name="paddingLeft">0pt</property>
+                                        <property name="paddingBottom">0pt</property>
+                                        <property name="paddingRight">0pt</property>
+                                        <property name="textAlign">right</property>
                                         <property name="dataSet">Data Set</property>
                                         <list-property name="boundDataColumns">
                                             <structure>
@@ -10580,15 +10905,16 @@ FECHA INICIO ACTIVIDADES: 10/07/1970]]></text-property>
                                 <cell id="9047">
                                     <property name="paddingTop">0pt</property>
                                     <property name="paddingLeft">0pt</property>
-                                    <property name="paddingBottom">0pt</property>
+                                    <property name="paddingBottom">1pt</property>
                                     <property name="paddingRight">0pt</property>
                                     <text id="8895">
                                         <property name="fontFamily">"Arial"</property>
                                         <property name="fontSize">8pt</property>
+                                        <property name="marginTop">6pt</property>
                                         <property name="paddingTop">0pt</property>
-                                        <property name="paddingLeft">1pt</property>
+                                        <property name="paddingLeft">0pt</property>
                                         <property name="paddingBottom">0pt</property>
-                                        <property name="paddingRight">2pt</property>
+                                        <property name="paddingRight">0pt</property>
                                         <property name="textAlign">left</property>
                                         <property name="dataSet">Data Set</property>
                                         <list-property name="boundDataColumns">
@@ -10604,16 +10930,22 @@ FECHA INICIO ACTIVIDADES: 10/07/1970]]></text-property>
                                     </text>
                                 </cell>
                                 <cell id="9048">
-                                    <property name="borderLeftStyle">solid</property>
-                                    <property name="borderLeftWidth">1px</property>
                                     <property name="paddingTop">0pt</property>
                                     <property name="paddingLeft">0pt</property>
-                                    <property name="paddingBottom">0pt</property>
+                                    <property name="paddingBottom">1pt</property>
                                     <property name="paddingRight">0pt</property>
                                     <text id="9463">
                                         <property name="fontFamily">"Courier"</property>
                                         <property name="fontSize">8pt</property>
-                                        <property name="textAlign">center</property>
+                                        <property name="marginTop">6pt</property>
+                                        <property name="marginLeft">6pt</property>
+                                        <property name="marginBottom">6pt</property>
+                                        <property name="marginRight">6pt</property>
+                                        <property name="paddingTop">0pt</property>
+                                        <property name="paddingLeft">0pt</property>
+                                        <property name="paddingBottom">0pt</property>
+                                        <property name="paddingRight">0pt</property>
+                                        <property name="textAlign">right</property>
                                         <property name="dataSet">Data Set</property>
                                         <list-property name="boundDataColumns">
                                             <structure>
@@ -10632,30 +10964,38 @@ FECHA INICIO ACTIVIDADES: 10/07/1970]]></text-property>
                                 <cell id="9051">
                                     <property name="paddingTop">0pt</property>
                                     <property name="paddingLeft">0pt</property>
-                                    <property name="paddingBottom">0pt</property>
+                                    <property name="paddingBottom">1pt</property>
                                     <property name="paddingRight">0pt</property>
                                     <text id="8896">
                                         <property name="fontFamily">"Arial"</property>
                                         <property name="fontSize">8pt</property>
+                                        <property name="marginTop">6pt</property>
                                         <property name="paddingTop">0pt</property>
+                                        <property name="paddingLeft">0pt</property>
                                         <property name="paddingBottom">0pt</property>
-                                        <property name="paddingRight">2pt</property>
+                                        <property name="paddingRight">0pt</property>
                                         <property name="textAlign">left</property>
                                         <property name="contentType">html</property>
                                         <text-property name="content"><![CDATA[SUB-TOTAL]]></text-property>
                                     </text>
                                 </cell>
                                 <cell id="9052">
-                                    <property name="borderLeftStyle">solid</property>
-                                    <property name="borderLeftWidth">1px</property>
                                     <property name="paddingTop">0pt</property>
                                     <property name="paddingLeft">0pt</property>
-                                    <property name="paddingBottom">0pt</property>
+                                    <property name="paddingBottom">1pt</property>
                                     <property name="paddingRight">0pt</property>
                                     <text id="9464">
                                         <property name="fontFamily">"Courier"</property>
                                         <property name="fontSize">8pt</property>
-                                        <property name="textAlign">center</property>
+                                        <property name="marginTop">6pt</property>
+                                        <property name="marginLeft">6pt</property>
+                                        <property name="marginBottom">6pt</property>
+                                        <property name="marginRight">6pt</property>
+                                        <property name="paddingTop">0pt</property>
+                                        <property name="paddingLeft">0pt</property>
+                                        <property name="paddingBottom">0pt</property>
+                                        <property name="paddingRight">0pt</property>
+                                        <property name="textAlign">right</property>
                                         <property name="dataSet">Data Set</property>
                                         <list-property name="boundDataColumns">
                                             <structure>
@@ -10674,14 +11014,16 @@ FECHA INICIO ACTIVIDADES: 10/07/1970]]></text-property>
                                 <cell id="9059">
                                     <property name="paddingTop">0pt</property>
                                     <property name="paddingLeft">0pt</property>
-                                    <property name="paddingBottom">0pt</property>
+                                    <property name="paddingBottom">1pt</property>
                                     <property name="paddingRight">0pt</property>
                                     <text id="8897">
                                         <property name="fontFamily">"Arial"</property>
                                         <property name="fontSize">8pt</property>
+                                        <property name="marginTop">6pt</property>
                                         <property name="paddingTop">0pt</property>
+                                        <property name="paddingLeft">0pt</property>
                                         <property name="paddingBottom">0pt</property>
-                                        <property name="paddingRight">2pt</property>
+                                        <property name="paddingRight">0pt</property>
                                         <property name="dataSet">Data Set</property>
                                         <list-property name="boundDataColumns">
                                             <structure>
@@ -10696,16 +11038,22 @@ FECHA INICIO ACTIVIDADES: 10/07/1970]]></text-property>
                                     </text>
                                 </cell>
                                 <cell id="9060">
-                                    <property name="borderLeftStyle">solid</property>
-                                    <property name="borderLeftWidth">1px</property>
                                     <property name="paddingTop">0pt</property>
                                     <property name="paddingLeft">0pt</property>
-                                    <property name="paddingBottom">0pt</property>
+                                    <property name="paddingBottom">1pt</property>
                                     <property name="paddingRight">0pt</property>
                                     <text id="9465">
                                         <property name="fontFamily">"Courier"</property>
                                         <property name="fontSize">8pt</property>
-                                        <property name="textAlign">center</property>
+                                        <property name="marginTop">6pt</property>
+                                        <property name="marginLeft">6pt</property>
+                                        <property name="marginBottom">6pt</property>
+                                        <property name="marginRight">6pt</property>
+                                        <property name="paddingTop">0pt</property>
+                                        <property name="paddingLeft">0pt</property>
+                                        <property name="paddingBottom">0pt</property>
+                                        <property name="paddingRight">0pt</property>
+                                        <property name="textAlign">right</property>
                                         <property name="dataSet">Data Set</property>
                                         <list-property name="boundDataColumns">
                                             <structure>
@@ -10724,32 +11072,40 @@ FECHA INICIO ACTIVIDADES: 10/07/1970]]></text-property>
                                 <cell id="9055">
                                     <property name="paddingTop">0pt</property>
                                     <property name="paddingLeft">0pt</property>
-                                    <property name="paddingBottom">0pt</property>
+                                    <property name="paddingBottom">1pt</property>
                                     <property name="paddingRight">0pt</property>
                                     <text id="8898">
                                         <property name="fontFamily">"Arial"</property>
                                         <property name="fontSize">8pt</property>
                                         <property name="fontWeight">bold</property>
                                         <property name="fontStyle">italic</property>
+                                        <property name="marginTop">6pt</property>
                                         <property name="paddingTop">0pt</property>
+                                        <property name="paddingLeft">0pt</property>
                                         <property name="paddingBottom">0pt</property>
-                                        <property name="paddingRight">2pt</property>
+                                        <property name="paddingRight">0pt</property>
                                         <property name="textAlign">right</property>
                                         <property name="contentType">html</property>
                                         <text-property name="content"><![CDATA[TOTAL]]></text-property>
                                     </text>
                                 </cell>
                                 <cell id="9056">
-                                    <property name="borderLeftStyle">solid</property>
-                                    <property name="borderLeftWidth">1px</property>
                                     <property name="paddingTop">0pt</property>
                                     <property name="paddingLeft">0pt</property>
-                                    <property name="paddingBottom">0pt</property>
+                                    <property name="paddingBottom">1pt</property>
                                     <property name="paddingRight">0pt</property>
                                     <text id="9466">
                                         <property name="fontFamily">"Courier"</property>
                                         <property name="fontSize">8pt</property>
-                                        <property name="textAlign">center</property>
+                                        <property name="marginTop">6pt</property>
+                                        <property name="marginLeft">6pt</property>
+                                        <property name="marginBottom">6pt</property>
+                                        <property name="marginRight">6pt</property>
+                                        <property name="paddingTop">0pt</property>
+                                        <property name="paddingLeft">0pt</property>
+                                        <property name="paddingBottom">0pt</property>
+                                        <property name="paddingRight">0pt</property>
+                                        <property name="textAlign">right</property>
                                         <property name="dataSet">Data Set</property>
                                         <list-property name="boundDataColumns">
                                             <structure>
@@ -10776,7 +11132,8 @@ FECHA INICIO ACTIVIDADES: 10/07/1970]]></text-property>
                     <property name="borderRightWidth">1px</property>
                     <property name="borderTopStyle">solid</property>
                     <property name="borderTopWidth">1px</property>
-                    <property name="height">1.1cm</property>
+                    <property name="verticalAlign">middle</property>
+                    <property name="height">1.3cm</property>
                     <cell id="9316">
                         <property name="borderBottomStyle">solid</property>
                         <property name="borderBottomWidth">1px</property>
@@ -10786,6 +11143,7 @@ FECHA INICIO ACTIVIDADES: 10/07/1970]]></text-property>
                         <property name="borderRightWidth">1px</property>
                         <property name="borderTopStyle">solid</property>
                         <property name="borderTopWidth">1px</property>
+                        <property name="verticalAlign">middle</property>
                         <grid id="9467">
                             <property name="height">0.34375in</property>
                             <column id="9468"/>
@@ -10795,6 +11153,7 @@ FECHA INICIO ACTIVIDADES: 10/07/1970]]></text-property>
                             <column id="9472"/>
                             <column id="9473"/>
                             <row id="9474">
+                                <property name="verticalAlign">middle</property>
                                 <property name="height">0.34375in</property>
                                 <cell id="9475">
                                     <property name="colSpan">3</property>

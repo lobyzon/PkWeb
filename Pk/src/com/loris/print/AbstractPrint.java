@@ -41,6 +41,17 @@ public class AbstractPrint {
 		return leftPadSpace + amountS;
 	}
 	
+	protected Double getAmount(BigDecimal amount){				
+		decimalFormat.setGroupingUsed(false);
+		decimalFormat.setMaximumFractionDigits(2);
+		decimalFormat.setMinimumFractionDigits(2);		
+		
+		String amountS = decimalFormat.format(amount);
+		amountS = amountS.replace(",", ".");
+		
+		return Double.valueOf(amountS);
+	}
+	
 	protected String getAmount(BigDecimal amount, int leftPad){
 		decimalFormat.setGroupingUsed(false);
 		decimalFormat.setMaximumFractionDigits(2);

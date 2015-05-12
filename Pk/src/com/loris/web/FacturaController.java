@@ -179,7 +179,7 @@ public class FacturaController extends AbstractPrint {
 		auth.setCuit(new Long("23045244059"));
 
 		// Obtener ultimo comprobante autorizado
-		FERecuperaLastCbteResponse cbteResponse = service.feCompUltimoAutorizado(auth, 1, 1);
+		FERecuperaLastCbteResponse cbteResponse = service.feCompUltimoAutorizado(auth, 1, tipoComprobanteAFIP);
 		System.out.println("Nro Comprobante: " + cbteResponse.getCbteNro()	+ " Tipo Cbte: " + cbteResponse.getCbteTipo() + "" + cbteResponse.getPtoVta());
 		
 		//Guardo el nro de comprobante
@@ -204,11 +204,11 @@ public class FacturaController extends AbstractPrint {
 		fecaeDetRequest.setCbteHasta(factura.getNroFactura());
 		// CbtedFch: fecha del comprobante, formato yyyymmdd
 		fecaeDetRequest.setCbteFch(new SimpleDateFormat("yyyyMMdd").format(new Date()));
-		fecaeDetRequest.setImpTotal(totales.getSubTotalDescontado().add(totales.getIva()).doubleValue());
+		fecaeDetRequest.setImpTotal(getAmount(totales.getSubTotalDescontado().add(totales.getIva())));
 		// ImpTotConc: importe neto no gravado
 		fecaeDetRequest.setImpTotConc(new Double("0"));
-		fecaeDetRequest.setImpNeto(totales.getSubTotalDescontado().doubleValue());
-		fecaeDetRequest.setImpIVA(totales.getIva().doubleValue());
+		fecaeDetRequest.setImpNeto(getAmount(totales.getSubTotalDescontado()));
+		fecaeDetRequest.setImpIVA(getAmount(totales.getIva()));
 		// MonId: código de moneda del comprobante
 		fecaeDetRequest.setMonId("PES");
 		// MonCotiz: cotización de la moneda, para pesos argentinos debe ser 1
@@ -219,8 +219,8 @@ public class FacturaController extends AbstractPrint {
 		AlicIva iva = new AlicIva();
 		// ID 5 = 21%
 		iva.setId(5);
-		iva.setBaseImp(totales.getSubTotalDescontado().doubleValue());
-		iva.setImporte(totales.getIva().doubleValue());
+		iva.setBaseImp(getAmount(totales.getSubTotalDescontado()));
+		iva.setImporte(getAmount(totales.getIva()));
 
 		ivas.add(iva);
 		fecaeDetRequest.setIva(ivaImpuesto);
@@ -253,8 +253,11 @@ public class FacturaController extends AbstractPrint {
 		factura.setFacturaType(new FacturaType(facturaType));
 		
 		Params params = paramsDAO.getParams();
-		params.setProxNumFacturaElectronica(factura.getNroFactura() + 1);
-		params.setProxNumNC(factura.getNroFactura() + 1);
+		if(FacturaType.FACTURA_TYPE_ELECTRONIC.equals(facturaType))
+			params.setProxNumFacturaElectronica(factura.getNroFactura() + 1);
+		else
+			params.setProxNumNCDElectronica(factura.getNroFactura() + 1);
+		
 		paramsDAO.saveOrUpdateParams(params);
 		
 		facturaDAO.saveUpdateFactura(factura);
@@ -296,6 +299,7 @@ public class FacturaController extends AbstractPrint {
 		bufferedWriter.append("<feTipoFactura>" + getTipoFactura(factura) + "</feTipoFactura>");
 		bufferedWriter.newLine();
 		bufferedWriter.append("<feCodigoTipoFactura>" + getTipoComprobante(factura) + "</feCodigoTipoFactura>");
+		bufferedWriter.newLine();
 		bufferedWriter.append("<feNro>" + "0002 - " + factura.getNroFactura() + "</feNro>");
 		bufferedWriter.newLine();
 		bufferedWriter.append("<feFecha>" + DateUtils.convertDateToString(factura.getFecha()) + "</feFecha>");
