@@ -287,7 +287,7 @@ public class FacturaController extends AbstractPrint {
 	private void generateXMLInputFEPDF(Factura factura, Totales totales, BigDecimal iva) throws IOException {		
 		//DireccionDepto: E:\\Desarrollo\\Produccion PK_WEB\\FacturaElectronica\\
 		//Direccion Trabajo: C:\\Sergio\\Desarrollo\\Pk\\Doc FacturaElectronica\\FacturaElectronica\\
-		FileWriter xmlInputFEPDF = new FileWriter(new File("E:\\Desarrollo\\ProduccionPK_WEB\\FacturaElectronica\\FE_Loris.xml"));
+		FileWriter xmlInputFEPDF = new FileWriter(new File("C:\\Sergio\\Desarrollo\\Pk\\Doc FacturaElectronica\\FacturaElectronica\\FE_Loris.xml"));
 		BufferedWriter bufferedWriter = new BufferedWriter(xmlInputFEPDF);
 
 		bufferedWriter.append("<?xml version=" + "\"" + "1.0" + "\"" + " encoding=" + "\"" + "ISO-8859-1" + "\"" + "?>");
@@ -336,7 +336,6 @@ public class FacturaController extends AbstractPrint {
 		bufferedWriter.newLine();
 		bufferedWriter.append("<feTotal>" + getAmount(totales.getTotal(), 8) + "</feTotal>");
 		bufferedWriter.newLine();
-		// TODO MODIFICAR CAE y VTO
 		bufferedWriter.append("<feCAE>" + factura.getCAE() + "</feCAE>");
 		bufferedWriter.newLine();
 		bufferedWriter.append("<feCAEVto>" + DateUtils.convertDateToString(factura.getFechaVtoCAE()) + "</feCAEVto>");
@@ -479,7 +478,38 @@ public class FacturaController extends AbstractPrint {
 
 		return modelAndView;
 	}
+	
+	@RequestMapping(value = "/factura/reImpresionFacturaElectronica.htm", method = RequestMethod.GET)
+	public String showReImpresionFacturaElectronica(ModelMap modelMap) {
+		modelMap.addAttribute("factura", new Factura());
 
+		return "/factura/reImpresionFacturaElectronicaForm";
+	}
+	
+	@RequestMapping(value = "/factura/reImpresionFacturaElectronica.htm", method = RequestMethod.POST)
+	public ModelAndView findFacturaElectronica(@ModelAttribute("factura") Factura factura, BindingResult result) {
+		Factura facturaDB = facturaDAO.getFacturaByNumberAndType(factura.getNroFactura(), FacturaType.FACTURA_TYPE_ELECTRONIC);
+		consultaFacturaValidator.validate(facturaDB, result);
+
+		if (result.hasErrors()) {
+			return new ModelAndView("/factura/reImpresionFacturaElectronicaForm", "factura", factura);
+		}		
+
+		ModelAndView modelAndView = new ModelAndView();
+		this.items = new Items();
+		
+		FacturaUtils.makeTotales(facturaDB.getItems(), items.getCurrentIVA(facturaDB.getCliente().getId(), clienteDAO, ivaDAO), 
+				facturaDB.getFacturaType().getFacturaTypeId(), modelAndView);		
+
+		try {
+			generateXMLInputFEPDF(facturaDB, (Totales)modelAndView.getModel().get("totales"), paramsDAO.getParams().getIvaInscripto().getIVA());
+		} catch (IOException e) {
+			return new ModelAndView("successPage", "success", SuccessUtils.setSuccessBean(FACTURA_TITLE, "Error generando XML de entrada para FE en PDF mediante BirtViewer"));
+		}
+		
+		return new ModelAndView("/factura/feComprobantes");
+	}
+	
 	@RequestMapping(value = "/factura/notaCredito.htm", method = RequestMethod.GET)
 	public String showNotaCredito(ModelMap modelMap) {
 		modelMap.addAttribute("factura", new Factura());

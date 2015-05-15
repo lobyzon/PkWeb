@@ -12,6 +12,9 @@
 			<tr>							
 				<td class="title"><a href="<c:out value="${pageContext.request.contextPath}"/>/controller/factura/emisionA4.htm">Emisión de Facturas</a></td>
 			</tr>
+			<tr>							
+				<td class="title"><a href="<c:out value="${pageContext.request.contextPath}"/>/controller/factura/reImpresionFacturaElectronica.htm">Re Impresión de PDF Factura Electrónica</a></td>
+			</tr>
 			<tr>	
 				<td class="title"><a href="<c:out value="${pageContext.request.contextPath}"/>/controller/factura/emisionFromRemito.htm">Emisión de Facturas a partir de Remitos</a></td>
 			</tr>

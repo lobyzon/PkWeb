@@ -88,5 +88,6 @@ public class FacturaUtils {
 		modelAndView.addObject("descuentoTotal", totales.getDescuentoTotal());		
 		modelAndView.addObject("iva", totales.getIva());
 		modelAndView.addObject("total", decimalFormat.format(totales.getTotal()));
+		modelAndView.addObject("totales", totales);
 	}
 }
