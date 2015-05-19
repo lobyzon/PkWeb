@@ -1,0 +1,52 @@
+Por supuesto, no hay problema, espero que les sirva:
+
+Además de bajar e instalar el font:
+
+Cargar 2 tablitas con las cadenas de caracteres que hay que utilizar de acuerdo a los datos que haya que imprimir:
+
+CargaTabla ROUTINE
+Loc:Tabla1[1]='NNWWN'
+Loc:Tabla1[2]='WNNNW'
+Loc:Tabla1[3]='NWNNW'
+Loc:Tabla1[4]='WWNNN'
+Loc:Tabla1[5]='NNWNW'
+Loc:Tabla1[6]='WNWNN'
+Loc:Tabla1[7]='NWWNN'
+Loc:Tabla1[8]='NNNWW'
+Loc:Tabla1[9]='WNNWN'
+Loc:Tabla1[10]='NWNWN'
+
+Loc:Tabla2[1]='nnwwn'
+Loc:Tabla2[2]='wnnnw'
+Loc:Tabla2[3]='nwnnw'
+Loc:Tabla2[4]='wwnnn'
+Loc:Tabla2[5]='nnwnw'
+Loc:Tabla2[6]='wnwnn'
+Loc:Tabla2[7]='nwwnn'
+Loc:Tabla2[8]='nnnww'
+Loc:Tabla2[9]='wnnwn'
+Loc:Tabla2[10]='nwnwn'
+
+El cálculo es el siguiente:
+
+Calculo ROUTINE !calculo de la cadena del resultado
+Loc:Int2of5='NnNn'
+
+LOOP j#=1 TO Len(Clip(Cadena)) BY 2
+Loc:Indice1=Cadena[j#]
+Loc:Indice2=Cadena[j#+1]
+LOOP k#=1 TO 5
+Loc:Int2of5=Sub(Loc:Int2of5,1,Len(Clip(Loc:Int2of5)))&Loc:Tabla1[Loc:Indice1+1,k#]&Loc:Tabla2[Loc:Indice2+1,k#]
+.
+.
+Loc:Int2of5=Sub(Loc:Int2of5,1,Len(Clip(Loc:Int2of5)))&'WnN'
+
+!STOP(Cadena&' '&Loc:Int2of5)
+
+"Cadena" es la variable de entrada (lo qe hay que imprimir en I2de5)
+"Loc:Int2of5" es la cadena del resultado que tiene que ir al "report"
+
+Hay que ir tomando de a pares, por eso el "BY 2"
+Si lo necesitan repaso a fondo como trabaja el lacito k#.
+
+Saludos!
