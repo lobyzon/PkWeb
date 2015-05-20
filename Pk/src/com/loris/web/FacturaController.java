@@ -1,5 +1,9 @@
 package com.loris.web;
 
+import java.awt.Color;
+import java.awt.Graphics2D;
+import java.awt.Image;
+import java.awt.image.BufferedImage;
 import java.awt.print.PrinterJob;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -18,6 +22,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -57,6 +62,7 @@ import com.loris.utils.DateUtils;
 import com.loris.utils.FacturaUtils;
 import com.loris.utils.SuccessUtils;
 import com.loris.validator.ConsultaFacturaValidator;
+import com.lowagie.text.pdf.BarcodeInter25;
 
 import fev1.dif.afip.gov.ar.AlicIva;
 import fev1.dif.afip.gov.ar.ArrayOfAlicIva;
@@ -284,7 +290,7 @@ public class FacturaController extends AbstractPrint {
 		return errors;
 	}
 
-	private void generateXMLInputFEPDF(Factura factura, Totales totales, BigDecimal iva) throws IOException {		
+	private void generateXMLInputFEPDF(Factura factura, Totales totales, BigDecimal iva) throws IOException {
 		//DireccionDepto: E:\\Desarrollo\\Produccion PK_WEB\\FacturaElectronica\\
 		//Direccion Trabajo: C:\\Sergio\\Desarrollo\\Pk\\Doc FacturaElectronica\\FacturaElectronica\\
 		FileWriter xmlInputFEPDF = new FileWriter(new File("C:\\Sergio\\Desarrollo\\Pk\\Doc FacturaElectronica\\FacturaElectronica\\FE_Loris.xml"));
@@ -386,12 +392,93 @@ public class FacturaController extends AbstractPrint {
 					+ i + "Importe>");
 			bufferedWriter.newLine();
 		}
-
+		
+		//Codigo de Barras
+		char[] codigoBarrasInput = getCodigoBarrasList(factura);		
+		String codigoBarras = codigoBarrasInput.toString() + getDigitoVerificador(codigoBarrasInput);
+		generateCodigoBarrasImage(codigoBarras);
+		bufferedWriter.append("<feCodigoBarras>" + codigoBarras + "</feCodigoBarras>");
+		bufferedWriter.newLine();
+		
+		bufferedWriter.append("<feComentarios>" + factura.getComentarios() + "</feComentarios>");
+		bufferedWriter.newLine();
+		
 		bufferedWriter.append("</feDATA>");
 		bufferedWriter.newLine();
 		bufferedWriter.append("</InputData>");
 
 		bufferedWriter.close();
+	}
+	
+	private void generateCodigoBarrasImage(String codigoBarras) throws IOException {
+		BarcodeInter25 barcodeInter25 = new BarcodeInter25();
+		barcodeInter25.setGenerateChecksum(false);
+		barcodeInter25.setCode(codigoBarras);
+		barcodeInter25.setBarHeight(53);
+		Image barCode = barcodeInter25.createAwtImage(Color.black, Color.white);
+		
+		BufferedImage bi = new BufferedImage(barCode.getWidth(null), barCode.getHeight(null), BufferedImage.TYPE_INT_ARGB);
+		Graphics2D g2d = bi.createGraphics();
+		g2d.drawImage(barCode, 0, 0, null);
+		//TODO Change
+		ImageIO.write(bi, "gif", new File("C:\\Sergio\\Desarrollo\\Pk\\Doc FacturaElectronica\\FacturaElectronica\\codigoBarras.gif"));
+	}
+
+	private char[] getCodigoBarrasList(Factura factura) {
+		String codigoBarrasString = "";
+		//CUIT 23045244059
+		codigoBarrasString += "23045244059";
+		//Codigo Comprobante
+		if(factura.getIsFacturaElectronica()){
+			codigoBarrasString += "01";
+		}else{
+			codigoBarrasString += "03";
+		}
+		//Punto de Venta
+		codigoBarrasString += "0001"; 
+		//CAE
+		codigoBarrasString += factura.getCAE();
+		//Fecha de Vto
+		codigoBarrasString += DateUtils.convertDateToStringCodigoBarras(factura.getFechaVtoCAE());
+		
+		return codigoBarrasString.toCharArray();
+	}
+
+	private int getDigitoVerificador(char[] codigoBarrasInput){
+		 /*- C.U.I.T. (Clave Unica de Identificación Tributaria) del emisor (11 caracteres).
+		 - Código de tipo de comprobante (2 caracteres).
+		 - Punto de venta (4 caracteres).
+		 - Código de Autorización de Impresión (14 caracteres).
+		 - Fecha de vencimiento (8 caracteres).
+		 - Dígito verificador (1 carácter)*/
+		
+		int digitoVerificador = 0;
+		
+		int etapa1 = 0;
+		for (int i = 0; i < codigoBarrasInput.length; i += 2) {
+			etapa1 += new Integer(codigoBarrasInput[i]);
+		}
+		
+		int etapa2 = etapa1 * 3;
+		int etapa3 = 0;
+		for (int i = 1; i < codigoBarrasInput.length; i += 2) {
+			etapa3 += new Integer(codigoBarrasInput[i]);
+		}
+		int etapa4 = etapa2 + etapa3;
+		
+		List<Integer> listaOrdenada = new ArrayList<Integer>();
+		for (int j = 0; j < codigoBarrasInput.length; j++) {
+			listaOrdenada.add(new Integer(codigoBarrasInput[j]));
+		}
+		Collections.sort(listaOrdenada);
+		
+		for (Integer num : listaOrdenada) {
+			int temp = etapa4 + num;
+			if(temp % 10 == 0)
+				return num;
+		}
+		
+		return digitoVerificador;
 	}
 
 	private String getTipoComprobante(Factura factura) {

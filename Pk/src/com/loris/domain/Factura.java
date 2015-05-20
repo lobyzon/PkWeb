@@ -214,4 +214,14 @@ public class Factura {
 	public Boolean getIsFacturaN(){
 		return FacturaType.FACTURA_N_TYPE.equals(this.facturaType.getFacturaTypeId());
 	}
+	
+	@Transient
+	public Boolean getIsFacturaElectronica(){
+		return FacturaType.FACTURA_TYPE_ELECTRONIC.equals(this.facturaType.getFacturaTypeId());
+	}
+	
+	@Transient
+	public Boolean getIsNotaDeCreditoElectronica(){
+		return FacturaType.FACTURA_NC_TYPE_ELECTRONIC.equals(this.facturaType.getFacturaTypeId());
+	}
 }

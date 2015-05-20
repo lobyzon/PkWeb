@@ -6,7 +6,8 @@ import java.util.Date;
 public class DateUtils {
 	private static final SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 	private static final SimpleDateFormat sdfBackup = new SimpleDateFormat("dd-MM-yyyy");
-
+	private static final SimpleDateFormat sdfCodigoBarras = new SimpleDateFormat("yyyyMMdd");
+	
 	public static boolean isValidDateStr(String date) {
 		try {
 			sdf.setLenient(false);
@@ -30,6 +31,12 @@ public class DateUtils {
 	}
 	
 	public static String convertDateToString(Date date){
+		if(date != null)
+			return sdf.format(date);
+		return "";
+	}
+	
+	public static String convertDateToStringCodigoBarras(Date date){
 		if(date != null)
 			return sdf.format(date);
 		return "";
