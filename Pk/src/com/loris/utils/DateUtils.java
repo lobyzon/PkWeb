@@ -38,7 +38,7 @@ public class DateUtils {
 	
 	public static String convertDateToStringCodigoBarras(Date date){
 		if(date != null)
-			return sdf.format(date);
+			return sdfCodigoBarras.format(date);
 		return "";
 	}
 	

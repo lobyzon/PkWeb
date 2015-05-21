@@ -93,8 +93,10 @@ public class CodigoBarrasTest {
 			Y luego, como destildaste el autoresize, adapta el ancho y alto de &barras,
 			en mi caso, las dimensiones son de 491 x 53.
 		 */
-		String codigo1 = "1234567890123456789012345678901234567890";
+		String codigo1 = "3060715959501000565075908353981201502283";
 		String codigo2 = "1111111111122333344444444444444555555553";
+		String filePathCasa = "E:\\Desarrollo\\ProduccionPK_WEB\\FacturaElectronica\\codigoBarras.gif";
+		String filePathTrabajo = "C:\\Sergio\\Desarrollo\\Pk\\Doc FacturaElectronica\\FacturaElectronica\\codigoBarras.gif";
 		
 		BarcodeInter25 barcodeInter25 = new BarcodeInter25();
 		barcodeInter25.setGenerateChecksum(false);
@@ -106,10 +108,10 @@ public class CodigoBarrasTest {
 		Graphics2D g2d = bi.createGraphics();
 		g2d.drawImage(barCode, 0, 0, null);
 		try{
-		ImageIO.write(bi, "gif", new File("C:\\Sergio\\Desarrollo\\Pk\\Doc FacturaElectronica\\FacturaElectronica\\out.gif"));
+			ImageIO.write(bi, "gif", new File(filePathCasa));
 		}
 		catch(Exception e){
-		System.out.println("cant access file");
+			System.out.println("cant access file");
 		}
 	}
 }

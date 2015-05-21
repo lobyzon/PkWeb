@@ -181,7 +181,7 @@
 		
 		function preloadItems(){					
 			itemCount[0] = true;
-			for (var index = 1; index < 35; index++) {
+			for (var index = 1; index < 31; index++) {
 				itemCount[index] = false;
 			}
 		}

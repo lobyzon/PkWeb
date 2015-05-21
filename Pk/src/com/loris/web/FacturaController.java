@@ -291,9 +291,9 @@ public class FacturaController extends AbstractPrint {
 	}
 
 	private void generateXMLInputFEPDF(Factura factura, Totales totales, BigDecimal iva) throws IOException {
-		//DireccionDepto: E:\\Desarrollo\\Produccion PK_WEB\\FacturaElectronica\\
+		//DireccionDepto: E:\\Desarrollo\\ProduccionPK_WEB\\FacturaElectronica\\
 		//Direccion Trabajo: C:\\Sergio\\Desarrollo\\Pk\\Doc FacturaElectronica\\FacturaElectronica\\
-		FileWriter xmlInputFEPDF = new FileWriter(new File("C:\\Sergio\\Desarrollo\\Pk\\Doc FacturaElectronica\\FacturaElectronica\\FE_Loris.xml"));
+		FileWriter xmlInputFEPDF = new FileWriter(new File("E:\\Desarrollo\\ProduccionPK_WEB\\FacturaElectronica\\FE_Loris.xml"));
 		BufferedWriter bufferedWriter = new BufferedWriter(xmlInputFEPDF);
 
 		bufferedWriter.append("<?xml version=" + "\"" + "1.0" + "\"" + " encoding=" + "\"" + "ISO-8859-1" + "\"" + "?>");
@@ -394,13 +394,19 @@ public class FacturaController extends AbstractPrint {
 		}
 		
 		//Codigo de Barras
-		char[] codigoBarrasInput = getCodigoBarrasList(factura);		
-		String codigoBarras = codigoBarrasInput.toString() + getDigitoVerificador(codigoBarrasInput);
-		generateCodigoBarrasImage(codigoBarras);
-		bufferedWriter.append("<feCodigoBarras>" + codigoBarras + "</feCodigoBarras>");
+		String codigoBarras = getCodigoBarrasList(factura);		
+		bufferedWriter.append("<feCodigoBarras>" + codigoBarras + generateCodigoBarrasImage(codigoBarras) + "</feCodigoBarras>");
 		bufferedWriter.newLine();
 		
-		bufferedWriter.append("<feComentarios>" + factura.getComentarios() + "</feComentarios>");
+		bufferedWriter.append("<feComentarios></feComentarios>");
+		bufferedWriter.newLine();
+		bufferedWriter.append("<feComentarios1>" + factura.getComentarios() + "</feComentarios1>");
+		bufferedWriter.newLine();
+		bufferedWriter.append("<feComentarios2>" + factura.getComentarios() + "</feComentarios2>");
+		bufferedWriter.newLine();
+		bufferedWriter.append("<feComentarios3>" + factura.getComentarios() + "</feComentarios3>");
+		bufferedWriter.newLine();
+		bufferedWriter.append("<feComentarios4>" + factura.getComentarios() + "</feComentarios4>");
 		bufferedWriter.newLine();
 		
 		bufferedWriter.append("</feDATA>");
@@ -410,9 +416,11 @@ public class FacturaController extends AbstractPrint {
 		bufferedWriter.close();
 	}
 	
-	private void generateCodigoBarrasImage(String codigoBarras) throws IOException {
+	private char generateCodigoBarrasImage(String codigoBarras) throws IOException {
+		String filePathCasa = "E:\\Desarrollo\\ProduccionPK_WEB\\FacturaElectronica\\codigoBarras.gif";
+		String filePathTrabajo = "C:\\Sergio\\Desarrollo\\Pk\\Doc FacturaElectronica\\FacturaElectronica\\codigoBarras.gif";
 		BarcodeInter25 barcodeInter25 = new BarcodeInter25();
-		barcodeInter25.setGenerateChecksum(false);
+		barcodeInter25.setGenerateChecksum(true);
 		barcodeInter25.setCode(codigoBarras);
 		barcodeInter25.setBarHeight(53);
 		Image barCode = barcodeInter25.createAwtImage(Color.black, Color.white);
@@ -421,10 +429,12 @@ public class FacturaController extends AbstractPrint {
 		Graphics2D g2d = bi.createGraphics();
 		g2d.drawImage(barCode, 0, 0, null);
 		//TODO Change
-		ImageIO.write(bi, "gif", new File("C:\\Sergio\\Desarrollo\\Pk\\Doc FacturaElectronica\\FacturaElectronica\\codigoBarras.gif"));
+		ImageIO.write(bi, "gif", new File(filePathCasa));
+		
+		return barcodeInter25.getChecksum(codigoBarras);
 	}
 
-	private char[] getCodigoBarrasList(Factura factura) {
+	private String getCodigoBarrasList(Factura factura) {
 		String codigoBarrasString = "";
 		//CUIT 23045244059
 		codigoBarrasString += "23045244059";
@@ -441,7 +451,7 @@ public class FacturaController extends AbstractPrint {
 		//Fecha de Vto
 		codigoBarrasString += DateUtils.convertDateToStringCodigoBarras(factura.getFechaVtoCAE());
 		
-		return codigoBarrasString.toCharArray();
+		return codigoBarrasString;
 	}
 
 	private int getDigitoVerificador(char[] codigoBarrasInput){
