@@ -16,6 +16,10 @@ import com.loris.domain.ItemFactura;
 
 public class FacturaUtils {	
 	
+	public static final String PATH_CASA_INPUT_PDF = 				"E:\\Desarrollo\\ProduccionPK_WEB\\FacturaElectronica\\FE_Loris.xml";
+	public static final String PATH_TRABAJO_INPUT_PDF = 			"C:\\Sergio\\Desarrollo\\Pk\\Doc FacturaElectronica\\FacturaElectronica\\FE_Loris.xml";
+	public static final String FILE_PATH_CODIGO_BARRAS_CASA = 		"E:\\Desarrollo\\ProduccionPK_WEB\\FacturaElectronica\\codigoBarras.gif";
+	public static final String FILE_PATH_CODIGO_BARRAS_TRABAJO = 	"C:\\Sergio\\Desarrollo\\Pk\\Doc FacturaElectronica\\FacturaElectronica\\codigoBarras.gif";
 	private static final BigDecimal PORCENTUAL = new BigDecimal(100);
 	
 	public static Totales makeTotales(HashMap<String, ItemFactura> itemsFactura,

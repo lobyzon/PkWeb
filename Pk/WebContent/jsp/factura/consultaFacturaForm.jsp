@@ -67,12 +67,21 @@
 					<td height="50" class="title" colspan="8"><b>Consulta Factura</b></td>
 				</tr>				
 				<tr>
+					<td class="title" height="5" style="text-align: right;" colspan="6">Tipo Factura:</td>
+					<td width="15%">
+						<form:select path="facturaType.facturaTypeId" id="tipoFactura">
+							<option value="<%=com.loris.domain.FacturaType.FACTURA_TYPE_ELECTRONIC%>">Factura Electrónica</option>
+							<option value="<%=com.loris.domain.FacturaType.FACTURA_TYPE%>">Factura Manual</option>
+						</form:select>
+					</td>
+				</tr>
+				<tr>
 					<td class="title" height="5" colspan="6" style="text-align: right;">Nro. Factura:</td>
 					<td>
 						<form:input path="nroFactura" size="8" id="nroFactura" onblur="showFactura()"/>						
 					</td>
 					<td><form:errors path="nroFactura" cssClass="error" /></td>
-					<td><form:hidden path="facturaType.facturaTypeId" id="typeF"/></td>					
+					<td><input type="hidden" name="typeF" id="typeF"/></td>					
 				</tr>
 				<tr>
 					<td class="labelStyle" colspan="8"><input type="submit" value="Consultar"></td>
