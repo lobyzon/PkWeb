@@ -614,6 +614,12 @@ public class FacturaController extends AbstractPrint {
 		return new ModelAndView("/factura/feComprobantes");
 	}
 	
+	@RequestMapping(value = "/factura/birtViewer.htm", method = RequestMethod.GET)
+	public ModelAndView redirectBirtViewer(@RequestParam(value="originalDuplicado") String originalDuplicado) {
+
+		return new ModelAndView("/factura/feComprobante" + originalDuplicado);
+	}
+	
 	@RequestMapping(value = "/factura/notaCredito.htm", method = RequestMethod.GET)
 	public String showNotaCredito(ModelMap modelMap) {
 		modelMap.addAttribute("factura", new Factura());
