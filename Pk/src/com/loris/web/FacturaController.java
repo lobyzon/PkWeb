@@ -186,7 +186,7 @@ public class FacturaController extends AbstractPrint {
 
 		// Obtener ultimo comprobante autorizado
 		FERecuperaLastCbteResponse cbteResponse = service.feCompUltimoAutorizado(auth, 1, tipoComprobanteAFIP);
-		System.out.println("Nro Comprobante: " + cbteResponse.getCbteNro()	+ " Tipo Cbte: " + cbteResponse.getCbteTipo() + "" + cbteResponse.getPtoVta());
+		System.out.println("Nro Comprobante: " + cbteResponse.getCbteNro()	+ " Tipo Cbte: " + cbteResponse.getCbteTipo() + " Pto Venta: " + cbteResponse.getPtoVta());
 		
 		//Guardo el nro de comprobante
 		factura.setNroFactura(cbteResponse.getCbteNro() + 1);
@@ -291,7 +291,7 @@ public class FacturaController extends AbstractPrint {
 	}
 
 	private void generateXMLInputFEPDF(Factura factura, Totales totales, BigDecimal iva) throws IOException {		
-		FileWriter xmlInputFEPDF = new FileWriter(new File(FacturaUtils.PATH_TRABAJO_INPUT_PDF));
+		FileWriter xmlInputFEPDF = new FileWriter(new File(FacturaUtils.PATH_CASA_INPUT_PDF));
 		BufferedWriter bufferedWriter = new BufferedWriter(xmlInputFEPDF);
 
 		bufferedWriter.append("<?xml version=" + "\"" + "1.0" + "\"" + " encoding=" + "\"" + "ISO-8859-1" + "\"" + "?>");
@@ -347,11 +347,10 @@ public class FacturaController extends AbstractPrint {
 		// ITEMS
 		int i = 1;
 		for (ItemFactura item : factura.getItems()) {
-			bufferedWriter.append("<feItem"	+ i + "Marca>" + item.getArticulo().getMarca().getId().toString() + "</feItem"+ i + "Marca>");
-			bufferedWriter.newLine();
-			bufferedWriter.append("<feItem"	+ i + "Familia>" + item.getArticulo().getFamilia().getCodigo().toString() + "</feItem"+ i + "Familia>");
-			bufferedWriter.newLine();
-			bufferedWriter.append("<feItem"	+ i + "Articulo>" + item.getArticulo().getCodigo().toString() + "</feItem"+ i + "Articulo>");
+			bufferedWriter.append(	"<feItem"	+ i + "Codigo>" + getNormalizedWidthCode(item.getArticulo().getMarca().getId().toString(), 3) 
+									+ getNormalizedWidthCode(item.getArticulo().getFamilia().getCodigo().toString(), 4)
+									+ getNormalizedWidthCode(item.getArticulo().getCodigo().toString(), 8)
+									+ "</feItem"+ i + "Codigo>");
 			bufferedWriter.newLine();
 			bufferedWriter.append("<feItem"
 									+ i	+ "Descripcion>" + item.getArticulo().getFamilia().getDescripcion().toUpperCase()
@@ -375,11 +374,7 @@ public class FacturaController extends AbstractPrint {
 		}
 
 		for (; i <= 30; i++) {
-			bufferedWriter.append("<feItem"	+ i + "Marca>" + " " + "</feItem"+ i + "Marca>");
-			bufferedWriter.newLine();
-			bufferedWriter.append("<feItem"	+ i + "Familia>" + " " + "</feItem"+ i + "Familia>");
-			bufferedWriter.newLine();
-			bufferedWriter.append("<feItem"	+ i + "Articulo>" + " " + "</feItem"+ i + "Articulo>");
+			bufferedWriter.append("<feItem"	+ i + "Codigo>" + " " + "</feItem"+ i + "Codigo>");
 			bufferedWriter.newLine();
 			bufferedWriter.append("<feItem" + i + "Descripcion>" + "</feItem" + i + "Descripcion>");
 			bufferedWriter.newLine();
@@ -434,7 +429,7 @@ public class FacturaController extends AbstractPrint {
 		Graphics2D g2d = bi.createGraphics();
 		g2d.drawImage(barCode, 0, 0, null);
 		//TODO Change
-		ImageIO.write(bi, "gif", new File(FacturaUtils.FILE_PATH_CODIGO_BARRAS_TRABAJO));
+		ImageIO.write(bi, "gif", new File(FacturaUtils.FILE_PATH_CODIGO_BARRAS_CASA));
 		
 		return barcodeInter25.getChecksum(codigoBarras);
 	}
@@ -612,6 +607,12 @@ public class FacturaController extends AbstractPrint {
 		}
 		
 		return new ModelAndView("/factura/feComprobantes");
+	}
+	
+	@RequestMapping(value = "/factura/birtViewer.htm", method = RequestMethod.GET)
+	public ModelAndView redirectBirtViewer(@RequestParam(value="originalDuplicado") String originalDuplicado) {
+
+		return new ModelAndView("/factura/feComprobante" + originalDuplicado);
 	}
 	
 	@RequestMapping(value = "/factura/notaCredito.htm", method = RequestMethod.GET)
