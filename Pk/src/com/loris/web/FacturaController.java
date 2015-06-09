@@ -295,7 +295,7 @@ public class FacturaController extends AbstractPrint {
 	}
 
 	private void generateXMLInputFEPDF(Factura factura, Totales totales, BigDecimal iva) throws IOException {		
-		FileWriter xmlInputFEPDF = new FileWriter(new File(FacturaUtils.PATH_CASA_INPUT_PDF));
+		FileWriter xmlInputFEPDF = new FileWriter(new File(FacturaUtils.getProperty(FacturaUtils.PATH_INPUT_PDF)));
 		BufferedWriter bufferedWriter = new BufferedWriter(xmlInputFEPDF);
 
 		bufferedWriter.append("<?xml version=" + "\"" + "1.0" + "\"" + " encoding=" + "\"" + "ISO-8859-1" + "\"" + "?>");
@@ -433,7 +433,7 @@ public class FacturaController extends AbstractPrint {
 		Graphics2D g2d = bi.createGraphics();
 		g2d.drawImage(barCode, 0, 0, null);
 		//TODO Change
-		ImageIO.write(bi, "gif", new File(FacturaUtils.FILE_PATH_CODIGO_BARRAS_CASA));
+		ImageIO.write(bi, "gif", new File(FacturaUtils.getProperty(FacturaUtils.FILE_PATH_CODIGO_BARRAS)));
 		
 		return barcodeInter25.getChecksum(codigoBarras);
 	}

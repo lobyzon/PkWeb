@@ -6,6 +6,7 @@ import java.text.NumberFormat;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Properties;
 
 import org.springframework.web.servlet.ModelAndView;
 
@@ -16,10 +17,8 @@ import com.loris.domain.ItemFactura;
 
 public class FacturaUtils {	
 	
-	public static final String PATH_CASA_INPUT_PDF = 				"E:\\Desarrollo\\ProduccionPK_WEB\\FacturaElectronica\\FE_Loris.xml";
-	public static final String PATH_TRABAJO_INPUT_PDF = 			"C:\\Sergio\\Desarrollo\\Pk\\Doc FacturaElectronica\\FacturaElectronica\\FE_Loris.xml";
-	public static final String FILE_PATH_CODIGO_BARRAS_CASA = 		"E:\\Desarrollo\\ProduccionPK_WEB\\FacturaElectronica\\codigoBarras.gif";
-	public static final String FILE_PATH_CODIGO_BARRAS_TRABAJO = 	"C:\\Sergio\\Desarrollo\\Pk\\Doc FacturaElectronica\\FacturaElectronica\\codigoBarras.gif";
+	public static final String PATH_INPUT_PDF = "xml_input_pdf";
+	public static final String FILE_PATH_CODIGO_BARRAS = "file_path_codigo_barras";	
 	private static final BigDecimal PORCENTUAL = new BigDecimal(100);
 	
 	public static Totales makeTotales(HashMap<String, ItemFactura> itemsFactura,
@@ -93,5 +92,16 @@ public class FacturaUtils {
 		modelAndView.addObject("iva", totales.getIva());
 		modelAndView.addObject("total", decimalFormat.format(totales.getTotal()));
 		modelAndView.addObject("totales", totales);
+	}
+	
+	public static String getProperty(String propertyKey){
+		Properties properties = new Properties();
+		
+		try {
+			properties.load(FacturaUtils.class.getClassLoader().getResourceAsStream("com/loris/feafip/utils/wsaa_client.properties"));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return properties.getProperty(propertyKey);
 	}
 }
