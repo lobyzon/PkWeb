@@ -180,9 +180,13 @@ public class FacturaController extends AbstractPrint {
 		ServiceSoap service = serviceWsfe.getPort(ServiceSoap.class);
 		
 		FEAuthRequest auth = new FEAuthRequest();
-		auth.setSign(wsaaToken.getSign());
-		auth.setToken(wsaaToken.getToken());
-		auth.setCuit(new Long("23045244059"));
+		try{
+			auth.setSign(wsaaToken.getSign());
+			auth.setToken(wsaaToken.getToken());
+			auth.setCuit(new Long("23045244059"));
+		} catch(NullPointerException ex){
+			return "Error obteniendo Token y Sign de AFIP, intente nuevamente";
+		}		
 
 		// Obtener ultimo comprobante autorizado
 		FERecuperaLastCbteResponse cbteResponse = service.feCompUltimoAutorizado(auth, 1, tipoComprobanteAFIP);

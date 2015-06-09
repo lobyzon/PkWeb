@@ -109,7 +109,7 @@
 					<td class="labelStyle" style="text-align: center;"><input type="button" onclick="addItem()" value="Agregar Item" ></td>
 					<td class="labelStyle" colspan="7" style="text-align: left;"><input type="button" onclick="deleteItem()" value="Eliminar Item" ></td>
 				</tr>				
-				<tbody id="comentariosField" style="display: none;">
+				<tbody id="comentariosField">
 					<tr>
 						<td class="labelStyle" style="vertical-align: middle;text-align: center;" width="15%">
 							Comentarios:
