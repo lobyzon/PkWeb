@@ -34,7 +34,6 @@ package com.loris.feafip.utils;
 // gp/rg/OF.G. DeSeIn-AFIP
 //
 
-import java.io.FileInputStream;
 import java.io.InputStream;
 import java.security.KeyStore;
 import java.security.PrivateKey;

@@ -7,3 +7,5 @@ keytool -import -alias wsaa -keystore "C:\Program Files\Java\jre1.8.0_45\lib\sec
 //Aumentar memoria
 - Crear archivo setenv.bat en /bin
 - Pegar en setenv.bat: set JAVA_OPTS=Dfile.encoding=UTF-8 -Xms128m -Xmx1024m -XX:PermSize=64m -XX:MaxPermSize=256m
+
+/*** Chequear archivo de properties ***/

@@ -57,17 +57,17 @@ public class WsaaService {
 			e.printStackTrace();
 		} 
 		
-		String endpoint = config.getProperty("endpoint","http://wsaahomo.afip.gov.ar/ws/services/LoginCms"); 
-		String service = config.getProperty("service","test");
-		String dstDN = config.getProperty("dstdn","cn=wsaahomo,o=afip,c=ar,serialNumber=CUIT 23045244059");
+		String endpoint = config.getProperty("endpoint"); 
+		String service = config.getProperty("service");
+		String dstDN = config.getProperty("dstdn");
 		
-		String p12file = config.getProperty("keystore","test-keystore.p12");
-		String signer = config.getProperty("keystore-signer","loris");
-		String p12pass = config.getProperty("keystore-password","loris6");
+		String p12file = config.getProperty("keystore");
+		String signer = config.getProperty("keystore-signer");
+		String p12pass = config.getProperty("keystore-password");
 				
 		// Set the keystore used by SSL
-		System.setProperty("javax.net.ssl.trustStore", config.getProperty("trustStore",""));
-		System.setProperty("javax.net.ssl.trustStorePassword",config.getProperty("trustStore_password","")); 
+		System.setProperty("javax.net.ssl.trustStore", config.getProperty("trustStore"));
+		System.setProperty("javax.net.ssl.trustStorePassword",config.getProperty("trustStore_password")); 
 		
 		Long TicketTime = new Long(config.getProperty("TicketTime","36000"));
 	
