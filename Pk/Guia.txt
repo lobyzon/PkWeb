@@ -9,3 +9,11 @@ keytool -import -alias wsaa -keystore "C:\Program Files\Java\jre1.8.0_45\lib\sec
 - Pegar en setenv.bat: set JAVA_OPTS=Dfile.encoding=UTF-8 -Xms128m -Xmx1024m -XX:PermSize=64m -XX:MaxPermSize=256m
 
 /*** Chequear archivo de properties ***/
+Paths
+
+/*** Templates Birt ***/
+- DataSource correcto a FE_Loris.xml (input del pdf)
+- Path absoluto correcto a la imagen del código de barras
+
+/*** Scripts Database ***/
+Ejecutar Script ScriptsFE.sql
