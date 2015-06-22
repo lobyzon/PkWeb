@@ -17,3 +17,11 @@ Paths
 
 /*** Scripts Database ***/
 Ejecutar Script ScriptsFE.sql
+
+/*** Código ***/
+Clase service. 
+	URL Producción: https://servicios1.afip.gov.ar/wsfev1/service.asmx?WSDL
+	URL Testing:	https://wswhomo.afip.gov.ar/wsfev1/service.asmx?WSDL
+	
+/*** Puntos de venta ***/
+Chequear si hay que habilitar uno de diferente de la impresión por CAI
