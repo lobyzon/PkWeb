@@ -25,3 +25,6 @@ Clase service.
 	
 /*** Puntos de venta ***/
 Chequear si hay que habilitar uno de diferente de la impresión por CAI
+
+/*** Alias Produccion ***/
+loris
