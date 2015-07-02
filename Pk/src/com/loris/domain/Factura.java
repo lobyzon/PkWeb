@@ -166,7 +166,8 @@ public class Factura {
 	@Transient
 	public void updateStock(Integer facturaType){
 		for (ItemFactura item : this.items) {
-			if(FacturaType.FACTURA_NC_TYPE.equals(facturaType) || FacturaType.FACTURA_ANULADA_TYPE.equals(facturaType)){
+			if(FacturaType.FACTURA_NC_TYPE.equals(facturaType) || FacturaType.FACTURA_ANULADA_TYPE.equals(facturaType)
+					|| FacturaType.FACTURA_NC_TYPE_ELECTRONIC.equals(facturaType)){
 				item.getArticulo().setStock(item.getCantidad().add(item.getArticulo().getStock()));
 			}else{
 				if(item.getCantidad().compareTo(item.getArticulo().getStock()) == 0 ||

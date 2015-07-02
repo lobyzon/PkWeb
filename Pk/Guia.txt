@@ -24,7 +24,7 @@ Clase service.
 	URL Testing:	https://wswhomo.afip.gov.ar/wsfev1/service.asmx?WSDL
 	
 /*** Puntos de venta ***/
-Chequear si hay que habilitar uno de diferente de la impresión por CAI
+Punto de venta creado para FE 0002
 
 /*** Alias Produccion ***/
 loris

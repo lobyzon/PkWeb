@@ -637,7 +637,7 @@ public class FacturaController extends AbstractPrint {
 
 		this.items = new Items();
 		ModelAndView modelAndView = new ModelAndView();
-
+		
 		FacturaUtils.makeTotales(facturaDB.getItems(), items.getCurrentIVA(facturaDB.getCliente().getId(), clienteDAO, ivaDAO), 
 				facturaDB.getFacturaType().getFacturaTypeId(), modelAndView);
 		modelAndView.addObject("factura", facturaDB);
@@ -651,6 +651,7 @@ public class FacturaController extends AbstractPrint {
 	public ModelAndView saveNotaCredito(HttpSession session, HttpServletRequest request,
 			@RequestParam(value = "printerServiceIndex") int printerServiceIndex) {
 		Factura factura = (Factura) session.getAttribute("factura");
+		factura.setFacturaType(getFacturaTypeForNC(factura));
 
 		factura.setItems(getArticulos(this.items.getItemsFactura()));
 		factura.setId(null);		
@@ -689,6 +690,14 @@ public class FacturaController extends AbstractPrint {
 		}
 
 		return new ModelAndView("successPage", "success", SuccessUtils.setSuccessBean("Notas de Credito", "Nota de Crédito emitida satisfactoriamente"));
+	}
+
+	private FacturaType getFacturaTypeForNC(Factura factura) {
+		if(FacturaType.FACTURA_TYPE.equals(factura.getFacturaType().getFacturaTypeId()))
+			return new FacturaType(FacturaType.FACTURA_NC_TYPE);
+		if(FacturaType.FACTURA_TYPE_ELECTRONIC.equals(factura.getFacturaType().getFacturaTypeId()))
+			return new FacturaType(FacturaType.FACTURA_NC_TYPE_ELECTRONIC);
+		return null;
 	}
 
 	@RequestMapping(value = "/factura/anularFactura.htm", method = RequestMethod.GET)
