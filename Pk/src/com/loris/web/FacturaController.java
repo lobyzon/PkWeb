@@ -159,13 +159,14 @@ public class FacturaController extends AbstractPrint {
 			return new ModelAndView("/factura/feComprobantes");
 		} else {
 			// Tipo Factura fm
+			factura.setNroFactura(getNroFactura(params, factura.getFacturaType().getFacturaTypeId()));
 			if (FacturaType.FACTURA_TYPE.equals(factura.getFacturaType().getFacturaTypeId())) {
 				new PrintFacturaA4(factura, totales, params, printerServiceIndex);
 			} else {
 				new PrintFacturaN(factura, totales, params, printerServiceIndex);
 			}
 			
-			factura.setNroFactura(getNroFactura(params, factura.getFacturaType().getFacturaTypeId()));
+			
 			facturaDAO.saveUpdateFactura(factura);
 			
 			return new ModelAndView("successPage", "success", SuccessUtils.setSuccessBean(FACTURA_TITLE, FACTURA_EMISION));
@@ -200,7 +201,7 @@ public class FacturaController extends AbstractPrint {
 		FECAECabRequest feCAECabRequest = new FECAECabRequest();
 		feCAECabRequest.setCbteTipo(tipoComprobanteAFIP);
 		//TODO Revisar
-		feCAECabRequest.setPtoVta(1);
+		feCAECabRequest.setPtoVta(2);
 		feCAECabRequest.setCantReg(1);
 
 		FECAEDetRequest fecaeDetRequest = new FECAEDetRequest();
@@ -449,7 +450,7 @@ public class FacturaController extends AbstractPrint {
 			codigoBarrasString += "03";
 		}
 		//Punto de Venta
-		codigoBarrasString += "0001"; 
+		codigoBarrasString += "0002"; 
 		//CAE
 		codigoBarrasString += factura.getCAE();
 		//Fecha de Vto
