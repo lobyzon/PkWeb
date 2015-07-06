@@ -190,7 +190,7 @@ public class FacturaController extends AbstractPrint {
 		}		
 
 		// Obtener ultimo comprobante autorizado
-		FERecuperaLastCbteResponse cbteResponse = service.feCompUltimoAutorizado(auth, 1, tipoComprobanteAFIP);
+		FERecuperaLastCbteResponse cbteResponse = service.feCompUltimoAutorizado(auth, 2, tipoComprobanteAFIP);
 		System.out.println("Nro Comprobante: " + cbteResponse.getCbteNro()	+ " Tipo Cbte: " + cbteResponse.getCbteTipo() + " Pto Venta: " + cbteResponse.getPtoVta());
 		
 		//Guardo el nro de comprobante
