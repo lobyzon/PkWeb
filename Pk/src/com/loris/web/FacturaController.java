@@ -309,7 +309,7 @@ public class FacturaController extends AbstractPrint {
 		bufferedWriter.newLine();
 		bufferedWriter.append("<feCodigoTipoFactura>" + getTipoComprobante(factura) + "</feCodigoTipoFactura>");
 		bufferedWriter.newLine();
-		bufferedWriter.append("<feNro>" + "0002 - " + factura.getNroFactura() + "</feNro>");
+		bufferedWriter.append("<feNro>" + "0002 - " + getNroFactura(factura.getNroFactura()) + "</feNro>");
 		bufferedWriter.newLine();
 		bufferedWriter.append("<feFecha>" + DateUtils.convertDateToString(factura.getFecha()) + "</feFecha>");
 		bufferedWriter.newLine();
@@ -414,6 +414,14 @@ public class FacturaController extends AbstractPrint {
 		bufferedWriter.close();
 	}
 	
+	private String getNroFactura(Integer nroFactura) {
+		String nroFacturaString = nroFactura.toString();
+		if(nroFacturaString.length() < 8){
+			return StringUtils.leftPad(nroFacturaString, 8, "0");
+		}
+		return null;
+	}
+
 	private String getLineaComentarios(int i, String comentarios) {
 		if(StringUtils.isNotBlank(comentarios)){
 			String[] comentariosVector = StringUtils.split(comentarios, "\r\n");
