@@ -179,9 +179,9 @@
 		
 		preloadItems();
 		
-		function preloadItems(){					
+		function preloadItems(){
 			itemCount[0] = true;
-			for (var index = 1; index < 31; index++) {
+			for (var index = 1; index < 30; index++) {
 				itemCount[index] = false;
 			}
 		}
@@ -195,7 +195,7 @@
 					$('#descuentoId' + (index+1)).val($('#descuento').val());
 					return;
 				}
-				if (itemCount[index] == false && typeF == 2 && index < 30) {
+				if (itemCount[index] == false && typeF == 2 && index < 29) {
 					itemCount[index] = true;
 					$('#item' + (index+1)).show();
 					$('#descuentoId' + (index+1)).val($('#descuento').val());

@@ -1,7 +1,14 @@
+/*** Guía generación de certificados AFIP ***/
+openssl genrsa -out privada 2048
+
+openssl req -new -key privada -subj "/C=AR/O=loris/CN=loris/serialNumber=CUIT 23045244059" -out pedido
+
+openssl pkcs12 -export -inkey privada -in loris_testing.crt -out alias.p12 -name alias
+
 /*** Keytool ***/
 
 //Importar certifacado de AFIP en el ketstore predeterminado de JAVA 
-keytool -import -alias wsaa -keystore "C:\Program Files\Java\jre1.8.0_45\lib\security\cacerts" -trustcacerts -file "E:\Desarrollo\Produccion PK_WEB\FacturaElectronica\certificado.crt"
+keytool -import -alias wsaa -keystore "C:\Program Files\Java\jre1.8.0_31\lib\security\cacerts" -trustcacerts -file "C:\PkWEB\FacturaElectronica\loris_prd.crt"
 
 /*** Tomcat ***/
 //Aumentar memoria

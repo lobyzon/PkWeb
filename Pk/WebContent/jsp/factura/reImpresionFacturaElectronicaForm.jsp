@@ -9,6 +9,15 @@
 				<td height="50" class="title" colspan="7"><b>Re Impresión de Factura Electrónica</b></td>
 			</tr>			
 			<tr>
+				<td class="title" height="5" style="text-align: right;">Tipo Factura:</td>
+				<td width="15%">
+					<form:select path="facturaType.facturaTypeId" id="tipoFactura">
+						<option value="<%=com.loris.domain.FacturaType.FACTURA_TYPE_ELECTRONIC%>">Factura Electrónica</option>
+						<option value="<%=com.loris.domain.FacturaType.FACTURA_NC_TYPE_ELECTRONIC%>">Nota de Credito Electrónica</option>
+					</form:select>
+				</td>
+			</tr>
+			<tr>
 				<td class="title" height="5" style="text-align: right;">Nro. Factura:</td>
 				<td width="15%">
 					<form:input path="nroFactura" size="8" id="nroFactura"/>

@@ -98,6 +98,18 @@ public class Params {
 	@Column(name="LASER_PRINTER_NAME", nullable=false, length=30)
 	private String laserPrinterName;
 	
+	@Column(name="SIGN")
+	private String sign;
+	
+	@Column(name="TOKEN")
+	private String token;
+	
+	@Column(name="GENERATION_TIME_TA")
+	private String generationTimeTA;
+	
+	@Column(name="EXPIRATION_TIME_TA")
+	private String expirationTimeTA;
+	
 	public Integer getId() {
 		return id;
 	}
@@ -273,4 +285,36 @@ public class Params {
 	public void setProxNumNCDElectronica(Integer proxNumNCDElectronica) {
 		this.proxNumNCDElectronica = proxNumNCDElectronica;
 	}
+
+	public String getSign() {
+		return sign;
+	}
+
+	public void setSign(String sign) {
+		this.sign = sign;
+	}
+
+	public String getToken() {
+		return token;
+	}
+
+	public void setToken(String token) {
+		this.token = token;
+	}
+
+	public String getGenerationTimeTA() {
+		return generationTimeTA;
+	}
+
+	public void setGenerationTimeTA(String generationTimeTA) {
+		this.generationTimeTA = generationTimeTA;
+	}
+
+	public String getExpirationTimeTA() {
+		return expirationTimeTA;
+	}
+
+	public void setExpirationTimeTA(String expirationTimeTA) {
+		this.expirationTimeTA = expirationTimeTA;
+	}	
 }

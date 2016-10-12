@@ -144,7 +144,7 @@ public class WsaaAfipClient {
 				CMSSignedDataGenerator gen = new CMSSignedDataGenerator();
 
 				// Add a Signer to the Message
-				gen.addSigner(pKey, pCertificate, CMSSignedDataGenerator.DIGEST_SHA1);
+				gen.addSigner(pKey, pCertificate, CMSSignedDataGenerator.DIGEST_SHA512);
 
 				// Add the Certificate to the Message
 	      		gen.addCertificatesAndCRLs(cstore);
@@ -194,7 +194,7 @@ public class WsaaAfipClient {
 				+"<service>" + service + "</service>"
 				+"</loginTicketRequest>";
 			
-			//System.out.println("TRA: " + LoginTicketRequest_xml);
+			System.out.println("TRA: " + LoginTicketRequest_xml);
 			
 			return (LoginTicketRequest_xml);
 		}

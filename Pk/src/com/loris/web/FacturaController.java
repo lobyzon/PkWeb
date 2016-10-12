@@ -27,6 +27,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.lang.StringUtils;
+import org.joda.time.DateTime;
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -174,24 +177,51 @@ public class FacturaController extends AbstractPrint {
 	}
 
 	private String getCAEFacturaElectronica(Factura factura, Totales totales, Integer facturaType, int tipoComprobanteAFIP){
-		// Tipo Factura fe
-		WsaaService wsaaService = new WsaaService();
-		WsaaToken wsaaToken = wsaaService.getWsaaToken();
+		WsaaToken wsaaToken = null;
+		Params params = paramsDAO.getParams();
+		
+		if(getIsTokenAndSignExpired(params) || FacturaType.FACTURA_NC_TYPE_ELECTRONIC.equals(facturaType)){
+			// Tipo Factura fe
+			WsaaService wsaaService = new WsaaService();
+			wsaaToken = wsaaService.getWsaaToken();			
+		}else{
+			wsaaToken = new WsaaToken();
+			wsaaToken.setSign(params.getSign());
+			wsaaToken.setToken(params.getToken());
+			wsaaToken.setExpirationTime(params.getExpirationTimeTA());
+			wsaaToken.setGenerationTime(params.getGenerationTimeTA());
+		}
+		
 		Service serviceWsfe = new Service();
 		ServiceSoap service = serviceWsfe.getPort(ServiceSoap.class);
 		
 		FEAuthRequest auth = new FEAuthRequest();
 		try{
+			System.out.println("Token: " + wsaaToken.getToken() + " Largo Token: " + wsaaToken.getToken().length() + "Sign: " + wsaaToken.getSign() + " Largo Sign: " + wsaaToken.getSign().length());
 			auth.setSign(wsaaToken.getSign());
 			auth.setToken(wsaaToken.getToken());
 			auth.setCuit(new Long("23045244059"));
+			params.setGenerationTimeTA(wsaaToken.getGenerationTime());
+			params.setExpirationTimeTA(FacturaType.FACTURA_NC_TYPE_ELECTRONIC.equals(facturaType)?null:wsaaToken.getExpirationTime());
+			params.setToken(wsaaToken.getToken());
+			params.setSign(wsaaToken.getSign());
 		} catch(NullPointerException ex){
 			return "Error obteniendo Token y Sign de AFIP, intente nuevamente";
-		}		
+		}
+		
 
 		// Obtener ultimo comprobante autorizado
 		FERecuperaLastCbteResponse cbteResponse = service.feCompUltimoAutorizado(auth, 2, tipoComprobanteAFIP);
-		System.out.println("Nro Comprobante: " + cbteResponse.getCbteNro()	+ " Tipo Cbte: " + cbteResponse.getCbteTipo() + " Pto Venta: " + cbteResponse.getPtoVta());
+		System.out.println("Primera invocación a último comprobante, Nro Comprobante: " + cbteResponse.getCbteNro()	+ " Tipo Cbte: " + cbteResponse.getCbteTipo() + " Pto Venta: " + cbteResponse.getPtoVta());
+		
+		//Chequeo si el último comprobante es correcto, sino vuelvo a invocar a WSAA
+		if(!(cbteResponse.getCbteNro() > 0)){
+			String errors = invokeWSAA(auth, params, wsaaToken);
+			if(StringUtils.isNotBlank(errors))
+				return errors;
+			cbteResponse = service.feCompUltimoAutorizado(auth, 2, tipoComprobanteAFIP);
+			System.out.println("Segunda invocación a último comprobante, Nro Comprobante: " + cbteResponse.getCbteNro()	+ " Tipo Cbte: " + cbteResponse.getCbteTipo() + " Pto Venta: " + cbteResponse.getPtoVta());
+		}
 		
 		//Guardo el nro de comprobante
 		factura.setNroFactura(cbteResponse.getCbteNro() + 1);
@@ -263,7 +293,6 @@ public class FacturaController extends AbstractPrint {
 		
 		factura.setFacturaType(new FacturaType(facturaType));
 		
-		Params params = paramsDAO.getParams();
 		if(FacturaType.FACTURA_TYPE_ELECTRONIC.equals(facturaType))
 			params.setProxNumFacturaElectronica(factura.getNroFactura() + 1);
 		else
@@ -276,6 +305,36 @@ public class FacturaController extends AbstractPrint {
 		return "";
 	}
 	
+	private String invokeWSAA(FEAuthRequest auth, Params params, WsaaToken wsaaToken){
+		WsaaService wsaaService = new WsaaService();
+		wsaaToken = wsaaService.getWsaaToken();	
+		try{
+			System.out.println("Token: " + wsaaToken.getToken() + " Largo Token: " + wsaaToken.getToken().length() + "Sign: " + wsaaToken.getSign() + " Largo Sign: " + wsaaToken.getSign().length());
+			auth.setSign(wsaaToken.getSign());
+			auth.setToken(wsaaToken.getToken());
+			auth.setCuit(new Long("23045244059"));
+			params.setGenerationTimeTA(wsaaToken.getGenerationTime());
+			params.setExpirationTimeTA(wsaaToken.getExpirationTime());
+			params.setToken(wsaaToken.getToken());
+			params.setSign(wsaaToken.getSign());
+		} catch(NullPointerException ex){
+			return "Error obteniendo Token y Sign de AFIP, intente nuevamente";
+		}
+		return null;
+	}
+	
+	private boolean getIsTokenAndSignExpired(Params params) {
+		if(params.getExpirationTimeTA() != null){
+			//"2016-08-21T11:26:22.648-03:00" is malformed at ".648-03:00"
+			String pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSZZ";
+			DateTimeFormatter dtf = DateTimeFormat.forPattern(pattern);
+			DateTime expirationTime = dtf.parseDateTime(params.getExpirationTimeTA());
+			DateTime actualDate = new DateTime();
+			return actualDate.compareTo(expirationTime) >= 0;
+		}
+		return true;
+	}
+
 	private String getFECAESolicitudErrorsAndObservations(FECAEResponse feCAEResponse) {
 		String errors = "Solicitud de CAE Rechazada<br>";
 		ArrayOfErr arrayOfErrors = feCAEResponse.getErrors();
@@ -353,8 +412,8 @@ public class FacturaController extends AbstractPrint {
 		int i = 1;
 		for (ItemFactura item : factura.getItems()) {
 			bufferedWriter.append(	"<feItem"	+ i + "Codigo>" + getNormalizedWidthCode(item.getArticulo().getMarca().getId().toString(), 3) 
-									+ getNormalizedWidthCode(item.getArticulo().getFamilia().getCodigo().toString(), 4)
-									+ getNormalizedWidthCode(item.getArticulo().getCodigo().toString(), 8)
+									+ getNormalizedWidthCode(item.getArticulo().getFamilia().getCodigo().toString(), 3)
+									+ getNormalizedWidthCode(item.getArticulo().getCodigo().toString(), 7)
 									+ "</feItem"+ i + "Codigo>");
 			bufferedWriter.newLine();
 			bufferedWriter.append("<feItem"
@@ -600,7 +659,7 @@ public class FacturaController extends AbstractPrint {
 	
 	@RequestMapping(value = "/factura/reImpresionFacturaElectronica.htm", method = RequestMethod.POST)
 	public ModelAndView findFacturaElectronica(@ModelAttribute("factura") Factura factura, BindingResult result) {
-		Factura facturaDB = facturaDAO.getFacturaByNumberAndType(factura.getNroFactura(), FacturaType.FACTURA_TYPE_ELECTRONIC);
+		Factura facturaDB = facturaDAO.getFacturaByNumberAndType(factura.getNroFactura(), getFacturaType(factura.getFacturaType().getFacturaTypeId()));
 		consultaFacturaValidator.validate(facturaDB, result);
 
 		if (result.hasErrors()) {
@@ -631,7 +690,11 @@ public class FacturaController extends AbstractPrint {
 	@RequestMapping(value = "/factura/notaCredito.htm", method = RequestMethod.GET)
 	public String showNotaCredito(ModelMap modelMap) {
 		modelMap.addAttribute("factura", new Factura());
-
+		Params params = paramsDAO.getParams();
+		params.setToken("cES0SSuWIIPlfe5/dLtb0Qeg2jQuvYuuSEDOrz+w2EnAQiEeS86gzYf7ehiU3UaYit5FRb9z/3zq");
+		
+		paramsDAO.saveOrUpdateParams(params);
+		
 		return "/factura/notaCreditoForm";
 	}
 
@@ -680,7 +743,7 @@ public class FacturaController extends AbstractPrint {
 
 		facturaDAO.saveUpdateFactura(factura);
 		// PRINT NC.
-		if (FacturaType.FACTURA_TYPE_ELECTRONIC.equals(factura.getFacturaType().getFacturaTypeId())) {
+		if (FacturaType.FACTURA_NC_TYPE_ELECTRONIC.equals(factura.getFacturaType().getFacturaTypeId())) {
 			String erroresYObservaciones = getCAEFacturaElectronica(factura, totales, FacturaType.FACTURA_NC_TYPE_ELECTRONIC, FacturaType.TIPO_COMPROBANTE_NOTA_CREDITO_A_AFIP);
 			if(StringUtils.isNotBlank(erroresYObservaciones)){
 				return new ModelAndView("successPage", "success", SuccessUtils.setSuccessBean(FACTURA_TITLE, erroresYObservaciones));

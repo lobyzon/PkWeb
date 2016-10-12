@@ -90,8 +90,15 @@ public class WsaaService {
 			String token = tokenDoc.valueOf("/loginTicketResponse/credentials/token");
 			String sign = tokenDoc.valueOf("/loginTicketResponse/credentials/sign");
 			
+			String generationTime = tokenDoc.valueOf("/loginTicketResponse/header/generationTime");
+			String expirationTime = tokenDoc.valueOf("/loginTicketResponse/header/expirationTime");
+			
+			//Format Example "2009-07-16T19:20:30-05:00";
+			
 			wsaaToken.setToken(token);
 			wsaaToken.setSign(sign);
+			wsaaToken.setGenerationTime(generationTime);
+			wsaaToken.setExpirationTime(expirationTime);
 			
 			return wsaaToken;
 		} catch (Exception e) {
