@@ -45,18 +45,32 @@ public class FacturaDAOImpl extends HibernateDaoSupport implements FacturaDAO{
 	
 	@SuppressWarnings(value="unchecked")
 	public List<Factura> getFacturasClienteByDateAndType(Integer clientCode, DateFilter dateFilter, Integer facturaType){
-		String queryS = "FROM Factura f WHERE cliente.id = ? AND facturaType.facturaTypeId = ? " +
-						"AND fecha >= ? AND fecha <= ?";
+		Object params [] = new Object[]{clientCode, facturaType, dateFilter.getFilterFrom(), dateFilter.getFilterTo()};
+		String queryS = "FROM Factura f WHERE cliente.id = ? AND (facturaType.facturaTypeId = ? ";
+		if(!FacturaType.FACTURA_N_TYPE.equals(facturaType)){
+			queryS += "OR facturaType.facturaTypeId = ?) ";
+			params = new Object[]{clientCode, facturaType, FacturaType.FACTURA_TYPE_ELECTRONIC, dateFilter.getFilterFrom(), dateFilter.getFilterTo()};
+		}else{
+			queryS += ")";
+		}
+		queryS += "AND fecha >= ? AND fecha <= ?";
 		
-		return getHibernateTemplate().find(queryS, new Object[]{clientCode, facturaType, dateFilter.getFilterFrom(), dateFilter.getFilterTo()});
+		return getHibernateTemplate().find(queryS, params);
 	}
 	
 	@SuppressWarnings(value="unchecked")
 	public BigDecimal getTotalSubtotalesClienteByDateAndType(Integer clientCode, DateFilter dateFilter, Integer facturaType){
-		String queryS = "SELECT sum(subTotal) FROM Factura f WHERE cliente.id = ? AND facturaType.facturaTypeId = ? " +
-						"AND fecha >= ? AND fecha <= ?";
+		Object params [] = new Object[]{clientCode, facturaType, dateFilter.getFilterFrom(), dateFilter.getFilterTo()};
+		String queryS = "SELECT sum(subTotal) FROM Factura f WHERE cliente.id = ? AND (facturaType.facturaTypeId = ? ";
+		if(!FacturaType.FACTURA_N_TYPE.equals(facturaType)){
+			queryS += "OR facturaType.facturaTypeId = ?) ";
+			params = new Object[]{clientCode, facturaType, FacturaType.FACTURA_TYPE_ELECTRONIC, dateFilter.getFilterFrom(), dateFilter.getFilterTo()};
+		}else{
+			queryS += ")";
+		}
+		queryS += "AND fecha >= ? AND fecha <= ?";
 		
-		List<BigDecimal> list = getHibernateTemplate().find(queryS, new Object[]{clientCode, facturaType, dateFilter.getFilterFrom(), dateFilter.getFilterTo()});
+		List<BigDecimal> list = getHibernateTemplate().find(queryS, params);
 		if(list != null && !list.isEmpty())
 			return list.get(0);
 		return new BigDecimal(0);
