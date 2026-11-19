@@ -25,6 +25,9 @@
 				<td class="title"><a href="<c:out value="${pageContext.request.contextPath}"/>/controller/factura/notaCredito.htm">Notas de Crédito</a></td>
 			</tr>
 			<tr>
+				<td class="title"><a href="<c:out value="${pageContext.request.contextPath}"/>/controller/factura/notaCreditoSinFactura.htm">Notas de Crédito sin nro de factura</a></td>
+			</tr>
+			<tr>
 				<td class="title"><a href="<c:out value="${pageContext.request.contextPath}"/>/controller/factura/anularFactura.htm">Anular Factura</a></td>
 			</tr>
 			<tr>

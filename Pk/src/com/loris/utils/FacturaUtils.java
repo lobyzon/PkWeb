@@ -11,6 +11,7 @@ import java.util.Properties;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.loris.bean.Totales;
+import com.loris.domain.Factura;
 import com.loris.domain.FacturaType;
 import com.loris.domain.IVA;
 import com.loris.domain.ItemFactura;
@@ -19,7 +20,7 @@ public class FacturaUtils {
 	
 	public static final String PATH_INPUT_PDF = "xml_input_pdf";
 	public static final String FILE_PATH_CODIGO_BARRAS = "file_path_codigo_barras";	
-	private static final BigDecimal PORCENTUAL = new BigDecimal(100);
+	public static final BigDecimal PORCENTUAL = new BigDecimal(100);
 	
 	public static Totales makeTotales(HashMap<String, ItemFactura> itemsFactura,
 			BigDecimal subTotalResult, BigDecimal ivaResult,
@@ -103,5 +104,46 @@ public class FacturaUtils {
 			e.printStackTrace();
 		}
 		return properties.getProperty(propertyKey);
+	}
+	
+	public static int getTipoComprobanteAFIP(Integer facturaType, boolean inscripto){
+		if((FacturaType.FACTURA_NC_TYPE.equals(facturaType) && inscripto) || FacturaType.FACTURA_NC_TYPE_ELECTRONIC_A.equals(facturaType))
+			return FacturaType.TIPO_COMPROBANTE_NOTA_CREDITO_A_AFIP;
+		if((FacturaType.FACTURA_NC_TYPE.equals(facturaType) && !inscripto) || FacturaType.FACTURA_NC_TYPE_ELECTRONIC_B.equals(facturaType))
+			return FacturaType.TIPO_COMPROBANTE_NOTA_CREDITO_B_AFIP;
+		if((FacturaType.FACTURA_TYPE.equals(facturaType) && inscripto) || FacturaType.FACTURA_TYPE_ELECTRONIC_A.equals(facturaType))
+			return FacturaType.TIPO_COMPROBANTE_FACTURA_A_AFIP;
+		if((FacturaType.FACTURA_TYPE.equals(facturaType) && !inscripto) || FacturaType.FACTURA_TYPE_ELECTRONIC_B.equals(facturaType))
+			return FacturaType.TIPO_COMPROBANTE_FACTURA_B_AFIP;
+		return 1;
+	}
+	
+	public static String getLetraFacturaPDF(Factura factura){
+		if(factura.getCliente().isInscripto())
+			return FacturaType.LETRA_FACTURA_A;
+		return FacturaType.LETRA_FACTURA_B;
+	}
+	/**
+	 * 
+	 * @param int tipoFactura - Factura o Nota de Credito
+	 * @param factura
+	 * @return int - Tipo de factura
+	 */
+	public static int getTipoFacturaElectronica(int tipoFactura, Factura factura){
+		if(FacturaType.FACTURA_TYPE.equals(tipoFactura)){
+			if(factura.getCliente().isInscripto())
+				return FacturaType.FACTURA_TYPE_ELECTRONIC_A;
+			return FacturaType.FACTURA_TYPE_ELECTRONIC_B;
+		}
+		if(factura.getCliente().isInscripto())
+			return FacturaType.FACTURA_NC_TYPE_ELECTRONIC_A;
+		return FacturaType.FACTURA_NC_TYPE_ELECTRONIC_B;
+	}
+	
+	public static boolean isFacturaOrNCTipoB(Factura factura){
+		if(FacturaType.FACTURA_TYPE_ELECTRONIC_B.equals(factura.getFacturaType().getFacturaTypeId()) ||
+				FacturaType.FACTURA_NC_TYPE_ELECTRONIC_B.equals(factura.getFacturaType().getFacturaTypeId()))
+			return true;
+		return false;
 	}
 }

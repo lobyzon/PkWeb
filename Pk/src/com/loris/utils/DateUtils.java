@@ -7,6 +7,7 @@ public class DateUtils {
 	private static final SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 	private static final SimpleDateFormat sdfBackup = new SimpleDateFormat("dd-MM-yyyy");
 	private static final SimpleDateFormat sdfCodigoBarras = new SimpleDateFormat("yyyyMMdd");
+	private static final SimpleDateFormat sdfQRCode = new SimpleDateFormat("yyyy-MM-dd");
 	
 	public static boolean isValidDateStr(String date) {
 		try {
@@ -45,6 +46,12 @@ public class DateUtils {
 	public static String convertDateToStringSubstractSeparator(Date date){
 		if(date != null)
 			return sdfBackup.format(date);
+		return "";
+	}
+	
+	public static String convertDateToStringQrCode(Date date){
+		if(date != null)
+			return sdfQRCode.format(date);
 		return "";
 	}
 }

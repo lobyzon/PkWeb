@@ -8,7 +8,9 @@ openssl pkcs12 -export -inkey privada -in loris_testing.crt -out alias.p12 -name
 /*** Keytool ***/
 
 //Importar certifacado de AFIP en el ketstore predeterminado de JAVA 
-keytool -import -alias wsaa -keystore "C:\Program Files\Java\jre1.8.0_31\lib\security\cacerts" -trustcacerts -file "C:\PkWEB\FacturaElectronica\loris_prd.crt"
+keytool -import -alias wsaa -keystore "C:\Program Files (x86)\Java\jre1.8.0_101\lib\security\cacerts" -trustcacerts -file "C:\PkWEB\FacturaElectronica\loris_prd.crt"
+
+keytool -delete -alias wsaa -keystore "C:\Program Files (x86)\Java\jre1.8.0_101\lib\security\cacerts"
 
 /*** Tomcat ***/
 //Aumentar memoria

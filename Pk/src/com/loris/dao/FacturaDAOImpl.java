@@ -44,33 +44,32 @@ public class FacturaDAOImpl extends HibernateDaoSupport implements FacturaDAO{
 	}
 	
 	@SuppressWarnings(value="unchecked")
-	public List<Factura> getFacturasClienteByDateAndType(Integer clientCode, DateFilter dateFilter, Integer facturaType){
-		Object params [] = new Object[]{clientCode, facturaType, dateFilter.getFilterFrom(), dateFilter.getFilterTo()};
-		String queryS = "FROM Factura f WHERE cliente.id = ? AND (facturaType.facturaTypeId = ? ";
-		if(!FacturaType.FACTURA_N_TYPE.equals(facturaType)){
-			queryS += "OR facturaType.facturaTypeId = ?) ";
-			params = new Object[]{clientCode, facturaType, FacturaType.FACTURA_TYPE_ELECTRONIC, dateFilter.getFilterFrom(), dateFilter.getFilterTo()};
-		}else{
-			queryS += ")";
+	public List<Factura> getFacturasClienteByDateAndType(Integer clientCode, DateFilter dateFilter, Integer facturaType){		
+		String queryS = "FROM Factura f WHERE cliente.id = ? AND facturaType.facturaTypeId = ? " +
+						"AND fecha >= ? AND fecha <= ?";
+		if(FacturaType.FACTURA_TYPE.compareTo(facturaType) == 0){
+			queryS = "FROM Factura f WHERE cliente.id = ? AND facturaType.facturaTypeId IN ( " + FacturaType.FACTURA_TYPE + ", " + FacturaType.FACTURA_TYPE_ELECTRONIC_A
+					+ ", " + FacturaType.FACTURA_TYPE_ELECTRONIC_B + ") AND fecha >= ? AND fecha <= ?";
+			return getHibernateTemplate().find(queryS, new Object[]{clientCode, dateFilter.getFilterFrom(), dateFilter.getFilterTo()});
 		}
-		queryS += "AND fecha >= ? AND fecha <= ?";
 		
-		return getHibernateTemplate().find(queryS, params);
+		return getHibernateTemplate().find(queryS, new Object[]{clientCode, facturaType, dateFilter.getFilterFrom(), dateFilter.getFilterTo()});
 	}
 	
 	@SuppressWarnings(value="unchecked")
 	public BigDecimal getTotalSubtotalesClienteByDateAndType(Integer clientCode, DateFilter dateFilter, Integer facturaType){
-		Object params [] = new Object[]{clientCode, facturaType, dateFilter.getFilterFrom(), dateFilter.getFilterTo()};
-		String queryS = "SELECT sum(subTotal) FROM Factura f WHERE cliente.id = ? AND (facturaType.facturaTypeId = ? ";
-		if(!FacturaType.FACTURA_N_TYPE.equals(facturaType)){
-			queryS += "OR facturaType.facturaTypeId = ?) ";
-			params = new Object[]{clientCode, facturaType, FacturaType.FACTURA_TYPE_ELECTRONIC, dateFilter.getFilterFrom(), dateFilter.getFilterTo()};
+		List<BigDecimal> list = new ArrayList<BigDecimal>();
+		String queryS = "SELECT sum(subTotal) FROM Factura f WHERE cliente.id = ? AND facturaType.facturaTypeId = ? " +
+						"AND fecha >= ? AND fecha <= ?";
+		if(FacturaType.FACTURA_TYPE.compareTo(facturaType) == 0){
+			queryS = "SELECT sum(subTotal) FROM Factura f WHERE cliente.id = ? AND facturaType.facturaTypeId IN "
+					+ "( " + FacturaType.FACTURA_TYPE + ", " + FacturaType.FACTURA_TYPE_ELECTRONIC_A + ", " + FacturaType.FACTURA_TYPE_ELECTRONIC_B + ") " +
+					"AND fecha >= ? AND fecha <= ?";
+			list = getHibernateTemplate().find(queryS, new Object[]{clientCode, dateFilter.getFilterFrom(), dateFilter.getFilterTo()});
 		}else{
-			queryS += ")";
-		}
-		queryS += "AND fecha >= ? AND fecha <= ?";
-		
-		List<BigDecimal> list = getHibernateTemplate().find(queryS, params);
+			list = getHibernateTemplate().find(queryS, new Object[]{clientCode, facturaType, dateFilter.getFilterFrom(), dateFilter.getFilterTo()});
+		}		
+	
 		if(list != null && !list.isEmpty())
 			return list.get(0);
 		return new BigDecimal(0);

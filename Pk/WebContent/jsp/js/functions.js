@@ -134,27 +134,36 @@ function showCliente()
 				if(data.success){
 					$('#clienteFields').show();
 					$('#razonSocial').val(data.cliente.razonSocial);
-					$('#telefono').val(data.cliente.telefono);
-					$('#telefono2').val(data.cliente.telefono2);
-					$('#telefono3').val(data.cliente.telefono3);
-					$('#telefono4').val(data.cliente.telefono4);
-					$('#email').val(data.cliente.email);
-					$('#email2').val(data.cliente.email2);
+					if(data.cliente.telefono != 'null')
+						$('#telefono').val(data.cliente.telefono);
+					if(data.cliente.telefono2 != 'null')
+						$('#telefono2').val(data.cliente.telefono2);
+					if(data.cliente.telefono3 != 'null')
+						$('#telefono3').val(data.cliente.telefono3);
+					if(data.cliente.telefono4 != 'null')
+						$('#telefono4').val(data.cliente.telefono4);
+					if(data.cliente.email != null)
+						$('#email').val(data.cliente.email);
+					if(data.cliente.email2 != 'null')
+						$('#email2').val(data.cliente.email2);
 					$('direccionId').val(data.direccion.id);
 					$('#calle').val(data.direccion.calle);
 					$('#numero').val(data.direccion.numero);					
-					$('#piso').val(data.direccion.piso);					
-					$('#depto').val(data.direccion.depto);
-					$('#codPostal').val(data.direccion.codPostal);
+					if(data.cliente.piso != 'null')
+						$('#piso').val(data.direccion.piso);					
+					if(data.cliente.depto != 'null')
+						$('#depto').val(data.direccion.depto);
+					if(data.cliente.codPostal != 'null')
+						$('#codPostal').val(data.direccion.codPostal);
 					$('#localidad').val(data.direccion.localidad);
-					if($('#provinciaDesc').val() != null){
+					if($('#provinciaDesc').val() != 'null'){
 						$('#provinciaDesc').val(data.provincia.descripcion);						
 					}
 					if($('#provincia').val() != null){
 						$('#provincia').val(data.provincia.id);
 					}					
 					$('#cuit').val(data.cliente.cuit);
-					$('#responsableInsc').val(data.cliente.responsableInsc);
+					$('#responsableInsc').val(data.cliente.responsableInsc.id);
 					$('#descuento').val(data.cliente.descuento);
 				}else{
 					$('#clienteFields').hide();

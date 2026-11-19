@@ -144,6 +144,8 @@ public class WsaaAfipClient {
 				CMSSignedDataGenerator gen = new CMSSignedDataGenerator();
 
 				// Add a Signer to the Message
+				//Previously
+				//gen.addSigner(pKey, pCertificate, CMSSignedDataGenerator.DIGEST_SHA1);
 				gen.addSigner(pKey, pCertificate, CMSSignedDataGenerator.DIGEST_SHA512);
 
 				// Add the Certificate to the Message

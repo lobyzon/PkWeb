@@ -16,10 +16,9 @@ import javax.xml.ws.WebServiceFeature;
  * JAX-WS RI 2.2.9-b130926.1035
  * Generated source version: 2.2
  * 
- * URL de HOMOLOGACION: "https://wswhomo.afip.gov.ar/wsfev1/service.asmx?WSDL"
- * URL PRD: https://servicios1.afip.gov.ar/wsfev1/service.asmx?WSDL
  */
 @WebServiceClient(name = "Service", targetNamespace = "http://ar.gov.afip.dif.FEV1/", wsdlLocation = "https://servicios1.afip.gov.ar/wsfev1/service.asmx?WSDL")
+//@WebServiceClient(name = "Service", targetNamespace = "http://ar.gov.afip.dif.FEV1/", wsdlLocation = "https://wswhomo.afip.gov.ar/wsfev1/service.asmx?WSDL")
 public class Service
     extends javax.xml.ws.Service
 {
@@ -33,6 +32,7 @@ public class Service
         WebServiceException e = null;
         try {
             url = new URL("https://servicios1.afip.gov.ar/wsfev1/service.asmx?WSDL");
+        	//url = new URL("https://wswhomo.afip.gov.ar/wsfev1/service.asmx?WSDL");
         } catch (MalformedURLException ex) {
             e = new WebServiceException(ex);
         }
@@ -45,7 +45,7 @@ public class Service
     }
 
     public Service(WebServiceFeature... features) {
-        super(__getWsdlLocation(), SERVICE_QNAME, features);
+        super(__getWsdlLocation(), SERVICE_QNAME);
     }
 
     public Service(URL wsdlLocation) {
@@ -53,7 +53,7 @@ public class Service
     }
 
     public Service(URL wsdlLocation, WebServiceFeature... features) {
-        super(wsdlLocation, SERVICE_QNAME, features);
+        super(wsdlLocation, SERVICE_QNAME);
     }
 
     public Service(URL wsdlLocation, QName serviceName) {
@@ -61,7 +61,7 @@ public class Service
     }
 
     public Service(URL wsdlLocation, QName serviceName, WebServiceFeature... features) {
-        super(wsdlLocation, serviceName, features);
+        super(wsdlLocation, serviceName);
     }
 
     /**

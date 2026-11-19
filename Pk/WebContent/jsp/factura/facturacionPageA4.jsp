@@ -89,10 +89,7 @@
 					<tr>
 						<td class="title" height="5">Regimen :</td>
 						<td width="10%">
-							<select id="responsableInsc" name="responsableInsc" disabled="disabled">
-			            		<option value="S">Inscripto</option>
-			            		<option value="N">No inscripto</option>
-			            	</select>						
+							<form:select path="cliente.responsableInsc.id" items="${regimenes}" itemLabel="description" itemValue="id" id="responsableInsc"/>						
 						</td>						
 					</tr>
 					<tr>

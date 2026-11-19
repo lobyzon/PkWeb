@@ -3,32 +3,11 @@ package com.loris.feafip.test;
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Date;
 import java.util.List;
 
-import javafx.collections.transformation.SortedList;
-
 import com.loris.bean.Totales;
-import com.loris.feafip.utils.WsaaService;
-import com.loris.feafip.utils.WsaaToken;
-
-import fev1.dif.afip.gov.ar.AlicIva;
-import fev1.dif.afip.gov.ar.ArrayOfAlicIva;
-import fev1.dif.afip.gov.ar.ArrayOfFECAEDetRequest;
-import fev1.dif.afip.gov.ar.ArrayOfFECAEDetResponse;
-import fev1.dif.afip.gov.ar.DummyResponse;
-import fev1.dif.afip.gov.ar.FEAuthRequest;
-import fev1.dif.afip.gov.ar.FECAECabRequest;
-import fev1.dif.afip.gov.ar.FECAEDetRequest;
-import fev1.dif.afip.gov.ar.FECAEDetResponse;
-import fev1.dif.afip.gov.ar.FECAERequest;
-import fev1.dif.afip.gov.ar.FECAEResponse;
-import fev1.dif.afip.gov.ar.FERecuperaLastCbteResponse;
-import fev1.dif.afip.gov.ar.Service;
-import fev1.dif.afip.gov.ar.ServiceSoap;
 
 public class WsfeTest {
 //	public static void main(String[] args) {

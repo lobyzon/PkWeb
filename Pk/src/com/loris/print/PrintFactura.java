@@ -150,7 +150,7 @@ public class PrintFactura extends AbstractPrint implements Printable {
 	}
 
 	private void printRespInscripto(Cliente cliente, Graphics2D g2d) {
-		if(INSCRIPTO.equals(cliente.getResponsableInsc()))
+		if(INSCRIPTO.equals(cliente.getResponsableInsc().getValue()))
 			g2d.drawString("X", 541, 87);		
 	}
 	

@@ -17,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.loris.bean.Paginator;
 import com.loris.dao.ClienteDAO;
 import com.loris.dao.ProvinciaDAO;
+import com.loris.dao.RegimenDAO;
 import com.loris.domain.Cliente;
 import com.loris.utils.SuccessUtils;
 import com.loris.validator.ClienteEditValidator;
@@ -38,7 +39,9 @@ public class ClienteController {
 	@Autowired
 	private ClienteEditValidator clienteEditValidator;
 	@Autowired
-	private Paginator paginator;
+	private Paginator paginator;	
+	@Autowired
+	private RegimenDAO regimenDAO;
 	
 	@RequestMapping(value="/clientes.htm")
 	public String showClienteLinks(){
@@ -83,6 +86,7 @@ public class ClienteController {
 			modelMap.addAttribute("cliente", cliente);
 			modelMap.addAttribute("provincias", provinciaDAO.getProvincias());
 			modelMap.addAttribute("clientes", clienteDAO.getClientes());
+			modelMap.addAttribute("regimenes", regimenDAO.getRegimenes());
 			return new ModelAndView("/cliente/clienteForm", modelMap);
 		}
 		
@@ -137,6 +141,7 @@ public class ClienteController {
 		modelMap.addAttribute("paginator", paginator);
 		modelMap.addAttribute("clientes", clientesTotal);
 		modelMap.addAttribute("clientesPage", clientesPage);
+		modelMap.addAttribute("regimenes", regimenDAO.getRegimenes());
 		modelMap.addAttribute("cliente", new Cliente());
 		
 		return new ModelAndView("/cliente/clienteSearchForm", modelMap);
@@ -151,6 +156,7 @@ public class ClienteController {
 		
 		modelMap.addAttribute("paginator", paginator);		
 		modelMap.addAttribute("clientesPage", clientesPage);
+		modelMap.addAttribute("regimenes", regimenDAO.getRegimenes());
 		
 		return new ModelAndView("/cliente/clienteSearchForm", modelMap);
 	}
@@ -165,6 +171,7 @@ public class ClienteController {
 		
 		modelMap.addAttribute("paginator", paginator);		
 		modelMap.addAttribute("clientesPage", clientesPage);
+		modelMap.addAttribute("regimenes", regimenDAO.getRegimenes());
 		
 		return new ModelAndView("/cliente/clienteSearchForm", modelMap);
 	}
@@ -172,5 +179,6 @@ public class ClienteController {
 	private void setModelMap(ModelMap modelMap, Cliente cliente){
 		modelMap.addAttribute("cliente", cliente);
 		modelMap.addAttribute("provincias", provinciaDAO.getProvincias());
+		modelMap.addAttribute("regimenes", regimenDAO.getRegimenes());
 	}
 }

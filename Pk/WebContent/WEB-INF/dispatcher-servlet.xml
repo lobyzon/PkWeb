@@ -56,7 +56,8 @@
 				<value>com.loris.domain.FacturaType</value>
 				<value>com.loris.domain.ItemFactura</value>
 				<value>com.loris.domain.IVA</value>
-				<value>com.loris.domain.Params</value>				
+				<value>com.loris.domain.Params</value>
+				<value>com.loris.domain.Regimen</value>				
 			</list>
 		</property>
 		<property name="hibernateProperties">
@@ -145,6 +146,10 @@
 	</bean>
 	
 	<bean id="estadisticasDAO" class="com.loris.dao.EstadisticasDAOImpl">
+		<property name="sessionFactory" ref="mySessionFactory" />
+	</bean>
+	
+	<bean id="regimenDAO" class="com.loris.dao.RegimenDAOImpl">
 		<property name="sessionFactory" ref="mySessionFactory" />
 	</bean>
 	

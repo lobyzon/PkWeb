@@ -92,11 +92,7 @@
 			<tr>
 				<td class="title" height="5">Regimen :</td>
 				<td>
-					<form:select path="responsableInsc">	            		
-	            		<form:option value="" label="Seleccione..."/>
-	            		<form:option value="S" label="Inscripto"/>
-	            		<form:option value="N" label="No inscripto"/>
-		            </form:select>
+					<form:select path="responsableInsc.id" items="${regimenes}" itemLabel="description" itemValue="id"/>	            		
 		        </td>
 				<td><form:errors path="responsableInsc" cssClass="error" /></td>
 				<td class="title" height="5">Descuento :</td>

@@ -10,6 +10,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.text.ParseException;
@@ -18,6 +19,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -26,6 +28,7 @@ import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.apache.axis.encoding.Base64;
 import org.apache.commons.lang.StringUtils;
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
@@ -41,6 +44,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.google.gson.Gson;
+import com.google.zxing.BarcodeFormat;
+import com.google.zxing.EncodeHintType;
+import com.google.zxing.WriterException;
+import com.google.zxing.common.BitMatrix;
+import com.google.zxing.qrcode.QRCodeWriter;
+import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
 import com.loris.bean.Items;
 import com.loris.bean.Totales;
 import com.loris.dao.ArticuloDAO;
@@ -49,12 +59,14 @@ import com.loris.dao.FacturaDAO;
 import com.loris.dao.IVADAO;
 import com.loris.dao.MarcaDAO;
 import com.loris.dao.ParamsDAO;
+import com.loris.dao.RegimenDAO;
 import com.loris.domain.Articulo;
 import com.loris.domain.Factura;
 import com.loris.domain.FacturaType;
 import com.loris.domain.IVA;
 import com.loris.domain.ItemFactura;
 import com.loris.domain.Params;
+import com.loris.feafip.qr.JSONAfipBean;
 import com.loris.feafip.utils.WsaaService;
 import com.loris.feafip.utils.WsaaToken;
 import com.loris.print.AbstractPrint;
@@ -69,10 +81,12 @@ import com.lowagie.text.pdf.BarcodeInter25;
 
 import fev1.dif.afip.gov.ar.AlicIva;
 import fev1.dif.afip.gov.ar.ArrayOfAlicIva;
+import fev1.dif.afip.gov.ar.ArrayOfCbteAsoc;
 import fev1.dif.afip.gov.ar.ArrayOfErr;
 import fev1.dif.afip.gov.ar.ArrayOfFECAEDetRequest;
 import fev1.dif.afip.gov.ar.ArrayOfFECAEDetResponse;
 import fev1.dif.afip.gov.ar.ArrayOfObs;
+import fev1.dif.afip.gov.ar.CbteAsoc;
 import fev1.dif.afip.gov.ar.Err;
 import fev1.dif.afip.gov.ar.FEAuthRequest;
 import fev1.dif.afip.gov.ar.FECAECabRequest;
@@ -88,8 +102,13 @@ import fev1.dif.afip.gov.ar.ServiceSoap;
 @Controller
 @SessionAttributes(value = { "factura"/* , "printers" */})
 public class FacturaController extends AbstractPrint {
-	private final String FACTURA_TITLE = "Facturación";
+	private final String FACTURA_TITLE = "Facturaciï¿½n";
 	private final String FACTURA_EMISION = "Factura emitida exitosamente";
+	private final static String URL = "https://www.afip.gob.ar/fe/qr/?p=";
+	private final static String CUIT_EMILIO = "23045244059";
+	private final static int PTO_VENTA = 2;
+	private final static String PESOS = "PES";
+	
 	@Autowired
 	private MarcaDAO marcaDAO;
 	@Autowired
@@ -103,6 +122,8 @@ public class FacturaController extends AbstractPrint {
 	@Autowired
 	private IVADAO ivaDAO;
 	@Autowired
+	private RegimenDAO regimenDAO;
+	@Autowired
 	private Items items;
 	@Autowired
 	private ConsultaFacturaValidator consultaFacturaValidator;
@@ -111,13 +132,77 @@ public class FacturaController extends AbstractPrint {
 	public String showFacturaLinks() {
 		return "/factura/facturaLinks";
 	}
+	
+	
+	//Begin Agregado nota de credito sin factura
+	@RequestMapping(value = "/factura/notaCreditoSinFactura.htm", method = RequestMethod.GET)
+	public String showNotaDeCreditoSinFacturaPage(ModelMap modelMap) {
+		modelMap.addAttribute("marcas", marcaDAO.getMarcas());
+		modelMap.addAttribute("clientes", clienteDAO.getClientes());
+		modelMap.addAttribute("factura", new Factura());
+		modelMap.addAttribute("printers", PrinterJob.lookupPrintServices());
+		modelMap.addAttribute("regimenes", regimenDAO.getRegimenes());
 
+		items = new Items();
+
+		return "/factura/notaCreditoSinFacturaPage";
+	}
+	
+	@RequestMapping(value = "/factura/notaCreditoSinFacturaSave.htm")
+	public ModelAndView saveNotaCreditoSinFactura(HttpSession session, HttpServletRequest request,
+			@RequestParam(value = "printerServiceIndex") int printerServiceIndex, @ModelAttribute("factura") Factura factura) {
+		factura.setFacturaType(getFacturaTypeForNC(factura));
+
+		factura.setItems(getArticulos(this.items.getItemsFactura()));
+		factura.setId(null);
+		
+		factura.setComentarios(request.getParameter("comentarios"));
+
+		BigDecimal subTotalResult = new BigDecimal(0);
+		BigDecimal ivaResult = new BigDecimal(0);
+		BigDecimal descuentoTotalResult = new BigDecimal(0);
+
+		Collections.sort(factura.getItems());
+
+		Totales totales = FacturaUtils.makeTotales(items.getItemsFactura(),	subTotalResult, ivaResult, descuentoTotalResult, 
+				items.getCurrentIVA(factura.getCliente().getId(), clienteDAO, ivaDAO), factura.getFacturaType().getFacturaTypeId());
+		factura.setSubTotal(totales.getSubTotal());
+		factura.setFecha(new Date());
+		
+		factura.setNroFactura(new Integer("3886"));
+		facturaDAO.saveUpdateFactura(factura);
+		// PRINT NC.
+		if ((FacturaType.FACTURA_NC_TYPE_ELECTRONIC_A.compareTo(factura.getFacturaType().getFacturaTypeId()) == 0)
+				|| (FacturaType.FACTURA_NC_TYPE_ELECTRONIC_B.compareTo(factura.getFacturaType().getFacturaTypeId()) == 0)) {
+			String erroresYObservaciones = getCAEFacturaElectronica(factura, totales, FacturaUtils.getTipoFacturaElectronica(FacturaType.FACTURA_NC_TYPE, factura), 
+					FacturaUtils.getTipoComprobanteAFIP(FacturaType.FACTURA_NC_TYPE, factura.getCliente().isInscripto()));
+			if(StringUtils.isNotBlank(erroresYObservaciones)){
+				return new ModelAndView("successPage", "success", SuccessUtils.setSuccessBean(FACTURA_TITLE, erroresYObservaciones));
+			}		
+			
+			try {
+				generateXMLInputFEPDF(factura, totales, paramsDAO.getParams().getIvaInscripto().getIVA());
+			} catch (IOException | WriterException e) {
+				return new ModelAndView("successPage", "success", SuccessUtils.setSuccessBean(FACTURA_TITLE, "Error generando XML de entrada para FE en PDF mediante BirtViewer"));
+			}
+			
+			return new ModelAndView("/factura/feComprobantes");
+		}else{
+			factura.setNroFactura(getNroFactura(paramsDAO.getParams(), factura.getFacturaType().getFacturaTypeId()));
+			new PrintFacturaA4(factura, totales, paramsDAO.getParams(),	printerServiceIndex);	
+		}
+
+		return new ModelAndView("successPage", "success", SuccessUtils.setSuccessBean("Notas de Credito", "Nota de Crï¿½dito emitida satisfactoriamente"));
+	}
+
+	
 	@RequestMapping(value = "/factura/emisionA4.htm", method = RequestMethod.GET)
 	public String showFacturacionA4Page(ModelMap modelMap) {
 		modelMap.addAttribute("marcas", marcaDAO.getMarcas());
 		modelMap.addAttribute("clientes", clienteDAO.getClientes());
 		modelMap.addAttribute("factura", new Factura());
 		modelMap.addAttribute("printers", PrinterJob.lookupPrintServices());
+		modelMap.addAttribute("regimenes", regimenDAO.getRegimenes());
 
 		items = new Items();
 
@@ -146,16 +231,17 @@ public class FacturaController extends AbstractPrint {
 
 		Collections.sort(factura.getItems());
 
-		// Obtener parámetro TipoFactura: fm (Manual) o fe (Factura electrónica)
+		// Obtener parï¿½metro TipoFactura: fm (Manual) o fe (Factura electrï¿½nica)
 		if (Factura.TIPO_FACTURA_ELECTRONICA.equals(tipoFactura)) {
-			String erroresYObservaciones = getCAEFacturaElectronica(factura, totales, FacturaType.FACTURA_TYPE_ELECTRONIC, FacturaType.TIPO_COMPROBANTE_FACTURA_A_AFIP);
+			String erroresYObservaciones = getCAEFacturaElectronica(factura, totales, FacturaUtils.getTipoFacturaElectronica(FacturaType.FACTURA_TYPE, factura), 
+					FacturaUtils.getTipoComprobanteAFIP(FacturaType.FACTURA_TYPE, factura.getCliente().isInscripto()));
 			if(StringUtils.isNotBlank(erroresYObservaciones)){
 				return new ModelAndView("successPage", "success", SuccessUtils.setSuccessBean(FACTURA_TITLE, erroresYObservaciones));
 			}		
 			
 			try {
 				generateXMLInputFEPDF(factura, totales, params.getIvaInscripto().getIVA());
-			} catch (IOException e) {
+			} catch (IOException | WriterException e) {
 				return new ModelAndView("successPage", "success", SuccessUtils.setSuccessBean(FACTURA_TITLE, "Error generando XML de entrada para FE en PDF mediante BirtViewer"));
 			}
 			
@@ -179,8 +265,10 @@ public class FacturaController extends AbstractPrint {
 	private String getCAEFacturaElectronica(Factura factura, Totales totales, Integer facturaType, int tipoComprobanteAFIP){
 		WsaaToken wsaaToken = null;
 		Params params = paramsDAO.getParams();
+		boolean notaCreditoElectronica = FacturaType.FACTURA_NC_TYPE_ELECTRONIC_A.equals(facturaType)
+				|| FacturaType.FACTURA_NC_TYPE_ELECTRONIC_B.equals(facturaType);
 		
-		if(getIsTokenAndSignExpired(params) || FacturaType.FACTURA_NC_TYPE_ELECTRONIC.equals(facturaType)){
+		if(getIsTokenAndSignExpired(params) || notaCreditoElectronica){
 			// Tipo Factura fe
 			WsaaService wsaaService = new WsaaService();
 			wsaaToken = wsaaService.getWsaaToken();			
@@ -197,32 +285,34 @@ public class FacturaController extends AbstractPrint {
 		
 		FEAuthRequest auth = new FEAuthRequest();
 		try{
-			System.out.println("Token: " + wsaaToken.getToken() + " Largo Token: " + wsaaToken.getToken().length() + "Sign: " + wsaaToken.getSign() + " Largo Sign: " + wsaaToken.getSign().length());
 			auth.setSign(wsaaToken.getSign());
 			auth.setToken(wsaaToken.getToken());
-			auth.setCuit(new Long("23045244059"));
+			auth.setCuit(new Long(CUIT_EMILIO));
 			params.setGenerationTimeTA(wsaaToken.getGenerationTime());
-			params.setExpirationTimeTA(FacturaType.FACTURA_NC_TYPE_ELECTRONIC.equals(facturaType)?null:wsaaToken.getExpirationTime());
+			params.setExpirationTimeTA(notaCreditoElectronica ? null : wsaaToken.getExpirationTime());
 			params.setToken(wsaaToken.getToken());
 			params.setSign(wsaaToken.getSign());
+			//Grabo token y sign data en params
+			paramsDAO.saveOrUpdateParams(params);
 		} catch(NullPointerException ex){
 			return "Error obteniendo Token y Sign de AFIP, intente nuevamente";
-		}
-		
+		}		
 
 		// Obtener ultimo comprobante autorizado
-		FERecuperaLastCbteResponse cbteResponse = service.feCompUltimoAutorizado(auth, 2, tipoComprobanteAFIP);
-		System.out.println("Primera invocación a último comprobante, Nro Comprobante: " + cbteResponse.getCbteNro()	+ " Tipo Cbte: " + cbteResponse.getCbteTipo() + " Pto Venta: " + cbteResponse.getPtoVta());
+		FERecuperaLastCbteResponse cbteResponse = service.feCompUltimoAutorizado(auth, PTO_VENTA, tipoComprobanteAFIP);
+		System.out.println("Primera invocaciï¿½n a ï¿½ltimo comprobante, Nro Comprobante: " + cbteResponse.getCbteNro()	+ " Tipo Cbte: " + cbteResponse.getCbteTipo() + " Pto Venta: " + cbteResponse.getPtoVta());
 		
-		//Chequeo si el último comprobante es correcto, sino vuelvo a invocar a WSAA
+		//Chequeo si el ï¿½ltimo comprobante es correcto, sino vuelvo a invocar a WSAA
 		if(!(cbteResponse.getCbteNro() > 0)){
 			String errors = invokeWSAA(auth, params, wsaaToken);
 			if(StringUtils.isNotBlank(errors))
 				return errors;
-			cbteResponse = service.feCompUltimoAutorizado(auth, 2, tipoComprobanteAFIP);
-			System.out.println("Segunda invocación a último comprobante, Nro Comprobante: " + cbteResponse.getCbteNro()	+ " Tipo Cbte: " + cbteResponse.getCbteTipo() + " Pto Venta: " + cbteResponse.getPtoVta());
+			cbteResponse = service.feCompUltimoAutorizado(auth, PTO_VENTA, tipoComprobanteAFIP);
+			System.out.println("Segunda invocaciï¿½n a ï¿½ltimo comprobante, Nro Comprobante: " + cbteResponse.getCbteNro()	+ " Tipo Cbte: " + cbteResponse.getCbteTipo() + " Pto Venta: " + cbteResponse.getPtoVta());
 		}
 		
+		//Guardo el nro de NC si fuera NC
+		final int nroNC = factura.getNroFactura();
 		//Guardo el nro de comprobante
 		factura.setNroFactura(cbteResponse.getCbteNro() + 1);
 		
@@ -231,10 +321,20 @@ public class FacturaController extends AbstractPrint {
 		FECAECabRequest feCAECabRequest = new FECAECabRequest();
 		feCAECabRequest.setCbteTipo(tipoComprobanteAFIP);
 		//TODO Revisar
-		feCAECabRequest.setPtoVta(2);
+		feCAECabRequest.setPtoVta(PTO_VENTA);
 		feCAECabRequest.setCantReg(1);
 
 		FECAEDetRequest fecaeDetRequest = new FECAEDetRequest();
+		//Para evitar error 10197
+		if(factura.getIsNotaDeCreditoElectronica()){
+			ArrayOfCbteAsoc comprobantesAsociados = new ArrayOfCbteAsoc();
+			CbteAsoc comprobanteAsociado = new CbteAsoc();
+			comprobanteAsociado.setPtoVta(2);
+			comprobanteAsociado.setTipo(FacturaUtils.getTipoComprobanteAFIP(factura.getFacturaType().getFacturaTypeId(), factura.getCliente().isInscripto()));
+			comprobanteAsociado.setNro(nroNC);
+			comprobantesAsociados.getCbteAsoc().add(comprobanteAsociado);
+			fecaeDetRequest.setCbtesAsoc(comprobantesAsociados);
+		}
 		// Concepto: 1 Productos 2 Servicios 3 Productos y Servicios
 		fecaeDetRequest.setConcepto(1);
 		// DocTipo: tipo de documento
@@ -250,9 +350,9 @@ public class FacturaController extends AbstractPrint {
 		fecaeDetRequest.setImpTotConc(new Double("0"));
 		fecaeDetRequest.setImpNeto(getAmount(totales.getSubTotalDescontado()));
 		fecaeDetRequest.setImpIVA(getAmount(totales.getIva()));
-		// MonId: código de moneda del comprobante
-		fecaeDetRequest.setMonId("PES");
-		// MonCotiz: cotización de la moneda, para pesos argentinos debe ser 1
+		// MonId: cï¿½digo de moneda del comprobante
+		fecaeDetRequest.setMonId(PESOS);
+		// MonCotiz: cotizaciï¿½n de la moneda, para pesos argentinos debe ser 1
 		fecaeDetRequest.setMonCotiz(new Double("1.000"));
 
 		ArrayOfAlicIva ivaImpuesto = new ArrayOfAlicIva();
@@ -293,11 +393,10 @@ public class FacturaController extends AbstractPrint {
 		
 		factura.setFacturaType(new FacturaType(facturaType));
 		
-		if(FacturaType.FACTURA_TYPE_ELECTRONIC.equals(facturaType))
-			params.setProxNumFacturaElectronica(factura.getNroFactura() + 1);
-		else
+		if(notaCreditoElectronica)
 			params.setProxNumNCDElectronica(factura.getNroFactura() + 1);
-		
+		else
+			params.setProxNumFacturaElectronica(factura.getNroFactura() + 1);
 		paramsDAO.saveOrUpdateParams(params);
 		
 		facturaDAO.saveUpdateFactura(factura);
@@ -312,7 +411,7 @@ public class FacturaController extends AbstractPrint {
 			System.out.println("Token: " + wsaaToken.getToken() + " Largo Token: " + wsaaToken.getToken().length() + "Sign: " + wsaaToken.getSign() + " Largo Sign: " + wsaaToken.getSign().length());
 			auth.setSign(wsaaToken.getSign());
 			auth.setToken(wsaaToken.getToken());
-			auth.setCuit(new Long("23045244059"));
+			auth.setCuit(new Long(CUIT_EMILIO));
 			params.setGenerationTimeTA(wsaaToken.getGenerationTime());
 			params.setExpirationTimeTA(wsaaToken.getExpirationTime());
 			params.setToken(wsaaToken.getToken());
@@ -340,21 +439,24 @@ public class FacturaController extends AbstractPrint {
 		ArrayOfErr arrayOfErrors = feCAEResponse.getErrors();
 		if(arrayOfErrors != null){
 			for (Err error : arrayOfErrors.getErr()) {
-				errors += "Código de error: " + error.getCode() + " Descripción: " + error.getMsg() + "<br>";
+				errors += "Cï¿½digo de error: " + error.getCode() + " Descripciï¿½n: " + error.getMsg() + "<br>";
 			}
 		}
 		FECAEDetResponse fecaeDetResponse = feCAEResponse.getFeDetResp().getFECAEDetResponse().get(0);
 		ArrayOfObs arrayOfObs = fecaeDetResponse.getObservaciones();
 		if(arrayOfObs != null){
 			for(Obs observation: arrayOfObs.getObs()){
-				errors += "Código de Observación: " + observation.getCode() + " Descripción: " + observation.getMsg() + "<br>";
+				errors += "Cï¿½digo de Observaciï¿½n: " + observation.getCode() + " Descripciï¿½n: " + observation.getMsg() + "<br>";
 			}
 		}
 		
 		return errors;
 	}
 
-	private void generateXMLInputFEPDF(Factura factura, Totales totales, BigDecimal iva) throws IOException {		
+	private void generateXMLInputFEPDF(Factura factura, Totales totales, BigDecimal iva) throws IOException, WriterException {		
+		//Generacion de codigo QR
+		generateQRCode(factura, totales, iva);
+		
 		FileWriter xmlInputFEPDF = new FileWriter(new File(FacturaUtils.getProperty(FacturaUtils.PATH_INPUT_PDF)));
 		BufferedWriter bufferedWriter = new BufferedWriter(xmlInputFEPDF);
 
@@ -366,7 +468,9 @@ public class FacturaController extends AbstractPrint {
 		bufferedWriter.newLine();
 		bufferedWriter.append("<feTipoFactura>" + getTipoFactura(factura) + "</feTipoFactura>");
 		bufferedWriter.newLine();
-		bufferedWriter.append("<feCodigoTipoFactura>" + getTipoComprobante(factura) + "</feCodigoTipoFactura>");
+		bufferedWriter.append("<feCodigoTipoFactura>" + FacturaUtils.getTipoComprobanteAFIP(factura.getFacturaType().getFacturaTypeId(), factura.getCliente().isInscripto()) + "</feCodigoTipoFactura>");
+		bufferedWriter.newLine();
+		bufferedWriter.append("<feLetraTipoFactura>" + FacturaUtils.getLetraFacturaPDF(factura) + "</feLetraTipoFactura>");
 		bufferedWriter.newLine();
 		bufferedWriter.append("<feNro>" + "0002 - " + getNroFactura(factura.getNroFactura()) + "</feNro>");
 		bufferedWriter.newLine();
@@ -392,13 +496,27 @@ public class FacturaController extends AbstractPrint {
 		bufferedWriter.newLine();
 		bufferedWriter.append("<fePorcentajeIVA>"	+ getAmount(iva, 4) + "%</fePorcentajeIVA>");
 		bufferedWriter.newLine();
-		bufferedWriter.append("<feIVA>" + getAmount(totales.getIva(), 8) + "</feIVA>");
+		if(FacturaUtils.isFacturaOrNCTipoB(factura)){
+			bufferedWriter.append("<feIVA>" + "" + "</feIVA>");
+		}else{
+			bufferedWriter.append("<feIVA>" + getAmount(totales.getIva(), 8) + "</feIVA>");
+		}
 		bufferedWriter.newLine();
-		bufferedWriter.append("<feSubTotalUno>" + getAmount(totales.getSubTotal(), 8) + "</feSubTotalUno>");
+		if(FacturaUtils.isFacturaOrNCTipoB(factura)){
+			bufferedWriter.append("<feSubTotalUno>" + getAmount(totales.getSubTotal().
+					multiply(paramsDAO.getParams().getIvaInscripto().getIVA().divide(FacturaUtils.PORCENTUAL).add(new BigDecimal("1"))) , 8) + "</feSubTotalUno>");
+		}else{
+			bufferedWriter.append("<feSubTotalUno>" + getAmount(totales.getSubTotal(), 8) + "</feSubTotalUno>");
+		}
 		bufferedWriter.newLine();
 		bufferedWriter.append("<feDescuentoPorcentaje></feDescuentoPorcentaje>");
 		bufferedWriter.newLine();
-		bufferedWriter.append("<feDescuento>" + getAmount(totales.getDescuentoTotal(), 8)	+ "</feDescuento>");
+		if(FacturaUtils.isFacturaOrNCTipoB(factura)){
+			bufferedWriter.append("<feDescuento>" + getAmount(totales.getDescuentoTotal().multiply
+					(paramsDAO.getParams().getIvaInscripto().getIVA().divide(FacturaUtils.PORCENTUAL).add(new BigDecimal("1"))), 8)	+ "</feDescuento>");
+		}else{
+			bufferedWriter.append("<feDescuento>" + getAmount(totales.getDescuentoTotal(), 8)	+ "</feDescuento>");
+		}
 		bufferedWriter.newLine();
 		bufferedWriter.append("<feSubTotalDos>"	+ getAmount(totales.getSubTotalDescontado(), 8) + "</feSubTotalDos>");
 		bufferedWriter.newLine();
@@ -412,8 +530,8 @@ public class FacturaController extends AbstractPrint {
 		int i = 1;
 		for (ItemFactura item : factura.getItems()) {
 			bufferedWriter.append(	"<feItem"	+ i + "Codigo>" + getNormalizedWidthCode(item.getArticulo().getMarca().getId().toString(), 3) 
-									+ getNormalizedWidthCode(item.getArticulo().getFamilia().getCodigo().toString(), 3)
-									+ getNormalizedWidthCode(item.getArticulo().getCodigo().toString(), 7)
+									+ getNormalizedWidthCode(item.getArticulo().getFamilia().getCodigo().toString(), 4)
+									+ getNormalizedWidthCode(item.getArticulo().getCodigo().toString(), 8)
 									+ "</feItem"+ i + "Codigo>");
 			bufferedWriter.newLine();
 			bufferedWriter.append("<feItem"
@@ -426,13 +544,25 @@ public class FacturaController extends AbstractPrint {
 									+ i	+ "Cant>" + getNormalizedWidthCode(item.getCantidad().toString(),	6) 
 									+ "</feItem" + i + "Cant>");
 			bufferedWriter.newLine();
-			bufferedWriter.append("<feItem" + i + "Descuento>"
-									+ getAmount(item.getDescuento(), 4) + "</feItem" + i + "Descuento>");
+			
+			bufferedWriter.append("<feItem" + i + "Descuento>"	+ getAmount(item.getDescuento(), 4) + "</feItem" + i + "Descuento>");
 			bufferedWriter.newLine();
-			bufferedWriter.append("<feItem" + i + "Precio>"	+ getAmount(item.getArticulo().getPrecioVenta(), 8)
+
+			if(FacturaUtils.isFacturaOrNCTipoB(factura)){
+				bufferedWriter.append("<feItem" + i + "Precio>"	+ getAmount(item.getPrecio().
+						multiply(paramsDAO.getParams().getIvaInscripto().getIVA().divide(FacturaUtils.PORCENTUAL).add(new BigDecimal("1"))), 8)
+				+ "</feItem" + i + "Precio>");
+			}else{
+				bufferedWriter.append("<feItem" + i + "Precio>"	+ getAmount(item.getPrecio(), 8)
 									+ "</feItem" + i + "Precio>");
+			}
 			bufferedWriter.newLine();
-			bufferedWriter.append("<feItem" + i + "Importe>" + getAmount(item.getTotalItem(), 8) + "</feItem" + i + "Importe>");
+			if(FacturaUtils.isFacturaOrNCTipoB(factura)){
+				bufferedWriter.append("<feItem" + i + "Importe>" + getAmount(item.getTotalItem().
+						multiply(paramsDAO.getParams().getIvaInscripto().getIVA().divide(FacturaUtils.PORCENTUAL).add(new BigDecimal("1"))), 8) + "</feItem" + i + "Importe>");
+			}else{
+				bufferedWriter.append("<feItem" + i + "Importe>" + getAmount(item.getTotalItem(), 8) + "</feItem" + i + "Importe>");
+			}
 			bufferedWriter.newLine();
 			++i;
 		}
@@ -473,6 +603,66 @@ public class FacturaController extends AbstractPrint {
 		bufferedWriter.close();
 	}
 	
+	private void generateQRCode(Factura factura, Totales totales, BigDecimal iva) throws WriterException, IOException {
+		JSONAfipBean afipBean = new JSONAfipBean();
+		afipBean.setVer(1);
+		afipBean.setFecha(DateUtils.convertDateToStringQrCode(new Date()));
+		afipBean.setCuit(new BigInteger(CUIT_EMILIO));
+		afipBean.setPtoVta(PTO_VENTA);
+		afipBean.setTipoCmp(FacturaUtils.getTipoComprobanteAFIP(factura.getFacturaType().getFacturaTypeId(), factura.getCliente().isInscripto()));
+		afipBean.setNroCmp(factura.getNroFactura());
+		afipBean.setImporte(totales.getTotal());
+		afipBean.setMoneda(PESOS);
+		afipBean.setCtz(new BigDecimal("1"));
+		afipBean.setTipoDocRec(80);
+		afipBean.setNroDocRec(new BigInteger(factura.getCliente().getCuit()));
+		afipBean.setTipoCodAut("E");
+		afipBean.setCodAut(new BigInteger(factura.getCAE()));
+
+		final Gson gson = new Gson();
+		String json = gson.toJson(afipBean);
+
+		String base64 = Base64.encode(json.getBytes());
+		System.out.println("JSON: " + json);
+		System.out.println("JSON base 64: " + URL + base64);
+
+		// Zxing QrCode Image
+		String qrCodeText = URL + base64;
+		String filePath = "C:\\PkWEB\\FacturaElectronica\\qrCode.jpg";
+		int size = 140;
+		String fileType = "jpg";
+		File qrFile = new File(filePath);
+		createQRImage(qrFile, qrCodeText, size, fileType);
+	}
+	
+	private static void createQRImage(File qrFile, String qrCodeText, int size, String fileType)
+			throws WriterException, IOException {
+		// Create the ByteMatrix for the QR-Code that encodes the given String
+		Hashtable<EncodeHintType, ErrorCorrectionLevel> hintMap = new Hashtable<>();
+		hintMap.put(EncodeHintType.ERROR_CORRECTION, ErrorCorrectionLevel.L);
+		QRCodeWriter qrCodeWriter = new QRCodeWriter();
+		BitMatrix byteMatrix = qrCodeWriter.encode(qrCodeText, BarcodeFormat.QR_CODE, size, size, hintMap);
+		// Make the BufferedImage that are to hold the QRCode
+		int matrixWidth = byteMatrix.getWidth();
+		BufferedImage image = new BufferedImage(matrixWidth, matrixWidth, BufferedImage.TYPE_INT_RGB);
+		image.createGraphics();
+
+		Graphics2D graphics = (Graphics2D) image.getGraphics();
+		graphics.setColor(Color.WHITE);
+		graphics.fillRect(0, 0, matrixWidth, matrixWidth);
+		// Paint and save the image using the ByteMatrix
+		graphics.setColor(Color.BLACK);
+
+		for (int i = 0; i < matrixWidth; i++) {
+			for (int j = 0; j < matrixWidth; j++) {
+				if (byteMatrix.get(i, j)) {
+					graphics.fillRect(i, j, 1, 1);
+				}
+			}
+		}
+		ImageIO.write(image, fileType, qrFile);
+	}
+
 	private String getNroFactura(Integer nroFactura) {
 		String nroFacturaString = nroFactura.toString();
 		if(nroFacturaString.length() < 8){
@@ -509,13 +699,9 @@ public class FacturaController extends AbstractPrint {
 	private String getCodigoBarrasList(Factura factura) {
 		String codigoBarrasString = "";
 		//CUIT 23045244059
-		codigoBarrasString += "23045244059";
+		codigoBarrasString += CUIT_EMILIO;
 		//Codigo Comprobante
-		if(factura.getIsFacturaElectronica()){
-			codigoBarrasString += "01";
-		}else{
-			codigoBarrasString += "03";
-		}
+		codigoBarrasString += "0" + FacturaUtils.getTipoComprobanteAFIP(factura.getFacturaType().getFacturaTypeId(), factura.getCliente().isInscripto());
 		//Punto de Venta
 		codigoBarrasString += "0002"; 
 		//CAE
@@ -527,12 +713,12 @@ public class FacturaController extends AbstractPrint {
 	}
 
 	private int getDigitoVerificador(char[] codigoBarrasInput){
-		 /*- C.U.I.T. (Clave Unica de Identificación Tributaria) del emisor (11 caracteres).
-		 - Código de tipo de comprobante (2 caracteres).
+		 /*- C.U.I.T. (Clave Unica de Identificaciï¿½n Tributaria) del emisor (11 caracteres).
+		 - Cï¿½digo de tipo de comprobante (2 caracteres).
 		 - Punto de venta (4 caracteres).
-		 - Código de Autorización de Impresión (14 caracteres).
+		 - Cï¿½digo de Autorizaciï¿½n de Impresiï¿½n (14 caracteres).
 		 - Fecha de vencimiento (8 caracteres).
-		 - Dígito verificador (1 carácter)*/
+		 - Dï¿½gito verificador (1 carï¿½cter)*/
 		
 		int digitoVerificador = 0;
 		
@@ -563,14 +749,8 @@ public class FacturaController extends AbstractPrint {
 		return digitoVerificador;
 	}
 
-	private String getTipoComprobante(Factura factura) {
-		if(FacturaType.FACTURA_TYPE_ELECTRONIC.equals(factura.getFacturaType().getFacturaTypeId()))
-			return "01";
-		return "03";
-	}
-
 	private String getTipoFactura(Factura factura) {
-		if(FacturaType.FACTURA_TYPE_ELECTRONIC.equals(factura.getFacturaType().getFacturaTypeId()))
+		if(factura.getIsFacturaElectronica())
 			return "FACTURA";
 		return "NOTA DE CREDITO";
 	}
@@ -659,7 +839,7 @@ public class FacturaController extends AbstractPrint {
 	
 	@RequestMapping(value = "/factura/reImpresionFacturaElectronica.htm", method = RequestMethod.POST)
 	public ModelAndView findFacturaElectronica(@ModelAttribute("factura") Factura factura, BindingResult result) {
-		Factura facturaDB = facturaDAO.getFacturaByNumberAndType(factura.getNroFactura(), getFacturaType(factura.getFacturaType().getFacturaTypeId()));
+		Factura facturaDB = facturaDAO.getFacturaByNumberAndType(factura.getNroFactura(), factura.getFacturaType().getFacturaTypeId());
 		consultaFacturaValidator.validate(facturaDB, result);
 
 		if (result.hasErrors()) {
@@ -674,7 +854,7 @@ public class FacturaController extends AbstractPrint {
 
 		try {
 			generateXMLInputFEPDF(facturaDB, (Totales)modelAndView.getModel().get("totales"), paramsDAO.getParams().getIvaInscripto().getIVA());
-		} catch (IOException e) {
+		} catch (IOException | WriterException e) {
 			return new ModelAndView("successPage", "success", SuccessUtils.setSuccessBean(FACTURA_TITLE, "Error generando XML de entrada para FE en PDF mediante BirtViewer"));
 		}
 		
@@ -690,11 +870,7 @@ public class FacturaController extends AbstractPrint {
 	@RequestMapping(value = "/factura/notaCredito.htm", method = RequestMethod.GET)
 	public String showNotaCredito(ModelMap modelMap) {
 		modelMap.addAttribute("factura", new Factura());
-		Params params = paramsDAO.getParams();
-		params.setToken("cES0SSuWIIPlfe5/dLtb0Qeg2jQuvYuuSEDOrz+w2EnAQiEeS86gzYf7ehiU3UaYit5FRb9z/3zq");
-		
-		paramsDAO.saveOrUpdateParams(params);
-		
+
 		return "/factura/notaCreditoForm";
 	}
 
@@ -743,15 +919,17 @@ public class FacturaController extends AbstractPrint {
 
 		facturaDAO.saveUpdateFactura(factura);
 		// PRINT NC.
-		if (FacturaType.FACTURA_NC_TYPE_ELECTRONIC.equals(factura.getFacturaType().getFacturaTypeId())) {
-			String erroresYObservaciones = getCAEFacturaElectronica(factura, totales, FacturaType.FACTURA_NC_TYPE_ELECTRONIC, FacturaType.TIPO_COMPROBANTE_NOTA_CREDITO_A_AFIP);
+		if ((FacturaType.FACTURA_NC_TYPE_ELECTRONIC_A.compareTo(factura.getFacturaType().getFacturaTypeId()) == 0)
+				|| (FacturaType.FACTURA_NC_TYPE_ELECTRONIC_B.compareTo(factura.getFacturaType().getFacturaTypeId()) == 0)) {
+			String erroresYObservaciones = getCAEFacturaElectronica(factura, totales, FacturaUtils.getTipoFacturaElectronica(FacturaType.FACTURA_NC_TYPE, factura), 
+					FacturaUtils.getTipoComprobanteAFIP(FacturaType.FACTURA_NC_TYPE, factura.getCliente().isInscripto()));
 			if(StringUtils.isNotBlank(erroresYObservaciones)){
 				return new ModelAndView("successPage", "success", SuccessUtils.setSuccessBean(FACTURA_TITLE, erroresYObservaciones));
 			}		
 			
 			try {
 				generateXMLInputFEPDF(factura, totales, paramsDAO.getParams().getIvaInscripto().getIVA());
-			} catch (IOException e) {
+			} catch (IOException | WriterException e) {
 				return new ModelAndView("successPage", "success", SuccessUtils.setSuccessBean(FACTURA_TITLE, "Error generando XML de entrada para FE en PDF mediante BirtViewer"));
 			}
 			
@@ -761,15 +939,16 @@ public class FacturaController extends AbstractPrint {
 			new PrintFacturaA4(factura, totales, paramsDAO.getParams(),	printerServiceIndex);	
 		}
 
-		return new ModelAndView("successPage", "success", SuccessUtils.setSuccessBean("Notas de Credito", "Nota de Crédito emitida satisfactoriamente"));
+		return new ModelAndView("successPage", "success", SuccessUtils.setSuccessBean("Notas de Credito", "Nota de Crï¿½dito emitida satisfactoriamente"));
 	}
 
 	private FacturaType getFacturaTypeForNC(Factura factura) {
 		if(FacturaType.FACTURA_TYPE.equals(factura.getFacturaType().getFacturaTypeId()))
 			return new FacturaType(FacturaType.FACTURA_NC_TYPE);
-		if(FacturaType.FACTURA_TYPE_ELECTRONIC.equals(factura.getFacturaType().getFacturaTypeId()))
-			return new FacturaType(FacturaType.FACTURA_NC_TYPE_ELECTRONIC);
-		return null;
+		if(FacturaType.FACTURA_TYPE_ELECTRONIC_A.equals(factura.getFacturaType().getFacturaTypeId()) && factura.getCliente().isInscripto())
+			return new FacturaType(FacturaType.FACTURA_NC_TYPE_ELECTRONIC_A);
+		else
+			return new FacturaType(FacturaType.FACTURA_NC_TYPE_ELECTRONIC_B);
 	}
 
 	@RequestMapping(value = "/factura/anularFactura.htm", method = RequestMethod.GET)
@@ -810,7 +989,7 @@ public class FacturaController extends AbstractPrint {
 
 		facturaDAO.saveUpdateFactura(factura);
 
-		return new ModelAndView("successPage", "success", SuccessUtils.setSuccessBean("Anulación Factura", "Factura: "
+		return new ModelAndView("successPage", "success", SuccessUtils.setSuccessBean("Anulaciï¿½n Factura", "Factura: "
 						+ factura.getNroFactura() + " anulada satisfactoriamente"));
 	}
 

@@ -1034,6 +1034,41 @@
                     <property name="analysis">dimension</property>
                     <text-property name="heading">feComentarios4</text-property>
                 </structure>
+                <structure>
+                    <property name="columnName">feLetraTipoFactura</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="heading">feLetraTipoFactura</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">feItem31Codigo</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="heading">feItem31Codigo</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">feItem31Descripcion</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="heading">feItem31Descripcion</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">feItem31Cant</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="heading">feItem31Cant</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">feItem31Descuento</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="heading">feItem31Descuento</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">feItem31Precio</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="heading">feItem31Precio</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">feItem31Importe</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="heading">feItem31Importe</text-property>
+                </structure>
             </list-property>
             <list-property name="parameters"/>
             <structure name="cachedMetaData">
@@ -2056,6 +2091,41 @@
                     <structure>
                         <property name="position">204</property>
                         <property name="name">feComentarios4</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">205</property>
+                        <property name="name">feLetraTipoFactura</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">206</property>
+                        <property name="name">feItem31Codigo</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">207</property>
+                        <property name="name">feItem31Descripcion</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">208</property>
+                        <property name="name">feItem31Cant</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">209</property>
+                        <property name="name">feItem31Descuento</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">210</property>
+                        <property name="name">feItem31Precio</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">211</property>
+                        <property name="name">feItem31Importe</property>
                         <property name="dataType">string</property>
                     </structure>
                 </list-property>
@@ -3490,8 +3560,57 @@
                     <property name="dataType">string</property>
                     <property name="nativeDataType">12</property>
                 </structure>
+                <structure>
+                    <property name="position">205</property>
+                    <property name="name">feLetraTipoFactura</property>
+                    <property name="nativeName">feLetraTipoFactura</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">206</property>
+                    <property name="name">feItem31Codigo</property>
+                    <property name="nativeName">feItem31Codigo</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">207</property>
+                    <property name="name">feItem31Descripcion</property>
+                    <property name="nativeName">feItem31Descripcion</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">208</property>
+                    <property name="name">feItem31Cant</property>
+                    <property name="nativeName">feItem31Cant</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">209</property>
+                    <property name="name">feItem31Descuento</property>
+                    <property name="nativeName">feItem31Descuento</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">210</property>
+                    <property name="name">feItem31Precio</property>
+                    <property name="nativeName">feItem31Precio</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">211</property>
+                    <property name="name">feItem31Importe</property>
+                    <property name="nativeName">feItem31Importe</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
             </list-property>
-            <xml-property name="queryText"><![CDATA[table0#-TNAME-#table0#:#[/InputData]#:#{feTipoFactura;STRING;/feDATA/feTipoFactura},{feCodigoTipoFactura;STRING;/feDATA/feCodigoTipoFactura},{feNro;STRING;/feDATA/feNro},{feFecha;STRING;/feDATA/feFecha},{feComprador;STRING;/feDATA/feComprador},{feCompradorCalle;STRING;/feDATA/feCompradorCalle},{feCompradorLocalidad;STRING;/feDATA/feCompradorLocalidad},{feCUIT;STRING;/feDATA/feCUIT},{feCondicionesVenta;STRING;/feDATA/feCondicionesVenta},{feRemitoNro;STRING;/feDATA/feRemitoNro},{fePorcentajeIVA;STRING;/feDATA/fePorcentajeIVA},{feIVA;STRING;/feDATA/feIVA},{feSubTotalUno;STRING;/feDATA/feSubTotalUno},{feDescuentoPorcentaje;STRING;/feDATA/feDescuentoPorcentaje},{feDescuento;STRING;/feDATA/feDescuento},{feSubTotalDos;STRING;/feDATA/feSubTotalDos},{feTotal;STRING;/feDATA/feTotal},{feCAE;STRING;/feDATA/feCAE},{feCAEVto;STRING;/feDATA/feCAEVto},{feItem1Codigo;STRING;/feDATA/feItem1Codigo},{feItem1Descripcion;STRING;/feDATA/feItem1Descripcion},{feItem1Cant;STRING;/feDATA/feItem1Cant},{feItem1Descuento;STRING;/feDATA/feItem1Descuento},{feItem1Precio;STRING;/feDATA/feItem1Precio},{feItem1Importe;STRING;/feDATA/feItem1Importe},{feItem2Codigo;STRING;/feDATA/feItem2Codigo},{feItem2Descripcion;STRING;/feDATA/feItem2Descripcion},{feItem2Cant;STRING;/feDATA/feItem2Cant},{feItem2Descuento;STRING;/feDATA/feItem2Descuento},{feItem2Precio;STRING;/feDATA/feItem2Precio},{feItem2Importe;STRING;/feDATA/feItem2Importe},{feItem3Codigo;STRING;/feDATA/feItem3Codigo},{feItem3Descripcion;STRING;/feDATA/feItem3Descripcion},{feItem3Cant;STRING;/feDATA/feItem3Cant},{feItem3Descuento;STRING;/feDATA/feItem3Descuento},{feItem3Precio;STRING;/feDATA/feItem3Precio},{feItem3Importe;STRING;/feDATA/feItem3Importe},{feItem4Codigo;STRING;/feDATA/feItem4Codigo},{feItem4Descripcion;STRING;/feDATA/feItem4Descripcion},{feItem4Cant;STRING;/feDATA/feItem4Cant},{feItem4Descuento;STRING;/feDATA/feItem4Descuento},{feItem4Precio;STRING;/feDATA/feItem4Precio},{feItem4Importe;STRING;/feDATA/feItem4Importe},{feItem5Codigo;STRING;/feDATA/feItem5Codigo},{feItem5Descripcion;STRING;/feDATA/feItem5Descripcion},{feItem5Cant;STRING;/feDATA/feItem5Cant},{feItem5Descuento;STRING;/feDATA/feItem5Descuento},{feItem5Precio;STRING;/feDATA/feItem5Precio},{feItem5Importe;STRING;/feDATA/feItem5Importe},{feItem6Codigo;STRING;/feDATA/feItem6Codigo},{feItem6Descripcion;STRING;/feDATA/feItem6Descripcion},{feItem6Cant;STRING;/feDATA/feItem6Cant},{feItem6Descuento;STRING;/feDATA/feItem6Descuento},{feItem6Precio;STRING;/feDATA/feItem6Precio},{feItem6Importe;STRING;/feDATA/feItem6Importe},{feItem7Codigo;STRING;/feDATA/feItem7Codigo},{feItem7Descripcion;STRING;/feDATA/feItem7Descripcion},{feItem7Cant;STRING;/feDATA/feItem7Cant},{feItem7Descuento;STRING;/feDATA/feItem7Descuento},{feItem7Precio;STRING;/feDATA/feItem7Precio},{feItem7Importe;STRING;/feDATA/feItem7Importe},{feItem8Codigo;STRING;/feDATA/feItem8Codigo},{feItem8Descripcion;STRING;/feDATA/feItem8Descripcion},{feItem8Cant;STRING;/feDATA/feItem8Cant},{feItem8Descuento;STRING;/feDATA/feItem8Descuento},{feItem8Precio;STRING;/feDATA/feItem8Precio},{feItem8Importe;STRING;/feDATA/feItem8Importe},{feItem9Codigo;STRING;/feDATA/feItem9Codigo},{feItem9Descripcion;STRING;/feDATA/feItem9Descripcion},{feItem9Cant;STRING;/feDATA/feItem9Cant},{feItem9Descuento;STRING;/feDATA/feItem9Descuento},{feItem9Precio;STRING;/feDATA/feItem9Precio},{feItem9Importe;STRING;/feDATA/feItem9Importe},{feItem10Codigo;STRING;/feDATA/feItem10Codigo},{feItem10Descripcion;STRING;/feDATA/feItem10Descripcion},{feItem10Cant;STRING;/feDATA/feItem10Cant},{feItem10Descuento;STRING;/feDATA/feItem10Descuento},{feItem10Precio;STRING;/feDATA/feItem10Precio},{feItem10Importe;STRING;/feDATA/feItem10Importe},{feItem11Codigo;STRING;/feDATA/feItem11Codigo},{feItem11Descripcion;STRING;/feDATA/feItem11Descripcion},{feItem11Cant;STRING;/feDATA/feItem11Cant},{feItem11Descuento;STRING;/feDATA/feItem11Descuento},{feItem11Precio;STRING;/feDATA/feItem11Precio},{feItem11Importe;STRING;/feDATA/feItem11Importe},{feItem12Codigo;STRING;/feDATA/feItem12Codigo},{feItem12Descripcion;STRING;/feDATA/feItem12Descripcion},{feItem12Cant;STRING;/feDATA/feItem12Cant},{feItem12Descuento;STRING;/feDATA/feItem12Descuento},{feItem12Precio;STRING;/feDATA/feItem12Precio},{feItem12Importe;STRING;/feDATA/feItem12Importe},{feItem13Codigo;STRING;/feDATA/feItem13Codigo},{feItem13Descripcion;STRING;/feDATA/feItem13Descripcion},{feItem13Cant;STRING;/feDATA/feItem13Cant},{feItem13Descuento;STRING;/feDATA/feItem13Descuento},{feItem13Precio;STRING;/feDATA/feItem13Precio},{feItem13Importe;STRING;/feDATA/feItem13Importe},{feItem14Codigo;STRING;/feDATA/feItem14Codigo},{feItem14Descripcion;STRING;/feDATA/feItem14Descripcion},{feItem14Cant;STRING;/feDATA/feItem14Cant},{feItem14Descuento;STRING;/feDATA/feItem14Descuento},{feItem14Precio;STRING;/feDATA/feItem14Precio},{feItem14Importe;STRING;/feDATA/feItem14Importe},{feItem15Codigo;STRING;/feDATA/feItem15Codigo},{feItem15Descripcion;STRING;/feDATA/feItem15Descripcion},{feItem15Cant;STRING;/feDATA/feItem15Cant},{feItem15Descuento;STRING;/feDATA/feItem15Descuento},{feItem15Precio;STRING;/feDATA/feItem15Precio},{feItem15Importe;STRING;/feDATA/feItem15Importe},{feItem16Codigo;STRING;/feDATA/feItem16Codigo},{feItem16Descripcion;STRING;/feDATA/feItem16Descripcion},{feItem16Cant;STRING;/feDATA/feItem16Cant},{feItem16Descuento;STRING;/feDATA/feItem16Descuento},{feItem16Precio;STRING;/feDATA/feItem16Precio},{feItem16Importe;STRING;/feDATA/feItem16Importe},{feItem17Codigo;STRING;/feDATA/feItem17Codigo},{feItem17Descripcion;STRING;/feDATA/feItem17Descripcion},{feItem17Cant;STRING;/feDATA/feItem17Cant},{feItem17Descuento;STRING;/feDATA/feItem17Descuento},{feItem17Precio;STRING;/feDATA/feItem17Precio},{feItem17Importe;STRING;/feDATA/feItem17Importe},{feItem18Codigo;STRING;/feDATA/feItem18Codigo},{feItem18Descripcion;STRING;/feDATA/feItem18Descripcion},{feItem18Cant;STRING;/feDATA/feItem18Cant},{feItem18Descuento;STRING;/feDATA/feItem18Descuento},{feItem18Precio;STRING;/feDATA/feItem18Precio},{feItem18Importe;STRING;/feDATA/feItem18Importe},{feItem19Codigo;STRING;/feDATA/feItem19Codigo},{feItem19Descripcion;STRING;/feDATA/feItem19Descripcion},{feItem19Cant;STRING;/feDATA/feItem19Cant},{feItem19Descuento;STRING;/feDATA/feItem19Descuento},{feItem19Precio;STRING;/feDATA/feItem19Precio},{feItem19Importe;STRING;/feDATA/feItem19Importe},{feItem20Codigo;STRING;/feDATA/feItem20Codigo},{feItem20Descripcion;STRING;/feDATA/feItem20Descripcion},{feItem20Cant;STRING;/feDATA/feItem20Cant},{feItem20Descuento;STRING;/feDATA/feItem20Descuento},{feItem20Precio;STRING;/feDATA/feItem20Precio},{feItem20Importe;STRING;/feDATA/feItem20Importe},{feItem21Codigo;STRING;/feDATA/feItem21Codigo},{feItem21Descripcion;STRING;/feDATA/feItem21Descripcion},{feItem21Cant;STRING;/feDATA/feItem21Cant},{feItem21Descuento;STRING;/feDATA/feItem21Descuento},{feItem21Precio;STRING;/feDATA/feItem21Precio},{feItem21Importe;STRING;/feDATA/feItem21Importe},{feItem22Codigo;STRING;/feDATA/feItem22Codigo},{feItem22Descripcion;STRING;/feDATA/feItem22Descripcion},{feItem22Cant;STRING;/feDATA/feItem22Cant},{feItem22Descuento;STRING;/feDATA/feItem22Descuento},{feItem22Precio;STRING;/feDATA/feItem22Precio},{feItem22Importe;STRING;/feDATA/feItem22Importe},{feItem23Codigo;STRING;/feDATA/feItem23Codigo},{feItem23Descripcion;STRING;/feDATA/feItem23Descripcion},{feItem23Cant;STRING;/feDATA/feItem23Cant},{feItem23Descuento;STRING;/feDATA/feItem23Descuento},{feItem23Precio;STRING;/feDATA/feItem23Precio},{feItem23Importe;STRING;/feDATA/feItem23Importe},{feItem24Codigo;STRING;/feDATA/feItem24Codigo},{feItem24Descripcion;STRING;/feDATA/feItem24Descripcion},{feItem24Cant;STRING;/feDATA/feItem24Cant},{feItem24Descuento;STRING;/feDATA/feItem24Descuento},{feItem24Precio;STRING;/feDATA/feItem24Precio},{feItem24Importe;STRING;/feDATA/feItem24Importe},{feItem25Codigo;STRING;/feDATA/feItem25Codigo},{feItem25Descripcion;STRING;/feDATA/feItem25Descripcion},{feItem25Cant;STRING;/feDATA/feItem25Cant},{feItem25Descuento;STRING;/feDATA/feItem25Descuento},{feItem25Precio;STRING;/feDATA/feItem25Precio},{feItem25Importe;STRING;/feDATA/feItem25Importe},{feItem26Codigo;STRING;/feDATA/feItem26Codigo},{feItem26Descripcion;STRING;/feDATA/feItem26Descripcion},{feItem26Cant;STRING;/feDATA/feItem26Cant},{feItem26Descuento;STRING;/feDATA/feItem26Descuento},{feItem26Precio;STRING;/feDATA/feItem26Precio},{feItem26Importe;STRING;/feDATA/feItem26Importe},{feItem27Codigo;STRING;/feDATA/feItem27Codigo},{feItem27Descripcion;STRING;/feDATA/feItem27Descripcion},{feItem27Cant;STRING;/feDATA/feItem27Cant},{feItem27Descuento;STRING;/feDATA/feItem27Descuento},{feItem27Precio;STRING;/feDATA/feItem27Precio},{feItem27Importe;STRING;/feDATA/feItem27Importe},{feItem28Codigo;STRING;/feDATA/feItem28Codigo},{feItem28Descripcion;STRING;/feDATA/feItem28Descripcion},{feItem28Cant;STRING;/feDATA/feItem28Cant},{feItem28Descuento;STRING;/feDATA/feItem28Descuento},{feItem28Precio;STRING;/feDATA/feItem28Precio},{feItem28Importe;STRING;/feDATA/feItem28Importe},{feItem29Codigo;STRING;/feDATA/feItem29Codigo},{feItem29Descripcion;STRING;/feDATA/feItem29Descripcion},{feItem29Cant;STRING;/feDATA/feItem29Cant},{feItem29Descuento;STRING;/feDATA/feItem29Descuento},{feItem29Precio;STRING;/feDATA/feItem29Precio},{feItem29Importe;STRING;/feDATA/feItem29Importe},{feItem30Codigo;STRING;/feDATA/feItem30Codigo},{feItem30Descripcion;STRING;/feDATA/feItem30Descripcion},{feItem30Cant;STRING;/feDATA/feItem30Cant},{feItem30Descuento;STRING;/feDATA/feItem30Descuento},{feItem30Precio;STRING;/feDATA/feItem30Precio},{feItem30Importe;STRING;/feDATA/feItem30Importe},{feCodigoBarras;STRING;/feDATA/feCodigoBarras},{feComentarios1;STRING;/feDATA/feComentarios1},{feComentarios2;STRING;/feDATA/feComentarios2},{feComentarios3;STRING;/feDATA/feComentarios3},{feComentarios4;STRING;/feDATA/feComentarios4}]]></xml-property>
+            <xml-property name="queryText"><![CDATA[table0#-TNAME-#table0#:#[/InputData]#:#{feTipoFactura;STRING;/feDATA/feTipoFactura},{feCodigoTipoFactura;STRING;/feDATA/feCodigoTipoFactura},{feNro;STRING;/feDATA/feNro},{feFecha;STRING;/feDATA/feFecha},{feComprador;STRING;/feDATA/feComprador},{feCompradorCalle;STRING;/feDATA/feCompradorCalle},{feCompradorLocalidad;STRING;/feDATA/feCompradorLocalidad},{feCUIT;STRING;/feDATA/feCUIT},{feCondicionesVenta;STRING;/feDATA/feCondicionesVenta},{feRemitoNro;STRING;/feDATA/feRemitoNro},{fePorcentajeIVA;STRING;/feDATA/fePorcentajeIVA},{feIVA;STRING;/feDATA/feIVA},{feSubTotalUno;STRING;/feDATA/feSubTotalUno},{feDescuentoPorcentaje;STRING;/feDATA/feDescuentoPorcentaje},{feDescuento;STRING;/feDATA/feDescuento},{feSubTotalDos;STRING;/feDATA/feSubTotalDos},{feTotal;STRING;/feDATA/feTotal},{feCAE;STRING;/feDATA/feCAE},{feCAEVto;STRING;/feDATA/feCAEVto},{feItem1Codigo;STRING;/feDATA/feItem1Codigo},{feItem1Descripcion;STRING;/feDATA/feItem1Descripcion},{feItem1Cant;STRING;/feDATA/feItem1Cant},{feItem1Descuento;STRING;/feDATA/feItem1Descuento},{feItem1Precio;STRING;/feDATA/feItem1Precio},{feItem1Importe;STRING;/feDATA/feItem1Importe},{feItem2Codigo;STRING;/feDATA/feItem2Codigo},{feItem2Descripcion;STRING;/feDATA/feItem2Descripcion},{feItem2Cant;STRING;/feDATA/feItem2Cant},{feItem2Descuento;STRING;/feDATA/feItem2Descuento},{feItem2Precio;STRING;/feDATA/feItem2Precio},{feItem2Importe;STRING;/feDATA/feItem2Importe},{feItem3Codigo;STRING;/feDATA/feItem3Codigo},{feItem3Descripcion;STRING;/feDATA/feItem3Descripcion},{feItem3Cant;STRING;/feDATA/feItem3Cant},{feItem3Descuento;STRING;/feDATA/feItem3Descuento},{feItem3Precio;STRING;/feDATA/feItem3Precio},{feItem3Importe;STRING;/feDATA/feItem3Importe},{feItem4Codigo;STRING;/feDATA/feItem4Codigo},{feItem4Descripcion;STRING;/feDATA/feItem4Descripcion},{feItem4Cant;STRING;/feDATA/feItem4Cant},{feItem4Descuento;STRING;/feDATA/feItem4Descuento},{feItem4Precio;STRING;/feDATA/feItem4Precio},{feItem4Importe;STRING;/feDATA/feItem4Importe},{feItem5Codigo;STRING;/feDATA/feItem5Codigo},{feItem5Descripcion;STRING;/feDATA/feItem5Descripcion},{feItem5Cant;STRING;/feDATA/feItem5Cant},{feItem5Descuento;STRING;/feDATA/feItem5Descuento},{feItem5Precio;STRING;/feDATA/feItem5Precio},{feItem5Importe;STRING;/feDATA/feItem5Importe},{feItem6Codigo;STRING;/feDATA/feItem6Codigo},{feItem6Descripcion;STRING;/feDATA/feItem6Descripcion},{feItem6Cant;STRING;/feDATA/feItem6Cant},{feItem6Descuento;STRING;/feDATA/feItem6Descuento},{feItem6Precio;STRING;/feDATA/feItem6Precio},{feItem6Importe;STRING;/feDATA/feItem6Importe},{feItem7Codigo;STRING;/feDATA/feItem7Codigo},{feItem7Descripcion;STRING;/feDATA/feItem7Descripcion},{feItem7Cant;STRING;/feDATA/feItem7Cant},{feItem7Descuento;STRING;/feDATA/feItem7Descuento},{feItem7Precio;STRING;/feDATA/feItem7Precio},{feItem7Importe;STRING;/feDATA/feItem7Importe},{feItem8Codigo;STRING;/feDATA/feItem8Codigo},{feItem8Descripcion;STRING;/feDATA/feItem8Descripcion},{feItem8Cant;STRING;/feDATA/feItem8Cant},{feItem8Descuento;STRING;/feDATA/feItem8Descuento},{feItem8Precio;STRING;/feDATA/feItem8Precio},{feItem8Importe;STRING;/feDATA/feItem8Importe},{feItem9Codigo;STRING;/feDATA/feItem9Codigo},{feItem9Descripcion;STRING;/feDATA/feItem9Descripcion},{feItem9Cant;STRING;/feDATA/feItem9Cant},{feItem9Descuento;STRING;/feDATA/feItem9Descuento},{feItem9Precio;STRING;/feDATA/feItem9Precio},{feItem9Importe;STRING;/feDATA/feItem9Importe},{feItem10Codigo;STRING;/feDATA/feItem10Codigo},{feItem10Descripcion;STRING;/feDATA/feItem10Descripcion},{feItem10Cant;STRING;/feDATA/feItem10Cant},{feItem10Descuento;STRING;/feDATA/feItem10Descuento},{feItem10Precio;STRING;/feDATA/feItem10Precio},{feItem10Importe;STRING;/feDATA/feItem10Importe},{feItem11Codigo;STRING;/feDATA/feItem11Codigo},{feItem11Descripcion;STRING;/feDATA/feItem11Descripcion},{feItem11Cant;STRING;/feDATA/feItem11Cant},{feItem11Descuento;STRING;/feDATA/feItem11Descuento},{feItem11Precio;STRING;/feDATA/feItem11Precio},{feItem11Importe;STRING;/feDATA/feItem11Importe},{feItem12Codigo;STRING;/feDATA/feItem12Codigo},{feItem12Descripcion;STRING;/feDATA/feItem12Descripcion},{feItem12Cant;STRING;/feDATA/feItem12Cant},{feItem12Descuento;STRING;/feDATA/feItem12Descuento},{feItem12Precio;STRING;/feDATA/feItem12Precio},{feItem12Importe;STRING;/feDATA/feItem12Importe},{feItem13Codigo;STRING;/feDATA/feItem13Codigo},{feItem13Descripcion;STRING;/feDATA/feItem13Descripcion},{feItem13Cant;STRING;/feDATA/feItem13Cant},{feItem13Descuento;STRING;/feDATA/feItem13Descuento},{feItem13Precio;STRING;/feDATA/feItem13Precio},{feItem13Importe;STRING;/feDATA/feItem13Importe},{feItem14Codigo;STRING;/feDATA/feItem14Codigo},{feItem14Descripcion;STRING;/feDATA/feItem14Descripcion},{feItem14Cant;STRING;/feDATA/feItem14Cant},{feItem14Descuento;STRING;/feDATA/feItem14Descuento},{feItem14Precio;STRING;/feDATA/feItem14Precio},{feItem14Importe;STRING;/feDATA/feItem14Importe},{feItem15Codigo;STRING;/feDATA/feItem15Codigo},{feItem15Descripcion;STRING;/feDATA/feItem15Descripcion},{feItem15Cant;STRING;/feDATA/feItem15Cant},{feItem15Descuento;STRING;/feDATA/feItem15Descuento},{feItem15Precio;STRING;/feDATA/feItem15Precio},{feItem15Importe;STRING;/feDATA/feItem15Importe},{feItem16Codigo;STRING;/feDATA/feItem16Codigo},{feItem16Descripcion;STRING;/feDATA/feItem16Descripcion},{feItem16Cant;STRING;/feDATA/feItem16Cant},{feItem16Descuento;STRING;/feDATA/feItem16Descuento},{feItem16Precio;STRING;/feDATA/feItem16Precio},{feItem16Importe;STRING;/feDATA/feItem16Importe},{feItem17Codigo;STRING;/feDATA/feItem17Codigo},{feItem17Descripcion;STRING;/feDATA/feItem17Descripcion},{feItem17Cant;STRING;/feDATA/feItem17Cant},{feItem17Descuento;STRING;/feDATA/feItem17Descuento},{feItem17Precio;STRING;/feDATA/feItem17Precio},{feItem17Importe;STRING;/feDATA/feItem17Importe},{feItem18Codigo;STRING;/feDATA/feItem18Codigo},{feItem18Descripcion;STRING;/feDATA/feItem18Descripcion},{feItem18Cant;STRING;/feDATA/feItem18Cant},{feItem18Descuento;STRING;/feDATA/feItem18Descuento},{feItem18Precio;STRING;/feDATA/feItem18Precio},{feItem18Importe;STRING;/feDATA/feItem18Importe},{feItem19Codigo;STRING;/feDATA/feItem19Codigo},{feItem19Descripcion;STRING;/feDATA/feItem19Descripcion},{feItem19Cant;STRING;/feDATA/feItem19Cant},{feItem19Descuento;STRING;/feDATA/feItem19Descuento},{feItem19Precio;STRING;/feDATA/feItem19Precio},{feItem19Importe;STRING;/feDATA/feItem19Importe},{feItem20Codigo;STRING;/feDATA/feItem20Codigo},{feItem20Descripcion;STRING;/feDATA/feItem20Descripcion},{feItem20Cant;STRING;/feDATA/feItem20Cant},{feItem20Descuento;STRING;/feDATA/feItem20Descuento},{feItem20Precio;STRING;/feDATA/feItem20Precio},{feItem20Importe;STRING;/feDATA/feItem20Importe},{feItem21Codigo;STRING;/feDATA/feItem21Codigo},{feItem21Descripcion;STRING;/feDATA/feItem21Descripcion},{feItem21Cant;STRING;/feDATA/feItem21Cant},{feItem21Descuento;STRING;/feDATA/feItem21Descuento},{feItem21Precio;STRING;/feDATA/feItem21Precio},{feItem21Importe;STRING;/feDATA/feItem21Importe},{feItem22Codigo;STRING;/feDATA/feItem22Codigo},{feItem22Descripcion;STRING;/feDATA/feItem22Descripcion},{feItem22Cant;STRING;/feDATA/feItem22Cant},{feItem22Descuento;STRING;/feDATA/feItem22Descuento},{feItem22Precio;STRING;/feDATA/feItem22Precio},{feItem22Importe;STRING;/feDATA/feItem22Importe},{feItem23Codigo;STRING;/feDATA/feItem23Codigo},{feItem23Descripcion;STRING;/feDATA/feItem23Descripcion},{feItem23Cant;STRING;/feDATA/feItem23Cant},{feItem23Descuento;STRING;/feDATA/feItem23Descuento},{feItem23Precio;STRING;/feDATA/feItem23Precio},{feItem23Importe;STRING;/feDATA/feItem23Importe},{feItem24Codigo;STRING;/feDATA/feItem24Codigo},{feItem24Descripcion;STRING;/feDATA/feItem24Descripcion},{feItem24Cant;STRING;/feDATA/feItem24Cant},{feItem24Descuento;STRING;/feDATA/feItem24Descuento},{feItem24Precio;STRING;/feDATA/feItem24Precio},{feItem24Importe;STRING;/feDATA/feItem24Importe},{feItem25Codigo;STRING;/feDATA/feItem25Codigo},{feItem25Descripcion;STRING;/feDATA/feItem25Descripcion},{feItem25Cant;STRING;/feDATA/feItem25Cant},{feItem25Descuento;STRING;/feDATA/feItem25Descuento},{feItem25Precio;STRING;/feDATA/feItem25Precio},{feItem25Importe;STRING;/feDATA/feItem25Importe},{feItem26Codigo;STRING;/feDATA/feItem26Codigo},{feItem26Descripcion;STRING;/feDATA/feItem26Descripcion},{feItem26Cant;STRING;/feDATA/feItem26Cant},{feItem26Descuento;STRING;/feDATA/feItem26Descuento},{feItem26Precio;STRING;/feDATA/feItem26Precio},{feItem26Importe;STRING;/feDATA/feItem26Importe},{feItem27Codigo;STRING;/feDATA/feItem27Codigo},{feItem27Descripcion;STRING;/feDATA/feItem27Descripcion},{feItem27Cant;STRING;/feDATA/feItem27Cant},{feItem27Descuento;STRING;/feDATA/feItem27Descuento},{feItem27Precio;STRING;/feDATA/feItem27Precio},{feItem27Importe;STRING;/feDATA/feItem27Importe},{feItem28Codigo;STRING;/feDATA/feItem28Codigo},{feItem28Descripcion;STRING;/feDATA/feItem28Descripcion},{feItem28Cant;STRING;/feDATA/feItem28Cant},{feItem28Descuento;STRING;/feDATA/feItem28Descuento},{feItem28Precio;STRING;/feDATA/feItem28Precio},{feItem28Importe;STRING;/feDATA/feItem28Importe},{feItem29Codigo;STRING;/feDATA/feItem29Codigo},{feItem29Descripcion;STRING;/feDATA/feItem29Descripcion},{feItem29Cant;STRING;/feDATA/feItem29Cant},{feItem29Descuento;STRING;/feDATA/feItem29Descuento},{feItem29Precio;STRING;/feDATA/feItem29Precio},{feItem29Importe;STRING;/feDATA/feItem29Importe},{feItem30Codigo;STRING;/feDATA/feItem30Codigo},{feItem30Descripcion;STRING;/feDATA/feItem30Descripcion},{feItem30Cant;STRING;/feDATA/feItem30Cant},{feItem30Descuento;STRING;/feDATA/feItem30Descuento},{feItem30Precio;STRING;/feDATA/feItem30Precio},{feItem30Importe;STRING;/feDATA/feItem30Importe},{feCodigoBarras;STRING;/feDATA/feCodigoBarras},{feComentarios1;STRING;/feDATA/feComentarios1},{feComentarios2;STRING;/feDATA/feComentarios2},{feComentarios3;STRING;/feDATA/feComentarios3},{feComentarios4;STRING;/feDATA/feComentarios4},{feLetraTipoFactura;STRING;/feDATA/feLetraTipoFactura},{feItem31Codigo;STRING;/feDATA/feItem31Codigo},{feItem31Descripcion;STRING;/feDATA/feItem31Descripcion},{feItem31Cant;STRING;/feDATA/feItem31Cant},{feItem31Descuento;STRING;/feDATA/feItem31Descuento},{feItem31Precio;STRING;/feDATA/feItem31Precio},{feItem31Importe;STRING;/feDATA/feItem31Importe}]]></xml-property>
             <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
 <model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
   <Version>2.0</Version>
@@ -6879,6 +6998,37 @@
                     <expression name="expression" type="javascript">dataSetRow["feItem30Codigo"]</expression>
                     <property name="dataType">string</property>
                 </structure>
+                <structure>
+                    <property name="name">feLetraTipoFactura</property>
+                    <text-property name="displayName">feLetraTipoFactura</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["feLetraTipoFactura"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">feItem31Codigo</property>
+                    <text-property name="displayName">feItem31Codigo</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["feItem31Codigo"]</expression>
+                    <property name="dataType">string</property>
+                    <property name="allowExport">true</property>
+                </structure>
+                <structure>
+                    <property name="name">feItem31Descuento</property>
+                    <text-property name="displayName">feItem31Descuento</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["feItem31Descuento"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">feItem31Precio</property>
+                    <text-property name="displayName">feItem31Precio</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["feItem31Precio"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">feItem31Importe</property>
+                    <text-property name="displayName">feItem31Importe</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["feItem31Importe"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
             </list-property>
             <column id="9085"/>
             <header>
@@ -6942,17 +7092,13 @@ I.V.A. Responsable Inscripto </font><pre>
                                 </cell>
                                 <cell id="9024">
                                     <property name="backgroundColor">#000000</property>
-                                    <text id="8741">
+                                    <data id="9796">
                                         <property name="fontFamily">"Arial"</property>
                                         <property name="fontSize">14pt</property>
                                         <property name="fontWeight">bold</property>
                                         <property name="color">#FFFFFF</property>
-                                        <property name="marginTop">12pt</property>
-                                        <property name="marginBottom">12pt</property>
-                                        <property name="textAlign">center</property>
-                                        <property name="contentType">html</property>
-                                        <text-property name="content"><![CDATA[A]]></text-property>
-                                    </text>
+                                        <property name="resultSetColumn">feLetraTipoFactura</property>
+                                    </data>
                                 </cell>
                                 <cell id="9025">
                                     <property name="colSpan">1</property>
@@ -10770,6 +10916,81 @@ FECHA INICIO ACTIVIDADES: 10/07/1970]]></text-property>
                                     </text>
                                 </cell>
                             </row>
+                            <row id="9797">
+                                <cell id="9798">
+                                    <property name="showIfBlank">true</property>
+                                    <data id="9813">
+                                        <property name="fontFamily">"Courier"</property>
+                                        <property name="fontSize">7pt</property>
+                                        <property name="resultSetColumn">feItem31Codigo</property>
+                                    </data>
+                                </cell>
+                                <cell id="9799">
+                                    <property name="showIfBlank">true</property>
+                                    <text id="9805">
+                                        <property name="fontFamily">"Courier"</property>
+                                        <property name="fontSize">8pt</property>
+                                        <property name="textAlign">left</property>
+                                        <property name="dataSet">Data Set</property>
+                                        <list-property name="boundDataColumns">
+                                            <structure>
+                                                <property name="name">feItem31Descripcion</property>
+                                                <text-property name="displayName">feItem31Descripcion</text-property>
+                                                <expression name="expression" type="javascript">dataSetRow["feItem31Descripcion"]</expression>
+                                                <property name="dataType">string</property>
+                                            </structure>
+                                        </list-property>
+                                        <property name="contentType">html</property>
+                                        <text-property name="content"><![CDATA[<value-of>row["feItem31Descripcion"]</value-of>]]></text-property>
+                                    </text>
+                                </cell>
+                                <cell id="9800">
+                                    <property name="showIfBlank">true</property>
+                                    <text id="9806">
+                                        <property name="fontFamily">"Courier"</property>
+                                        <property name="fontSize">8pt</property>
+                                        <property name="textAlign">right</property>
+                                        <property name="display">block</property>
+                                        <property name="dataSet">Data Set</property>
+                                        <list-property name="boundDataColumns">
+                                            <structure>
+                                                <property name="name">feItem31Cant</property>
+                                                <text-property name="displayName">feItem31Cant</text-property>
+                                                <expression name="expression" type="javascript">dataSetRow["feItem31Cant"]</expression>
+                                                <property name="dataType">string</property>
+                                            </structure>
+                                        </list-property>
+                                        <property name="contentType">html</property>
+                                        <text-property name="content"><![CDATA[<value-of>row["feItem31Cant"]</value-of>]]></text-property>
+                                    </text>
+                                </cell>
+                                <cell id="9801">
+                                    <property name="showIfBlank">true</property>
+                                    <data id="9814">
+                                        <property name="fontFamily">"Courier"</property>
+                                        <property name="fontSize">8pt</property>
+                                        <property name="resultSetColumn">feItem31Descuento</property>
+                                    </data>
+                                </cell>
+                                <cell id="9802">
+                                    <property name="showIfBlank">true</property>
+                                    <data id="9815">
+                                        <property name="fontFamily">"Courier"</property>
+                                        <property name="fontSize">8pt</property>
+                                        <property name="resultSetColumn">feItem31Precio</property>
+                                    </data>
+                                </cell>
+                                <cell id="9803">
+                                    <property name="paddingLeft">0pt</property>
+                                    <property name="paddingRight">0pt</property>
+                                    <property name="showIfBlank">true</property>
+                                    <data id="9816">
+                                        <property name="fontFamily">"Courier"</property>
+                                        <property name="fontSize">8pt</property>
+                                        <property name="resultSetColumn">feItem31Importe</property>
+                                    </data>
+                                </cell>
+                            </row>
                         </grid>
                     </cell>
                 </row>
@@ -10807,13 +11028,34 @@ FECHA INICIO ACTIVIDADES: 10/07/1970]]></text-property>
                                     <property name="paddingLeft">0pt</property>
                                     <property name="paddingBottom">0pt</property>
                                     <property name="paddingRight">0pt</property>
-                                    <grid id="9544">
-                                        <property name="height">1.7604166666666667in</property>
-                                        <property name="width">5.291666666666667in</property>
-                                        <column id="9545"/>
-                                        <row id="9546">
-                                            <cell id="9547">
-                                                <text id="9536">
+                                    <property name="verticalAlign">top</property>
+                                    <grid id="9826">
+                                        <property name="verticalAlign">top</property>
+                                        <column id="9827">
+                                            <property name="verticalAlign">top</property>
+                                            <property name="width">145px</property>
+                                        </column>
+                                        <column id="9828">
+                                            <property name="width">5.058333333333334in</property>
+                                        </column>
+                                        <row id="9829">
+                                            <cell id="9830">
+                                                <property name="colSpan">1</property>
+                                                <property name="rowSpan">5</property>
+                                                <property name="paddingTop">0pt</property>
+                                                <property name="paddingLeft">0pt</property>
+                                                <property name="paddingBottom">0pt</property>
+                                                <property name="paddingRight">0pt</property>
+                                                <image id="9849">
+                                                    <property name="height">145px</property>
+                                                    <property name="width">145px</property>
+                                                    <property name="pushDown">false</property>
+                                                    <property name="source">file</property>
+                                                    <expression name="uri" type="constant">C:\PkWEB\FacturaElectronica\qrCode.jpg</expression>
+                                                </image>
+                                            </cell>
+                                            <cell id="9831">
+                                                <text id="9838">
                                                     <property name="fontFamily">sans-serif</property>
                                                     <property name="fontSize">8pt</property>
                                                     <property name="contentType">html</property>
@@ -10821,10 +11063,9 @@ FECHA INICIO ACTIVIDADES: 10/07/1970]]></text-property>
                                                 </text>
                                             </cell>
                                         </row>
-                                        <row id="9548">
-                                            <property name="height">1.5cm</property>
-                                            <cell id="9549">
-                                                <data id="9755">
+                                        <row id="9832">
+                                            <cell id="9834">
+                                                <data id="9839">
                                                     <property name="fontFamily">"Courier"</property>
                                                     <property name="fontSize">8pt</property>
                                                     <structure name="stringFormat">
@@ -10833,7 +11074,11 @@ FECHA INICIO ACTIVIDADES: 10/07/1970]]></text-property>
                                                     </structure>
                                                     <property name="resultSetColumn">feComentarios1</property>
                                                 </data>
-                                                <data id="9756">
+                                            </cell>
+                                        </row>
+                                        <row id="9835">
+                                            <cell id="9837">
+                                                <data id="9840">
                                                     <property name="fontFamily">"Courier"</property>
                                                     <property name="fontSize">8pt</property>
                                                     <structure name="stringFormat">
@@ -10842,7 +11087,11 @@ FECHA INICIO ACTIVIDADES: 10/07/1970]]></text-property>
                                                     </structure>
                                                     <property name="resultSetColumn">feComentarios2</property>
                                                 </data>
-                                                <data id="9757">
+                                            </cell>
+                                        </row>
+                                        <row id="9841">
+                                            <cell id="9843">
+                                                <data id="9847">
                                                     <property name="fontFamily">"Courier"</property>
                                                     <property name="fontSize">8pt</property>
                                                     <structure name="stringFormat">
@@ -10851,7 +11100,11 @@ FECHA INICIO ACTIVIDADES: 10/07/1970]]></text-property>
                                                     </structure>
                                                     <property name="resultSetColumn">feComentarios3</property>
                                                 </data>
-                                                <data id="9758">
+                                            </cell>
+                                        </row>
+                                        <row id="9844">
+                                            <cell id="9846">
+                                                <data id="9848">
                                                     <property name="fontFamily">"Courier"</property>
                                                     <property name="fontSize">8pt</property>
                                                     <structure name="stringFormat">
@@ -10859,42 +11112,6 @@ FECHA INICIO ACTIVIDADES: 10/07/1970]]></text-property>
                                                         <property name="pattern">^</property>
                                                     </structure>
                                                     <property name="resultSetColumn">feComentarios4</property>
-                                                </data>
-                                            </cell>
-                                        </row>
-                                        <row id="9550">
-                                            <property name="verticalAlign">bottom</property>
-                                            <cell id="9551">
-                                                <property name="colSpan">1</property>
-                                                <property name="rowSpan">1</property>
-                                                <property name="textAlign">center</property>
-                                                <property name="verticalAlign">bottom</property>
-                                                <image id="9558">
-                                                    <property name="height">53px</property>
-                                                    <property name="width">491px</property>
-                                                    <property name="source">file</property>
-                                                    <expression name="uri" type="constant">C:\PkWEB\FacturaElectronica\codigoBarras.gif</expression>
-                                                </image>
-                                            </cell>
-                                        </row>
-                                        <row id="9556">
-                                            <property name="height">0.3cm</property>
-                                            <cell id="9557">
-                                                <property name="verticalAlign">bottom</property>
-                                                <data id="9539">
-                                                    <property name="fontFamily">sans-serif</property>
-                                                    <property name="fontSize">8pt</property>
-                                                    <property name="textAlign">center</property>
-                                                    <property name="dataSet">Data Set</property>
-                                                    <list-property name="boundDataColumns">
-                                                        <structure>
-                                                            <property name="name">feCodigoBarras</property>
-                                                            <text-property name="displayName">feCodigoBarras</text-property>
-                                                            <expression name="expression" type="javascript">dataSetRow["feCodigoBarras"]</expression>
-                                                            <property name="dataType">string</property>
-                                                        </structure>
-                                                    </list-property>
-                                                    <property name="resultSetColumn">feCodigoBarras</property>
                                                 </data>
                                             </cell>
                                         </row>
@@ -11023,6 +11240,21 @@ FECHA INICIO ACTIVIDADES: 10/07/1970]]></text-property>
                                         <property name="paddingBottom">0pt</property>
                                         <property name="paddingRight">0pt</property>
                                         <property name="textAlign">left</property>
+                                        <property name="dataSet">Data Set</property>
+                                        <list-property name="visibility">
+                                            <structure>
+                                                <property name="format">all</property>
+                                                <expression name="valueExpr" type="javascript">row["feIVA"] == ''</expression>
+                                            </structure>
+                                        </list-property>
+                                        <list-property name="boundDataColumns">
+                                            <structure>
+                                                <property name="name">feIVA</property>
+                                                <text-property name="displayName">feIVA</text-property>
+                                                <expression name="expression" type="javascript">dataSetRow["feIVA"]</expression>
+                                                <property name="dataType">string</property>
+                                            </structure>
+                                        </list-property>
                                         <property name="contentType">html</property>
                                         <text-property name="content"><![CDATA[SUB-TOTAL]]></text-property>
                                     </text>
@@ -11045,7 +11277,19 @@ FECHA INICIO ACTIVIDADES: 10/07/1970]]></text-property>
                                         <property name="paddingRight">0pt</property>
                                         <property name="textAlign">right</property>
                                         <property name="dataSet">Data Set</property>
+                                        <list-property name="visibility">
+                                            <structure>
+                                                <property name="format">all</property>
+                                                <expression name="valueExpr" type="javascript">row["feIVA"] == ''</expression>
+                                            </structure>
+                                        </list-property>
                                         <list-property name="boundDataColumns">
+                                            <structure>
+                                                <property name="name">feIVA</property>
+                                                <text-property name="displayName">feIVA</text-property>
+                                                <expression name="expression" type="javascript">dataSetRow["feIVA"]</expression>
+                                                <property name="dataType">string</property>
+                                            </structure>
                                             <structure>
                                                 <property name="name">feSubTotalDos</property>
                                                 <text-property name="displayName">feSubTotalDos</text-property>
@@ -11073,11 +11317,23 @@ FECHA INICIO ACTIVIDADES: 10/07/1970]]></text-property>
                                         <property name="paddingBottom">0pt</property>
                                         <property name="paddingRight">0pt</property>
                                         <property name="dataSet">Data Set</property>
+                                        <list-property name="visibility">
+                                            <structure>
+                                                <property name="format">all</property>
+                                                <expression name="valueExpr" type="javascript">row["feIVA"] == ''</expression>
+                                            </structure>
+                                        </list-property>
                                         <list-property name="boundDataColumns">
                                             <structure>
                                                 <property name="name">fePorcentajeIVA</property>
                                                 <text-property name="displayName">fePorcentajeIVA</text-property>
                                                 <expression name="expression" type="javascript">dataSetRow["fePorcentajeIVA"]</expression>
+                                                <property name="dataType">string</property>
+                                            </structure>
+                                            <structure>
+                                                <property name="name">feIVA</property>
+                                                <text-property name="displayName">feIVA</text-property>
+                                                <expression name="expression" type="javascript">dataSetRow["feIVA"]</expression>
                                                 <property name="dataType">string</property>
                                             </structure>
                                         </list-property>

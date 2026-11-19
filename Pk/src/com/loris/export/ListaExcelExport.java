@@ -3,6 +3,7 @@ package com.loris.export;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -79,7 +80,7 @@ public class ListaExcelExport {
 			WritableCellFormat arial10GreyBFFormatCenter = new WritableCellFormat (arial10FontG);
 			arial10GreyBFFormatCenter.setBackground(Colour.GREY_25_PERCENT);
 			
-			WritableFont arial10FontCenter = new WritableFont(WritableFont.ARIAL, 10);		
+			WritableFont arial10FontCenter = new WritableFont(WritableFont.ARIAL, 10);	
 			WritableCellFormat arial10FormatCenter = new WritableCellFormat (arial10FontCenter);
 			
 			WritableFont arial10RedFontCenter = new WritableFont(WritableFont.ARIAL, 10);		
@@ -142,7 +143,7 @@ public class ListaExcelExport {
 										
 					sheet.addCell(new Label(rowColumn++, rowIndex, toLowerCase(articuloAct.getFamilia().getDescripcion()), arial10FormatLeft));
 					sheet.addCell(new Label(rowColumn++, rowIndex, articuloAct.getDescripcion(), arial10FormatLeft));
-					sheet.addCell(new Label(rowColumn++, rowIndex, articuloAct.getPrecioVenta().toString(), arial10FormatCenter));
+					sheet.addCell(new Label(rowColumn++, rowIndex, getDecimal(articuloAct.getPrecioVenta()), arial10FormatCenter));
 					
 					if(articuloAct.getFechaModifVenta() != null)
 						sheet.addCell(new Label(rowColumn, rowIndex, formatDate(articuloAct.getFechaModifVenta()), getFechaModifFormat(articuloAct.getFechaModifVenta(), arial10FormatCenter, arial10RedFormatCenter)));
@@ -220,4 +221,8 @@ public class ListaExcelExport {
 		}
 		return EMPTY;
 	}	
+	
+	private static String getDecimal(BigDecimal number) {
+		return number.toString().replace(".", ",");
+	}
 }

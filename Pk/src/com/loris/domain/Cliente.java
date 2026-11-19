@@ -9,8 +9,10 @@ import java.math.BigDecimal;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
@@ -54,8 +56,9 @@ public class Cliente {
 	@Column(name="CUIT", length=11)
 	private String cuit;
 	
-	@Column(name="RESPONSABLE_INSC", length=1, nullable=false)
-	private String responsableInsc;
+	@ManyToOne(fetch=FetchType.EAGER)	
+	@JoinColumn(name="RESPONSABLE_INSC_ID_FK", referencedColumnName="REGIMEN_ID")
+	private Regimen responsableInsc;
 	
 	@Column(name="DESCUENTO", nullable=false)
 	private BigDecimal descuento;
@@ -133,10 +136,10 @@ public class Cliente {
 		this.cuit = cuit;
 	}
 	
-	public String getResponsableInsc() {
+	public Regimen getResponsableInsc() {
 		return responsableInsc;
 	}
-	public void setResponsableInsc(String responsableInsc) {
+	public void setResponsableInsc(Regimen responsableInsc) {
 		this.responsableInsc = responsableInsc;
 	}
 	
@@ -148,11 +151,8 @@ public class Cliente {
 	}
 	@Transient
 	public String getRegimenForPrint(){
-		if(this.responsableInsc != null && responsableInsc.equals("S"))
-			return "Inscripto";
-		if(this.responsableInsc != null && responsableInsc.equals("N"))
-			return "No Inscripto";
-		
+		if(this.responsableInsc != null)
+			return responsableInsc.getDescription();
 		return "";
 	}
 	public String getTelefono2() {
@@ -182,13 +182,17 @@ public class Cliente {
 	
 	public IVA getIva(IVADAO ivaDAO){
 		IVA currentIVA = null;
-		if("S".equals(this.responsableInsc)){
+		if("S".equals(this.responsableInsc.getValue())){
 			currentIVA = ivaDAO.getIVAInscripto();
 		}
-		if("N".equals(this.responsableInsc)){
+		if("N".equals(this.responsableInsc.getValue())){
 			currentIVA = ivaDAO.getIVANoInscripto();
 		}
 		
 		return currentIVA;
+	}
+	
+	public boolean isInscripto(){
+		return "S".equalsIgnoreCase(this.responsableInsc.getValue());
 	}
 }

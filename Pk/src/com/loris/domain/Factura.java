@@ -167,7 +167,7 @@ public class Factura {
 	public void updateStock(Integer facturaType){
 		for (ItemFactura item : this.items) {
 			if(FacturaType.FACTURA_NC_TYPE.equals(facturaType) || FacturaType.FACTURA_ANULADA_TYPE.equals(facturaType)
-					|| FacturaType.FACTURA_NC_TYPE_ELECTRONIC.equals(facturaType)){
+					|| FacturaType.FACTURA_NC_TYPE_ELECTRONIC_A.equals(facturaType) || FacturaType.FACTURA_NC_TYPE_ELECTRONIC_B.equals(facturaType)){
 				item.getArticulo().setStock(item.getCantidad().add(item.getArticulo().getStock()));
 			}else{
 				if(item.getCantidad().compareTo(item.getArticulo().getStock()) == 0 ||
@@ -218,11 +218,13 @@ public class Factura {
 	
 	@Transient
 	public Boolean getIsFacturaElectronica(){
-		return FacturaType.FACTURA_TYPE_ELECTRONIC.equals(this.facturaType.getFacturaTypeId());
+		return FacturaType.FACTURA_TYPE_ELECTRONIC_A.equals(this.facturaType.getFacturaTypeId()) 
+				|| FacturaType.FACTURA_TYPE_ELECTRONIC_B.equals(this.facturaType.getFacturaTypeId());
 	}
 	
 	@Transient
 	public Boolean getIsNotaDeCreditoElectronica(){
-		return FacturaType.FACTURA_NC_TYPE_ELECTRONIC.equals(this.facturaType.getFacturaTypeId());
+		return FacturaType.FACTURA_NC_TYPE_ELECTRONIC_A.equals(this.facturaType.getFacturaTypeId()) || 
+				FacturaType.FACTURA_NC_TYPE_ELECTRONIC_B.equals(this.facturaType.getFacturaTypeId());
 	}
 }

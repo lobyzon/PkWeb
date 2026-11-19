@@ -69,8 +69,11 @@
 				<tr>
 					<td class="title" height="5" style="text-align: right;" colspan="6">Tipo Factura:</td>
 					<td width="15%">
-						<form:select path="facturaType.facturaTypeId" id="tipoFactura">
-							<option value="<%=com.loris.domain.FacturaType.FACTURA_TYPE_ELECTRONIC%>">Factura Electrónica</option>
+						<form:select path="facturaType.facturaTypeId" id="tipoFactura" itemValue="${facturaType.facturaTypeId}">
+							<option value="<%=com.loris.domain.FacturaType.FACTURA_TYPE_ELECTRONIC_A%>">Factura Electrónica A</option>
+							<option value="<%=com.loris.domain.FacturaType.FACTURA_TYPE_ELECTRONIC_B%>">Factura Electrónica B</option>
+							<option value="<%=com.loris.domain.FacturaType.FACTURA_NC_TYPE_ELECTRONIC_A%>">Nota de Crédito Electrónica A</option>
+							<option value="<%=com.loris.domain.FacturaType.FACTURA_NC_TYPE_ELECTRONIC_B%>">Nota de Crédito Electrónica B</option>
 							<option value="<%=com.loris.domain.FacturaType.FACTURA_TYPE%>">Factura Manual</option>
 						</form:select>
 					</td>

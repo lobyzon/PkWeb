@@ -25,15 +25,8 @@ public class Items {
 	}
 
 	public IVA getCurrentIVA(Integer idCliente, ClienteDAO clienteDAO, IVADAO ivaDAO) {
-		if(this.currentIVA == null){
-			if("S".equals(clienteDAO.getCliente(idCliente).getResponsableInsc())){
-				this.currentIVA = ivaDAO.getIVAInscripto();
-			}
-			if("N".equals(clienteDAO.getCliente(idCliente).getResponsableInsc())){
-				this.currentIVA = ivaDAO.getIVANoInscripto();
-			}
-		}
-		return currentIVA;
+		this.currentIVA = ivaDAO.getIVAInscripto();
+		return ivaDAO.getIVAInscripto();
 	}
 
 	public void setCurrentIVA(IVA currentIVA) {
